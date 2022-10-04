@@ -1,0 +1,25 @@
+{
+	"name": "@packages/better-vant-ui",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "vite",
+		"build": "vite build"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^3.1.2",
+		"@vitejs/plugin-vue-jsx": "^2.0.1",
+		"terser": "^5.15.0",
+		"unocss": "^0.45.26",
+		"vite": "3.0.9"
+	},
+	"dependencies": {
+		"vant": "^3.6.3",
+		"vue": "^3.2.40"
+	}
+}

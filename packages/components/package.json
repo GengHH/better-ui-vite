@@ -1,0 +1,18 @@
+{
+	"name": "@packages/components",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"type": "module",
+	"license": "ISC",
+	"dependencies": {
+		"@packages/better-vant-ui": "workspace:*",
+		"@packages/utils": "workspace:*",
+		"lodash": "^4.17.21"
+	}
+}

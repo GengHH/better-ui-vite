@@ -1,0 +1,44 @@
+<!--
+ * @Author: GengHH 18818060415@163.com
+ * @Date: 2022-10-03 22:21:18
+ * @LastEditors: GengHH 18818060415@163.com
+ * @LastEditTime: 2022-10-05 04:32:59
+ * @FilePath: \better-vant-ui\demo\esm\index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/vant/3.6.3/index.css"
+		/>
+	</head>
+	<body>
+		<h1>Demo（全量加载）</h1>
+		<div id="app"></div>
+	</body>
+	<script type="module">
+		import { createApp } from 'vue/dist/vue.esm-bundler.js';
+		import BetterVnatUI from '/dist/better-vant-ui.mjs';
+		import 'uno.css';
+		let app = createApp({
+			template: `
+			<MyButton>uno按钮</MyButton>
+			<JSXButton/>
+			<SFCButton/>
+			<BetterPicker/>
+		  `,
+		})
+			.use(BetterVnatUI)
+			.mount('#app');
+		// 将所有标签前缀为 `ion-` 的标签视为自定义元素
+		// app.config.compilerOptions.isCustomElement = (tag) => {
+		// 	return tag.startsWith('Better');
+		// };
+	</script>
+</html>

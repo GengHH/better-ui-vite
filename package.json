@@ -1,0 +1,24 @@
+{
+	"name": "better-ui-vite",
+	"version": "1.0.0",
+	"description": "Build monorepo workspace by pnpm",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"preinstall": "node ./scripts/preinstall.js",
+		"docs:dev": "pnpm -w run --filter=@packages/better-vant-ui-docs dev"
+	},
+	"type": "module",
+	"keywords": [
+		"vite3",
+		"vue3",
+		"pnpm",
+		"monorepo",
+		"vant-ui"
+	],
+	"author": "GengHH",
+	"license": "MIT",
+	"dependencies": {
+		"vite": "3.0.9"
+	}
+}
