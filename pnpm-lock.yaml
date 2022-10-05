@@ -30,7 +30,7 @@ importers:
   packages/better-vant-ui-docs:
     specifiers:
       '@algolia/client-search': ^4.14.2
-      '@packages/better-vant-ui': workspace:*
+      '@better-vant/better-vant-ui': workspace:*
       '@vitejs/plugin-vue': ^3.1.2
       '@vitejs/plugin-vue-jsx': ^2.0.1
       unocss: ^0.45.26
@@ -39,7 +39,7 @@ importers:
       vue: ^3.2.25
     devDependencies:
       '@algolia/client-search': registry.npmmirror.com/@algolia/client-search/4.14.2
-      '@packages/better-vant-ui': link:../better-vant-ui
+      '@better-vant/better-vant-ui': link:../better-vant-ui
       '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.1.2_vite@3.1.4+vue@3.2.40
       '@vitejs/plugin-vue-jsx': registry.npmmirror.com/@vitejs/plugin-vue-jsx/2.0.1_vite@3.1.4+vue@3.2.40
       unocss: registry.npmmirror.com/unocss/0.45.26_vite@3.1.4
@@ -49,12 +49,12 @@ importers:
 
   packages/components:
     specifiers:
-      '@packages/better-vant-ui': workspace:*
-      '@packages/utils': workspace:*
+      '@better-vant/better-vant-ui': workspace:*
+      '@better-vant/utils': workspace:*
       lodash: ^4.17.21
     dependencies:
-      '@packages/better-vant-ui': link:../better-vant-ui
-      '@packages/utils': link:../utils
+      '@better-vant/better-vant-ui': link:../better-vant-ui
+      '@better-vant/utils': link:../utils
       lodash: registry.npmmirror.com/lodash/4.17.21
 
   packages/utils:

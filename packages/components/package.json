@@ -1,5 +1,5 @@
 {
-	"name": "@packages/components",
+	"name": "@better-vant/components",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -11,8 +11,8 @@
 	"type": "module",
 	"license": "ISC",
 	"dependencies": {
-		"@packages/better-vant-ui": "workspace:*",
-		"@packages/utils": "workspace:*",
+		"@better-vant/better-vant-ui": "workspace:*",
+		"@better-vant/utils": "workspace:*",
 		"lodash": "^4.17.21"
 	}
 }

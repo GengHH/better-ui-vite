@@ -1,5 +1,5 @@
 {
-	"name": "@packages/better-vant-ui-docs",
+	"name": "@better-vant/better-vant-ui-docs",
 	"version": "0.0.1",
 	"description": "",
 	"main": "index.js",
@@ -18,7 +18,7 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@algolia/client-search": "^4.14.2",
-		"@packages/better-vant-ui": "workspace:*",
+		"@better-vant/better-vant-ui": "workspace:*",
 		"@vitejs/plugin-vue": "^3.1.2",
 		"@vitejs/plugin-vue-jsx": "^2.0.1",
 		"unocss": "^0.45.26",
