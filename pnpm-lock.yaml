@@ -30,7 +30,7 @@ importers:
   packages/better-vant-ui-docs:
     specifiers:
       '@algolia/client-search': ^4.14.2
-      '@better-vant/better-vant-ui': workspace:*
+      '@better-vant/better-vant-ui': workspace:0.0.2
       '@vitejs/plugin-vue': ^3.1.2
       '@vitejs/plugin-vue-jsx': ^2.0.1
       unocss: ^0.45.26
