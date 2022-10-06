@@ -2,7 +2,7 @@
  * @Author: GengHH 18818060415@163.com
  * @Date: 2022-10-04 13:23:58
  * @LastEditors: GengHH 18818060415@163.com
- * @LastEditTime: 2022-10-06 03:06:34
+ * @LastEditTime: 2022-10-06 14:36:23
  * @FilePath: \better-ui-vite\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -30,6 +30,13 @@ pnpm config set registry https://registry.npmmirror.com/
 ```ssh
 eg:
 root>  pnpm i
+```
+
+##### 常用指令：安装公用的包（安装在根目录下）
+
+```ssh
+eg:
+root>  pnpm add <package_name> -w
 ```
 
 ##### 常用指令：为 packages 中项目安装依赖的所有包 or 安装指定的包
@@ -95,10 +102,10 @@ root> npm login
 ##### 修改配置来确保 npm 不是使用的淘宝镜像 or 使用 nrm 进行切换
 
 ```
-不使用淘宝镜像
+不使用淘宝镜像 （发布npm包时，需要切换到此源）
 root> npm config set registry https://registry.npmjs.org/
 
-使用淘宝镜像
+使用淘宝镜像（npm发布完后，需要切换到此源，否则再执行pnpm安装包时会报错）
 npm config set registry http://registry.npm.taobao.org/
 ```
 
