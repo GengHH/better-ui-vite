@@ -1,3 +1,5 @@
+import { Icon } from 'vant';
+
 import {
 	ref,
 	watchEffect,
@@ -45,7 +47,8 @@ export const PICKER_KEY: InjectionKey<PickerColumnProvide> = Symbol(name);
 export default defineComponent({
 	name,
 	props: {
-		value: numericProp,
+		// value: numericProp,
+		value: makeArrayProp<Numeric>(),
 		fields: makeRequiredProp(Object as PropType<Required<PickerFieldNames>>),
 		options: makeArrayProp<PickerOption>(),
 		readonly: Boolean,
@@ -54,8 +57,10 @@ export default defineComponent({
 		swipeDuration: makeRequiredProp(numericProp),
 		visibleOptionNum: makeRequiredProp(numericProp),
 	},
-
-	emits: ['change', 'clickOption'],
+	components: {
+		[Icon.name]: Icon,
+	},
+	emits: ['change', 'clickOption', 'clickIcon'],
 
 	setup(props, { emit, slots }) {
 		let moving: boolean;
@@ -81,9 +86,9 @@ export default defineComponent({
 
 			const trigger = () => {
 				const value = props.options[enabledIndex][props.fields.value];
-				if (value !== props.value) {
-					emit('change', value);
-				}
+				// if (value !== props.value) {
+				// 	emit('change', value);
+				// }
 			};
 
 			// trigger the change event after transitionend when moving
@@ -103,8 +108,25 @@ export default defineComponent({
 
 			transitionEndTrigger = null;
 			currentDuration.value = DEFAULT_DURATION;
-			updateValueByIndex(index);
+			// 点击整行时，不在更新数据，只是滚动界面
+			// updateValueByIndex(index);
 			emit('clickOption', props.options[index]);
+		};
+		// icon 点击事件 (代表选择或则取消选择此选项)
+		const onClickIcon = (index: number) => {
+			console.log('%c 🍤 index', 'color:#b03734', index);
+			if (moving || props.readonly) {
+				return;
+			}
+
+			transitionEndTrigger = null;
+			currentDuration.value = DEFAULT_DURATION;
+			updateValueByIndex(index);
+			emit(
+				'clickIcon',
+				props.options[index][props.fields.value],
+				props.options[index]
+			);
 		};
 
 		const getIndexByOffset = (offset: number) =>
@@ -211,6 +233,7 @@ export default defineComponent({
 				const text = option[props.fields.text];
 				const { disabled } = option;
 				const value: Numeric = option[props.fields.value];
+				// console.log('%c 🎂 value', 'color:#4fff4B', value);
 				const data = {
 					role: 'button',
 					style: optionStyle,
@@ -218,7 +241,7 @@ export default defineComponent({
 					class: [
 						bem('item', {
 							disabled,
-							selected: value === props.value,
+							selected: props.value.includes(value),
 						}),
 						option.className,
 					],
@@ -229,10 +252,23 @@ export default defineComponent({
 					class: 'van-ellipsis',
 					[props.allowHtml ? 'innerHTML' : 'textContent']: text,
 				};
+				// 点击图标
+				const iconData = {
+					name: option.iconName || 'success',
+					class: [
+						bem('icon', {
+							disabled,
+							selected: props.value.includes(value),
+						}),
+						option.iconClassName,
+					],
+					onClick: () => onClickIcon(index),
+				};
 
 				return (
 					<li {...data}>
 						{slots.option ? slots.option(option) : <div {...childData} />}
+						<van-icon {...iconData} />
 					</li>
 				);
 			});
@@ -241,12 +277,17 @@ export default defineComponent({
 		useParent(PICKER_KEY);
 		useExpose({ stopMomentum });
 
+		/**
+		 * 侦听数据变化，使得页面滚顶并定位到最新选中的或者不选中的位置
+		 */
 		watchEffect(() => {
 			const index = props.options.findIndex(
-				(option) => option[props.fields.value] === props.value
+				(option) =>
+					option[props.fields.value] === props.value[props.value.length - 1]
 			);
 			const enabledIndex = findIndexOfEnabledOption(props.options, index);
 			const offset = -enabledIndex * props.optionHeight;
+			console.log('%c 🥃 offset', 'color:#b03734', offset);
 			currentOffset.value = offset;
 		});
 

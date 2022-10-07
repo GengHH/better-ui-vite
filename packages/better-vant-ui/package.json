@@ -1,6 +1,6 @@
 {
 	"name": "@better-vant/better-vant-ui",
-	"version": "0.0.2",
+	"version": "0.1.0",
 	"description": "",
 	"main": "./lib/better-vant-ui.mjs",
 	"scripts": {

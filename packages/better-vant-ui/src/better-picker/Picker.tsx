@@ -57,6 +57,7 @@ import type {
 } from './types';
 // import { PICKER_GROUP_KEY } from '../picker-group/PickerGroup';
 import { PICKER_GROUP_KEY } from 'vant/es/picker-group/PickerGroup';
+import { isNumeric } from 'vant/lib/utils';
 
 export const pickerSharedProps = extend(
 	{
@@ -86,7 +87,13 @@ export default defineComponent({
 
 	props: pickerProps,
 
-	emits: ['confirm', 'cancel', 'change', 'clickOption', 'update:modelValue'],
+	emits: [
+		'confirm',
+		'cancel',
+		/*'change',*/ 'clickOption',
+		'clickIcon',
+		'update:modelValue',
+	],
 
 	setup(props, { emit, slots }) {
 		const columnsRef = ref<HTMLElement>();
@@ -107,6 +114,7 @@ export default defineComponent({
 			const { columns } = props;
 			switch (columnsType.value) {
 				case 'multiple':
+					console.log('%c 🍫 columns', 'color:#42b983', columns);
 					return columns as PickerColumn[];
 				case 'cascade':
 					return formatCascadeColumns(columns, fields.value, selectedValues);
@@ -125,10 +133,25 @@ export default defineComponent({
 			)
 		);
 
+		// 更新选中的值
 		const setValue = (index: number, value: Numeric) => {
-			if (selectedValues.value[index] !== value) {
+			// if (selectedValues.value[index] !== value) {
+			// 	const newValues = selectedValues.value.slice(0);
+			// 	newValues[index] = value;
+			// 	selectedValues.value = newValues;
+			// }
+
+			if (selectedValues.value.includes(value)) {
+				// 此前本选项已被选中，现在撤销选中
+				const oldIndex = selectedValues.value.findIndex((v) => v === value);
+				if (oldIndex >= 0) {
+					const newValues = selectedValues.value.slice(0);
+					selectedValues.value = newValues.filter((x) => x !== value);
+				}
+			} else {
+				// 选中本选项
 				const newValues = selectedValues.value.slice(0);
-				newValues[index] = value;
+				newValues.push(value);
 				selectedValues.value = newValues;
 			}
 		};
@@ -138,30 +161,49 @@ export default defineComponent({
 			selectedOptions: selectedOptions.value,
 		});
 
-		const onChange = (value: Numeric, columnIndex: number) => {
-			setValue(columnIndex, value);
+		// const onChange = (value: Numeric, columnIndex: number) => {
+		// 	setValue(columnIndex, value);
 
-			if (columnsType.value === 'cascade') {
-				// reset values after cascading
-				selectedValues.value.forEach((value, index) => {
-					const options = currentColumns.value[index];
-					if (!isOptionExist(options, value, fields.value)) {
-						setValue(
-							index,
-							options.length ? options[0][fields.value.value] : undefined
-						);
-					}
-				});
-			}
+		// 	if (columnsType.value === 'cascade') {
+		// 		// reset values after cascading
+		// 		selectedValues.value.forEach((value, index) => {
+		// 			const options = currentColumns.value[index];
+		// 			if (!isOptionExist(options, value, fields.value)) {
+		// 				setValue(
+		// 					index,
+		// 					options.length ? options[0][fields.value.value] : undefined
+		// 				);
+		// 			}
+		// 		});
+		// 	}
 
-			emit('change', extend({ columnIndex }, getEventParams()));
-		};
+		// 	emit('change', extend({ columnIndex }, getEventParams()));
+		// };
 
 		const onClickOption = (currentOption: PickerOption, columnIndex: number) =>
 			emit(
 				'clickOption',
 				extend({ columnIndex, currentOption }, getEventParams())
 			);
+		// 点击图标事件
+		const onClickIcon = (
+			value: Numeric,
+			currentOption: PickerOption,
+			columnIndex: number
+		) => {
+			console.log('%c 🍏 value', 'color:#42b983', value);
+			console.log('%c 🌮 currentOption', 'color:#465975', currentOption);
+			console.log(
+				'%c 🥕 extend({ columnIndex, currentOption }, getEventParams())',
+				'color:#b03734',
+				extend({ columnIndex, currentOption }, getEventParams())
+			);
+			setValue(columnIndex, value);
+			emit(
+				'clickIcon',
+				extend({ columnIndex, currentOption }, getEventParams())
+			);
+		};
 
 		const confirm = () => {
 			children.forEach((child) => child.stopMomentum());
@@ -171,12 +213,13 @@ export default defineComponent({
 		};
 
 		const cancel = () => emit('cancel', getEventParams());
-
+		// 渲染选项列
 		const renderColumnItems = () =>
 			currentColumns.value.map((options, columnIndex) => (
 				<Column
 					v-slots={{ option: slots.option }}
-					value={selectedValues.value[columnIndex]}
+					// value={selectedValues.value[columnIndex]}
+					value={selectedValues.value}
 					fields={fields.value}
 					options={options}
 					readonly={props.readonly}
@@ -184,9 +227,12 @@ export default defineComponent({
 					optionHeight={optionHeight.value}
 					swipeDuration={props.swipeDuration}
 					visibleOptionNum={props.visibleOptionNum}
-					onChange={(value: Numeric) => onChange(value, columnIndex)}
+					// onChange={(value: Numeric) => onChange(value, columnIndex)}
 					onClickOption={(option: PickerOption) =>
 						onClickOption(option, columnIndex)
+					}
+					onClickIcon={(value: Numeric, option: PickerOption) =>
+						onClickIcon(value, option, columnIndex)
 					}
 				/>
 			));
