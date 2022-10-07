@@ -10,15 +10,17 @@ importers:
 
   packages/better-vant-ui:
     specifiers:
+      '@vant/use': ^1.4.3
       '@vitejs/plugin-vue': ^3.1.2
       '@vitejs/plugin-vue-jsx': ^2.0.1
       terser: ^5.15.0
       unocss: ^0.45.26
-      vant: ^3.6.3
+      vant: 4.0.0-rc.4
       vite: 3.0.9
       vue: ^3.2.40
     dependencies:
-      vant: registry.npmmirror.com/vant/3.6.3_vue@3.2.40
+      '@vant/use': registry.npmmirror.com/@vant/use/1.4.3
+      vant: registry.npmmirror.com/vant/4.0.0-rc.4_vue@3.2.40
       vue: registry.npmmirror.com/vue/3.2.40
     devDependencies:
       '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.1.2_vite@3.0.9+vue@3.2.40
@@ -1006,7 +1008,7 @@ packages:
       '@unocss/scope': registry.npmmirror.com/@unocss/scope/0.45.26
       '@unocss/transformer-directives': registry.npmmirror.com/@unocss/transformer-directives/0.45.26
       magic-string: registry.npmmirror.com/magic-string/0.26.5
-      vite: registry.npmmirror.com/vite/3.0.9
+      vite: registry.npmmirror.com/vite/3.0.9_terser@5.15.0
     dev: true
 
   registry.npmmirror.com/@unocss/vite/0.45.26_vite@3.1.4:
@@ -1027,12 +1029,6 @@ packages:
       magic-string: registry.npmmirror.com/magic-string/0.26.5
       vite: registry.npmmirror.com/vite/3.1.4
     dev: true
-
-  registry.npmmirror.com/@vant/icons/1.8.0:
-    resolution: {integrity: sha512-sKfEUo2/CkQFuERxvkuF6mGQZDKu3IQdj5rV9Fm0weJXtchDSSQ+zt8qPCNUEhh9Y8shy5PzxbvAfOOkCwlCXg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vant/icons/-/icons-1.8.0.tgz}
-    name: '@vant/icons'
-    version: 1.8.0
-    dev: false
 
   registry.npmmirror.com/@vant/popperjs/1.3.0:
     resolution: {integrity: sha512-hB+czUG+aHtjhaEmCJDuXOep0YTZjdlRR+4MSmIFnkCQIxJaXLQdSsR90XWvAI2yvKUI7TCGqR8pQg2RtvkMHw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vant/popperjs/-/popperjs-1.3.0.tgz}
@@ -1060,7 +1056,7 @@ packages:
       '@babel/plugin-syntax-import-meta': registry.npmmirror.com/@babel/plugin-syntax-import-meta/7.10.4_@babel+core@7.19.3
       '@babel/plugin-transform-typescript': registry.npmmirror.com/@babel/plugin-transform-typescript/7.19.3_@babel+core@7.19.3
       '@vue/babel-plugin-jsx': registry.npmmirror.com/@vue/babel-plugin-jsx/1.1.1_@babel+core@7.19.3
-      vite: registry.npmmirror.com/vite/3.0.9
+      vite: registry.npmmirror.com/vite/3.0.9_terser@5.15.0
       vue: registry.npmmirror.com/vue/3.2.40
     transitivePeerDependencies:
       - supports-color
@@ -1096,7 +1092,7 @@ packages:
       vite: ^3.0.0
       vue: ^3.2.25
     dependencies:
-      vite: registry.npmmirror.com/vite/3.0.9
+      vite: registry.npmmirror.com/vite/3.0.9_terser@5.15.0
       vue: registry.npmmirror.com/vue/3.2.40
     dev: true
 
@@ -2800,15 +2796,14 @@ packages:
       picocolors: registry.npmmirror.com/picocolors/1.0.0
     dev: true
 
-  registry.npmmirror.com/vant/3.6.3_vue@3.2.40:
-    resolution: {integrity: sha512-OmqQXgtgJgNNoGV8FzvGkm/fvXOB70ZmruOUU4iJaEmEwdsdYl+31D6niisWZLVAbGW1Xx9rLrOu9hivdxQbbg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vant/-/vant-3.6.3.tgz}
-    id: registry.npmmirror.com/vant/3.6.3
+  registry.npmmirror.com/vant/4.0.0-rc.4_vue@3.2.40:
+    resolution: {integrity: sha512-xaRzzg4m01tGIiidhTh7pBX69lvIiXEsOisiSEoVJnUylzUN0Xqf62urKtq86jq0IGyy6HHo447SGbzLnbAXQw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vant/-/vant-4.0.0-rc.4.tgz}
+    id: registry.npmmirror.com/vant/4.0.0-rc.4
     name: vant
-    version: 3.6.3
+    version: 4.0.0-rc.4
     peerDependencies:
       vue: ^3.0.0
     dependencies:
-      '@vant/icons': registry.npmmirror.com/@vant/icons/1.8.0
       '@vant/popperjs': registry.npmmirror.com/@vant/popperjs/1.3.0
       '@vant/use': registry.npmmirror.com/@vant/use/1.4.3
       vue: registry.npmmirror.com/vue/3.2.40
@@ -2841,6 +2836,7 @@ packages:
       rollup: registry.npmmirror.com/rollup/2.77.3
     optionalDependencies:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
+    dev: false
 
   registry.npmmirror.com/vite/3.0.9_terser@5.15.0:
     resolution: {integrity: sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-3.0.9.tgz}
