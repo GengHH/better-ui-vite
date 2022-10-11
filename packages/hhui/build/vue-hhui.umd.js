@@ -1,0 +1,1 @@
+(function(e,n){typeof exports=="object"&&typeof module!="undefined"?module.exports=n():typeof define=="function"&&define.amd?define(n):(e=typeof globalThis!="undefined"?globalThis:e||self,e.Vuehhui=n())})(this,function(){"use strict";const e=[];var n={version:"1.0.8",install(i){e.forEach(t=>i.use(t))}};return n});
