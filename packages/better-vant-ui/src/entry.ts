@@ -12,6 +12,7 @@ import { App } from 'vue';
 // import SFCButton from './vue/SFCButton.vue';
 // import BetterPicker from './better-picker/BetterPicker.vue';
 import BetterPicker from './better-picker';
+import SFCButton from './vue/SFCButton.vue';
 import './better-picker/index.css';
 
 // 导出单个组件--方便用于按需加载
@@ -22,7 +23,7 @@ export default {
 	install(app: App): void {
 		// app.component(MyButton.name, MyButton);
 		// app.component(JSXButton.name, JSXButton);
-		// app.component(SFCButton.name, SFCButton);
+		app.component(SFCButton.name, SFCButton);
 		app.component(BetterPicker.name, BetterPicker);
 	},
 };

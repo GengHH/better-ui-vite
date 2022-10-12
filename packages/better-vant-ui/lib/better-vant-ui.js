@@ -1,1 +1,2646 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("vue"),t=require("vant"),n=e=>null!=e,o=e=>"function"==typeof e,l=e=>null!==e&&"object"==typeof e,i=e=>"number"==typeof e||/^\d+(\.\d+)?$/.test(e);function a(){}const r=Object.assign,c="undefined"!=typeof window;function s(e,t){const n=t.split(".");let o=e;return n.forEach((e=>{var t;o=l(o)&&null!=(t=o[e])?t:""})),o}function u(e,t,n){return t.reduce(((t,o)=>(n&&void 0===e[o]||(t[o]=e[o]),t)),{})}const d=(e,t)=>JSON.stringify(e)===JSON.stringify(t),v=[Number,String],p={type:Boolean,default:!0},f=e=>({type:e,required:!0}),m=()=>({type:Array,default:()=>[]}),h=e=>({type:v,default:e}),g=e=>({type:String,default:e});var b="undefined"!=typeof window;function w(e){return b?requestAnimationFrame(e):-1}function y(e){w((()=>w(e)))}var x,C,N=(e,t)=>({top:0,left:0,right:e,bottom:t,width:e,height:t}),k=t=>{const n=e.unref(t);if(n===window){const e=n.innerWidth,t=n.innerHeight;return N(e,t)}return(null==n?void 0:n.getBoundingClientRect)?n.getBoundingClientRect():N(0,0)};function V(t){const n=e.inject(t,null);if(n){const t=e.getCurrentInstance(),{link:o,unlink:l,internalChildren:i}=n;o(t),e.onUnmounted((()=>l(t)));return{parent:n,index:e.computed((()=>i.indexOf(t)))}}return{parent:null,index:e.ref(-1)}}function S(t,n,o){const l=function(t){const n=[],o=t=>{Array.isArray(t)&&t.forEach((t=>{var l;e.isVNode(t)&&(n.push(t),(null==(l=t.component)?void 0:l.subTree)&&(n.push(t.component.subTree),o(t.component.subTree.children)),t.children&&o(t.children))}))};return o(t),n}(t.subTree.children);o.sort(((e,t)=>l.indexOf(e.vnode)-l.indexOf(t.vnode)));const i=o.map((e=>e.proxy));n.sort(((e,t)=>i.indexOf(e)-i.indexOf(t)))}function T(t){const n=e.reactive([]),o=e.reactive([]),l=e.getCurrentInstance();return{children:n,linkChildren:i=>{e.provide(t,Object.assign({link:e=>{e.proxy&&(o.push(e),n.push(e.proxy),S(l,n,o))},unlink:e=>{const t=o.indexOf(e);n.splice(t,1),o.splice(t,1)},children:n,internalChildren:o},i))}}}function $(t){let n;e.onMounted((()=>{t(),e.nextTick((()=>{n=!0}))})),e.onActivated((()=>{n&&t()}))}function B(t,n,o={}){if(!b)return;const{target:l=window,passive:i=!1,capture:a=!1}=o;let r;const c=o=>{const l=e.unref(o);l&&!r&&(l.addEventListener(t,n,{capture:a,passive:i}),r=!0)},s=o=>{const l=e.unref(o);l&&r&&(l.removeEventListener(t,n,a),r=!1)};e.onUnmounted((()=>s(l))),e.onDeactivated((()=>s(l))),$((()=>c(l))),e.isRef(l)&&e.watch(l,((e,t)=>{s(t),c(e)}))}var O,I=/scroll|auto|overlay/i,z=b?window:void 0;function M(e){return"HTML"!==e.tagName&&"BODY"!==e.tagName&&1===e.nodeType}function A(t,n=z){const o=e.ref();return e.onMounted((()=>{t.value&&(o.value=function(e,t=z){let n=e;for(;n&&n!==t&&M(n);){const{overflowY:e}=window.getComputedStyle(n);if(I.test(e))return n;n=n.parentNode}return t}(t.value,n))})),o}function E(e){const t="scrollTop"in e?e.scrollTop:e.pageYOffset;return Math.max(t,0)}function H(e,t){"scrollTop"in e?e.scrollTop=t:e.scrollTo(e.scrollX,t)}function D(e,t){if(e===window)return 0;const n=t?E(t):window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;return k(e).top+n}c&&/ios|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());function P(e,t){("boolean"!=typeof e.cancelable||e.cancelable)&&e.preventDefault(),t&&(e=>{e.stopPropagation()})(e)}function R(t){const n=e.unref(t);if(!n)return!1;const o=window.getComputedStyle(n),l="none"===o.display,i=null===n.offsetParent&&"fixed"!==o.position;return l||i}const{width:L,height:j}=function(){if(!x&&(x=e.ref(0),C=e.ref(0),b)){const e=()=>{x.value=window.innerWidth,C.value=window.innerHeight};e(),window.addEventListener("resize",e,{passive:!0}),window.addEventListener("orientationchange",e,{passive:!0})}return{width:x,height:C}}();function Y(e){if(n(e))return i(e)?`${e}px`:String(e)}let X;function W(e){return+(e=e.replace(/rem/g,""))*function(){if(!X){const e=document.documentElement,t=e.style.fontSize||window.getComputedStyle(e).fontSize;X=parseFloat(t)}return X}()}function F(e){if("number"==typeof e)return e;if(c){if(e.includes("rem"))return W(e);if(e.includes("vw"))return function(e){return+(e=e.replace(/vw/g,""))*L.value/100}(e);if(e.includes("vh"))return function(e){return+(e=e.replace(/vh/g,""))*j.value/100}(e)}return parseFloat(e)}const Z=/-(\w)/g,_=e=>e.replace(Z,((e,t)=>t.toUpperCase())),U=(e,t,n)=>Math.min(Math.max(e,t),n),{hasOwnProperty:q}=Object.prototype;function J(e,t){return Object.keys(t).forEach((o=>{!function(e,t,o){const i=t[o];n(i)&&(q.call(e,o)&&l(i)?e[o]=J(Object(e[o]),i):e[o]=i)}(e,t,o)})),e}const G=e.ref("zh-CN"),K=e.reactive({"zh-CN":{name:"姓名",tel:"电话",save:"保存",confirm:"确认",cancel:"取消",delete:"删除",loading:"加载中...",noCoupon:"暂无优惠券",nameEmpty:"请填写姓名",addContact:"添加联系人",telInvalid:"请填写正确的电话",vanCalendar:{end:"结束",start:"开始",title:"日期选择",weekdays:["日","一","二","三","四","五","六"],monthTitle:(e,t)=>`${e}年${t}月`,rangePrompt:e=>`最多选择 ${e} 天`},vanCascader:{select:"请选择"},vanPagination:{prev:"上一页",next:"下一页"},vanPullRefresh:{pulling:"下拉即可刷新...",loosing:"释放即可刷新..."},vanSubmitBar:{label:"合计:"},vanCoupon:{unlimited:"无门槛",discount:e=>`${e}折`,condition:e=>`满${e}元可用`},vanCouponCell:{title:"优惠券",count:e=>`${e}张可用`},vanCouponList:{exchange:"兑换",close:"不使用",enable:"可用",disabled:"不可用",placeholder:"输入优惠码"},vanAddressEdit:{area:"地区",areaEmpty:"请选择地区",addressEmpty:"请填写详细地址",addressDetail:"详细地址",defaultAddress:"设为默认收货地址"},vanAddressList:{add:"新增地址"}}});var Q={messages:()=>K[G.value],use(e,t){G.value=e,this.add({[e]:t})},add(e={}){J(K,e)}};function ee(e){const t=_(e)+".";return(e,...n)=>{const l=Q.messages(),i=s(l,t+e)||s(l,e);return o(i)?i(...n):i}}function te(e,t){return t?"string"==typeof t?` ${e}--${t}`:Array.isArray(t)?t.reduce(((t,n)=>t+te(e,n)),""):Object.keys(t).reduce(((n,o)=>n+(t[o]?te(e,o):"")),""):""}function ne(e){return(t,n)=>(t&&"string"!=typeof t&&(n=t,t=""),`${t=t?`${e}__${t}`:e}${te(t,n)}`)}function oe(e){const t=`van-${e}`;return[t,ne(t),ee(t)]}function le(e,{args:t=[],done:n,canceled:i}){if(e){const c=e.apply(null,t);l(r=c)&&o(r.then)&&o(r.catch)?c.then((e=>{e?n():i&&i()})).catch(a):c?n():i&&i()}else n();var r}function ie(e){return e.install=t=>{const{name:n}=e;n&&(t.component(n,e),t.component(_(`-${n}`),e))},e}function ae(e){const t=`van-${e}`;return[t,ne(t),ee(t)]}const[re,ce,se]=ae("picker"),ue=e=>e.find((e=>!e.disabled))||e[0];function de(e,t){for(let n=t=U(t,0,e.length);n<e.length;n++)if(!e[n].disabled)return n;for(let n=t-1;n>=0;n--)if(!e[n].disabled)return n;return 0}function ve(e,t,n){const o=e.findIndex((e=>e[n.value]===t));return e[de(e,o)]}function pe(t){const n=e.getCurrentInstance();n&&r(n.proxy,t)}const[fe,me]=oe("loading"),he=Array(12).fill(null).map(((t,n)=>e.createVNode("i",{class:me("line",String(n+1))},null))),ge=e.createVNode("svg",{class:me("circular"),viewBox:"25 25 50 50"},[e.createVNode("circle",{cx:"50",cy:"50",r:"20",fill:"none"},null)]),be={size:v,type:g("circular"),color:String,vertical:Boolean,textSize:v,textColor:String};const we=ie(e.defineComponent({name:fe,props:be,setup(t,{slots:o}){const l=e.computed((()=>r({color:t.color},function(e){if(n(e)){if(Array.isArray(e))return{width:Y(e[0]),height:Y(e[1])};const t=Y(e);return{width:t,height:t}}}(t.size)))),i=()=>{var n;if(o.default)return e.createVNode("span",{class:me("text"),style:{fontSize:Y(t.textSize),color:null!=(n=t.textColor)?n:t.color}},[o.default()])};return()=>{const{type:n,vertical:o}=t;return e.createVNode("div",{class:me([n,{vertical:o}]),"aria-live":"polite","aria-busy":!0},[e.createVNode("span",{class:me("spinner",n),style:l.value},["spinner"===n?he:ge]),i()])}}}));function ye(){const t=e.ref(0),n=e.ref(0),o=e.ref(0),l=e.ref(0),i=e.ref(0),a=e.ref(0),r=e.ref(""),c=()=>{o.value=0,l.value=0,i.value=0,a.value=0,r.value=""};return{move:e=>{const c=e.touches[0];o.value=(c.clientX<0?0:c.clientX)-t.value,l.value=c.clientY-n.value,i.value=Math.abs(o.value),a.value=Math.abs(l.value);var s,u;(!r.value||i.value<10&&a.value<10)&&(r.value=(s=i.value,u=a.value,s>u?"horizontal":u>s?"vertical":""))},start:e=>{c(),t.value=e.touches[0].clientX,n.value=e.touches[0].clientY},reset:c,startX:t,startY:n,deltaX:o,deltaY:l,offsetX:i,offsetY:a,direction:r,isVertical:()=>"vertical"===r.value,isHorizontal:()=>"horizontal"===r.value}}const[xe,Ce]=ae("picker-column"),Ne=Symbol(xe),ke=e.defineComponent({name:xe,props:{value:m(),fields:f(Object),options:m(),readonly:Boolean,allowHtml:Boolean,optionHeight:f(Number),swipeDuration:f(v),visibleOptionNum:f(v)},components:{[t.Icon.name]:t.Icon},emits:["change","clickOption","clickIcon"],setup(t,{emit:n,slots:o}){let l,i,a,r,c;const s=e.ref(),u=e.ref(),d=e.ref(0),v=e.ref(0),p=ye(),f=()=>t.options.length,m=()=>t.optionHeight*(+t.visibleOptionNum-1)/2,h=e=>{const n=de(t.options,e),o=-n*t.optionHeight,i=()=>{t.options[n][t.fields.value]};l&&o!==d.value?c=i:i(),d.value=o},g=e=>U(Math.round(-e/t.optionHeight),0,f()-1),b=()=>{l=!1,v.value=0,c&&(c(),c=null)},w=e=>{if(!t.readonly){if(p.start(e),l){const e=function(e){const{transform:t}=window.getComputedStyle(e),n=t.slice(7,t.length-1).split(", ")[5];return Number(n)}(u.value);d.value=Math.min(0,e-m())}v.value=0,i=d.value,a=Date.now(),r=i,c=null}},y=()=>{if(t.readonly)return;const e=d.value-r,n=Date.now()-a;if(n<300&&Math.abs(e)>15)return void((e,n)=>{const o=Math.abs(e/n);e=d.value+o/.003*(e<0?-1:1);const l=g(e);v.value=+t.swipeDuration,h(l)})(e,n);const o=g(d.value);v.value=200,h(o),setTimeout((()=>{l=!1}),0)},x=()=>{const i={height:`${t.optionHeight}px`};return t.options.map(((a,r)=>{const s=a[t.fields.text],{disabled:u}=a,d=a[t.fields.value],p={role:"button",style:i,tabindex:u?-1:0,class:[Ce("item",{disabled:u,selected:t.value.includes(d)}),a.className],onClick:()=>(e=>{l||t.readonly||(c=null,v.value=200,n("clickOption",t.options[e]))})(r)},f={class:"van-ellipsis",[t.allowHtml?"innerHTML":"textContent"]:s},m={name:a.iconName||"success",class:[Ce("icon",{disabled:u,selected:t.value.includes(d)}),a.iconClassName],onClick:()=>(e=>{l||t.readonly||(c=null,v.value=200,h(e),n("clickIcon",t.options[e][t.fields.value],t.options[e]))})(r)};return e.createVNode("li",p,[o.option?o.option(a):e.createVNode("div",f,null),e.createVNode(e.resolveComponent("van-icon"),m,null)])}))};return V(Ne),pe({stopMomentum:b}),e.watchEffect((()=>{const e=t.options.findIndex((e=>e[t.fields.value]===t.value[t.value.length-1])),n=-de(t.options,e)*t.optionHeight;d.value=n})),B("touchmove",(e=>{if(t.readonly)return;p.move(e),p.isVertical()&&(l=!0,P(e,!0)),d.value=U(i+p.deltaY.value,-f()*t.optionHeight,t.optionHeight);const n=Date.now();n-a>300&&(a=n,r=d.value)}),{target:s}),()=>e.createVNode("div",{ref:s,class:Ce(),onTouchstartPassive:w,onTouchend:y,onTouchcancel:y},[e.createVNode("ul",{ref:u,style:{transform:`translate3d(0, ${d.value+m()}px, 0)`,transitionDuration:`${v.value}ms`,transitionProperty:v.value?"all":"none"},class:Ce("wrapper"),onTransitionend:b},[x()])])}}),[Ve]=ae("picker-toolbar"),Se={title:String,cancelButtonText:String,confirmButtonText:String},Te=["cancel","confirm","title","toolbar"],$e=Object.keys(Se),Be=e.defineComponent({name:Ve,props:Se,emits:["confirm","cancel"],setup(t,{emit:n,slots:o}){const l=()=>n("cancel"),i=()=>n("confirm"),a=()=>{const n=t.cancelButtonText||se("cancel");return e.createVNode("button",{type:"button",class:[ce("cancel"),"van-haptics-feedback"],onClick:l},[o.cancel?o.cancel():n])},r=()=>{const n=t.confirmButtonText||se("confirm");return e.createVNode("button",{type:"button",class:[ce("confirm"),"van-haptics-feedback"],onClick:i},[o.confirm?o.confirm():n])};return()=>e.createVNode("div",{class:ce("toolbar")},[o.toolbar?o.toolbar():[a(),o.title?o.title():t.title?e.createVNode("div",{class:[ce("title"),"van-ellipsis"]},[t.title]):void 0,r()]])}});let Oe=0;function Ie(){const t=e.getCurrentInstance(),{name:n="unknown"}=(null==t?void 0:t.type)||{};return"test"===process.env.NODE_ENV?n:`${n}-${++Oe}`}const ze={to:[String,Object],url:String,replace:Boolean};const Me=Symbol();function Ae(t){const n=e.inject(Me,null);n&&e.watch(n,(e=>{e&&t()}))}const[Ee,He]=oe("sticky"),De={zIndex:v,position:g("top"),container:Object,offsetTop:h(0),offsetBottom:h(0)};const Pe=ie(e.defineComponent({name:Ee,props:De,emits:["scroll","change"],setup(t,{emit:n,slots:o}){const l=e.ref(),i=A(l),a=e.reactive({fixed:!1,width:0,height:0,transform:0}),s=e.computed((()=>F("top"===t.position?t.offsetTop:t.offsetBottom))),u=e.computed((()=>{const{fixed:e,height:t,width:n}=a;if(e)return{width:`${n}px`,height:`${t}px`}})),d=e.computed((()=>{if(!a.fixed)return;const e=r(function(e){const t={};return void 0!==e&&(t.zIndex=+e),t}(t.zIndex),{width:`${a.width}px`,height:`${a.height}px`,[t.position]:`${s.value}px`});return a.transform&&(e.transform=`translate3d(0, ${a.transform}px, 0)`),e})),v=()=>{if(!l.value||R(l))return;const{container:e,position:o}=t,i=k(l),r=E(window);if(a.width=i.width,a.height=i.height,"top"===o)if(e){const t=k(e),n=t.bottom-s.value-a.height;a.fixed=s.value>i.top&&t.bottom>0,a.transform=n<0?n:0}else a.fixed=s.value>i.top;else{const{clientHeight:t}=document.documentElement;if(e){const n=k(e),o=t-n.top-s.value-a.height;a.fixed=t-s.value<i.bottom&&t>n.top,a.transform=o<0?-o:0}else a.fixed=t-s.value<i.bottom}(e=>{n("scroll",{scrollTop:e,isFixed:a.fixed})})(r)};return e.watch((()=>a.fixed),(e=>n("change",e))),B("scroll",v,{target:i,passive:!0}),function(t,n){if(!c||!window.IntersectionObserver)return;const o=new IntersectionObserver((e=>{n(e[0].intersectionRatio>0)}),{root:document.body}),l=()=>{t.value&&o.unobserve(t.value)};e.onDeactivated(l),e.onBeforeUnmount(l),$((()=>{t.value&&o.observe(t.value)}))}(l,v),()=>{var t;return e.createVNode("div",{ref:l,style:u.value},[e.createVNode("div",{class:He({fixed:a.fixed}),style:d.value},[null==(t=o.default)?void 0:t.call(o)])])}}})),[Re,Le]=oe("badge"),je={dot:Boolean,max:v,tag:g("div"),color:String,offset:Array,content:v,showZero:p,position:g("top-right")};const Ye=ie(e.defineComponent({name:Re,props:je,setup(t,{slots:o}){const l=()=>{if(o.content)return!0;const{content:e,showZero:l}=t;return n(e)&&""!==e&&(l||0!==e&&"0"!==e)},a=()=>{const{dot:e,max:a,content:r}=t;if(!e&&l())return o.content?o.content():n(a)&&i(r)&&+r>a?`${a}+`:r},r=e.computed((()=>{const e={background:t.color};if(t.offset){const[n,l]=t.offset;o.default?(e.top=Y(l),e.right="number"==typeof n?Y(-n):n.startsWith("-")?n.replace("-",""):`-${n}`):(e.marginTop=Y(l),e.marginLeft=Y(n))}return e})),c=()=>{if(l()||t.dot)return e.createVNode("div",{class:Le([t.position,{dot:t.dot,fixed:!!o.default}]),style:r.value},[a()])};return()=>{if(o.default){const{tag:n}=t;return e.createVNode(n,{class:Le("wrapper")},{default:()=>[o.default(),c()]})}return c()}}})),[Xe,We]=oe("tab");var Fe=e.defineComponent({name:Xe,props:{id:String,dot:Boolean,type:String,color:String,title:String,badge:v,shrink:Boolean,isActive:Boolean,disabled:Boolean,controls:String,scrollable:Boolean,activeColor:String,inactiveColor:String,showZeroBadge:p},setup(t,{slots:o}){const l=e.computed((()=>{const e={},{type:n,color:o,disabled:l,isActive:i,activeColor:a,inactiveColor:r}=t;o&&"card"===n&&(e.borderColor=o,l||(i?e.backgroundColor=o:e.color=o));const c=i?a:r;return c&&(e.color=c),e})),i=()=>{const l=e.createVNode("span",{class:We("text",{ellipsis:!t.scrollable})},[o.title?o.title():t.title]);return t.dot||n(t.badge)&&""!==t.badge?e.createVNode(Ye,{dot:t.dot,content:t.badge,showZero:t.showZeroBadge},{default:()=>[l]}):l};return()=>e.createVNode("div",{id:t.id,role:"tab",class:[We([t.type,{grow:t.scrollable&&!t.shrink,shrink:t.shrink,active:t.isActive,disabled:t.disabled}])],style:l.value,tabindex:t.disabled?void 0:t.isActive?0:-1,"aria-selected":t.isActive,"aria-disabled":t.disabled||void 0,"aria-controls":t.controls},[i()])}});const[Ze,_e]=oe("swipe"),Ue={loop:p,width:v,height:v,vertical:Boolean,autoplay:h(0),duration:h(500),touchable:p,lazyRender:Boolean,initialSwipe:h(0),indicatorColor:String,showIndicators:p,stopPropagation:p},qe=Symbol(Ze);const Je=ie(e.defineComponent({name:Ze,props:Ue,emits:["change"],setup(t,{emit:n,slots:o}){const l=e.ref(),i=e.ref(),a=e.reactive({rect:null,width:0,height:0,offset:0,active:0,swiping:!1}),r=ye(),{children:c,linkChildren:s}=T(qe),u=e.computed((()=>c.length)),d=e.computed((()=>a[t.vertical?"height":"width"])),v=e.computed((()=>t.vertical?r.deltaY.value:r.deltaX.value)),p=e.computed((()=>{if(a.rect){return(t.vertical?a.rect.height:a.rect.width)-d.value*u.value}return 0})),f=e.computed((()=>Math.ceil(Math.abs(p.value)/d.value))),m=e.computed((()=>u.value*d.value)),h=e.computed((()=>(a.active+u.value)%u.value)),g=e.computed((()=>{const e=t.vertical?"vertical":"horizontal";return r.direction.value===e})),w=e.computed((()=>{const e={transitionDuration:`${a.swiping?0:t.duration}ms`,transform:`translate${t.vertical?"Y":"X"}(${a.offset}px)`};if(d.value){const n=t.vertical?"height":"width",o=t.vertical?"width":"height";e[n]=`${m.value}px`,e[o]=t[o]?`${t[o]}px`:""}return e})),x=(e,n=0)=>{let o=e*d.value;t.loop||(o=Math.min(o,-p.value));let l=n-o;return t.loop||(l=U(l,p.value,0)),l},C=({pace:e=0,offset:o=0,emitChange:l})=>{if(u.value<=1)return;const{active:i}=a,r=(e=>{const{active:n}=a;return e?t.loop?U(n+e,-1,u.value):U(n+e,0,f.value):n})(e),s=x(r,o);if(t.loop){if(c[0]&&s!==p.value){const e=s<p.value;c[0].setOffset(e?m.value:0)}if(c[u.value-1]&&0!==s){const e=s>0;c[u.value-1].setOffset(e?-m.value:0)}}a.active=r,a.offset=s,l&&r!==i&&n("change",h.value)},N=()=>{a.swiping=!0,a.active<=-1?C({pace:u.value}):a.active>=u.value&&C({pace:-u.value})},k=()=>{N(),r.reset(),y((()=>{a.swiping=!1,C({pace:1,emitChange:!0})}))};let V;const S=()=>clearTimeout(V),$=()=>{S(),t.autoplay>0&&u.value>1&&(V=setTimeout((()=>{k(),$()}),+t.autoplay))},I=(n=+t.initialSwipe)=>{if(!l.value)return;const o=()=>{var e,o;if(!R(l)){const n={width:l.value.offsetWidth,height:l.value.offsetHeight};a.rect=n,a.width=+(null!=(e=t.width)?e:n.width),a.height=+(null!=(o=t.height)?o:n.height)}u.value&&(n=Math.min(u.value-1,n)),a.active=n,a.swiping=!0,a.offset=x(n),c.forEach((e=>{e.setOffset(0)})),$()};R(l)?e.nextTick().then(o):o()},z=()=>I(a.active);let M;const A=e=>{t.touchable&&(r.start(e),M=Date.now(),S(),N())},E=()=>{if(!t.touchable||!a.swiping)return;const e=Date.now()-M,n=v.value/e;if((Math.abs(n)>.25||Math.abs(v.value)>d.value/2)&&g.value){const e=t.vertical?r.offsetY.value:r.offsetX.value;let n=0;n=t.loop?e>0?v.value>0?-1:1:0:-Math[v.value>0?"ceil":"floor"](v.value/d.value),C({pace:n,emitChange:!0})}else v.value&&C({pace:0});a.swiping=!1,$()},H=(n,o)=>{const l=o===h.value,i=l?{backgroundColor:t.indicatorColor}:void 0;return e.createVNode("i",{style:i,class:_e("indicator",{active:l})},null)};return pe({prev:()=>{N(),r.reset(),y((()=>{a.swiping=!1,C({pace:-1,emitChange:!0})}))},next:k,state:a,resize:z,swipeTo:(e,n={})=>{N(),r.reset(),y((()=>{let o;o=t.loop&&e===u.value?0===a.active?0:e:e%u.value,n.immediate?y((()=>{a.swiping=!1})):a.swiping=!1,C({pace:o-a.active,emitChange:!0})}))}}),s({size:d,props:t,count:u,activeIndicator:h}),e.watch((()=>t.initialSwipe),(e=>I(+e))),e.watch(u,(()=>I(a.active))),e.watch((()=>t.autoplay),$),e.watch([L,j],z),e.watch(function(){if(!O&&(O=e.ref("visible"),b)){const e=()=>{O.value=document.hidden?"hidden":"visible"};e(),window.addEventListener("visibilitychange",e)}return O}(),(e=>{"visible"===e?$():S()})),e.onMounted(I),e.onActivated((()=>I(a.active))),Ae((()=>I(a.active))),e.onDeactivated(S),e.onBeforeUnmount(S),B("touchmove",(e=>{if(t.touchable&&a.swiping&&(r.move(e),g.value)){!t.loop&&(0===a.active&&v.value>0||a.active===u.value-1&&v.value<0)||(P(e,t.stopPropagation),C({offset:v.value}))}}),{target:i}),()=>{var n;return e.createVNode("div",{ref:l,class:_e()},[e.createVNode("div",{ref:i,style:w.value,class:_e("track",{vertical:t.vertical}),onTouchstartPassive:A,onTouchend:E,onTouchcancel:E},[null==(n=o.default)?void 0:n.call(o)]),o.indicator?o.indicator({active:h.value,total:u.value}):t.showIndicators&&u.value>1?e.createVNode("div",{class:_e("indicators",{vertical:t.vertical})},[Array(u.value).fill("").map(H)]):void 0])}}})),[Ge,Ke]=oe("tabs");var Qe=e.defineComponent({name:Ge,props:{count:f(Number),inited:Boolean,animated:Boolean,duration:f(v),swipeable:Boolean,lazyRender:Boolean,currentIndex:f(Number)},emits:["change"],setup(t,{emit:n,slots:o}){const l=e.ref(),i=e=>n("change",e),a=()=>{var n;const a=null==(n=o.default)?void 0:n.call(o);return t.animated||t.swipeable?e.createVNode(Je,{ref:l,loop:!1,class:Ke("track"),duration:1e3*+t.duration,touchable:t.swipeable,lazyRender:t.lazyRender,showIndicators:!1,onChange:i},{default:()=>[a]}):a},r=e=>{const n=l.value;n&&n.state.active!==e&&n.swipeTo(e,{immediate:!t.inited})};return e.watch((()=>t.currentIndex),r),e.onMounted((()=>{r(t.currentIndex)})),pe({swipeRef:l}),()=>e.createVNode("div",{class:Ke("content",{animated:t.animated||t.swipeable})},[a()])}});const[et,tt]=oe("tabs"),nt={type:g("line"),color:String,border:Boolean,sticky:Boolean,shrink:Boolean,active:h(0),duration:h(.3),animated:Boolean,ellipsis:p,swipeable:Boolean,scrollspy:Boolean,offsetTop:h(0),background:String,lazyRender:p,lineWidth:v,lineHeight:v,beforeChange:Function,swipeThreshold:h(5),titleActiveColor:String,titleInactiveColor:String},ot=Symbol(et);var lt=e.defineComponent({name:et,props:nt,emits:["change","scroll","rendered","clickTab","update:active"],setup(t,{emit:o,slots:l}){let i,a,r;const c=e.ref(),s=e.ref(),d=e.ref(),v=e.ref(),p=Ie(),f=A(c),[m,h]=function(){const t=e.ref([]),n=[];return e.onBeforeUpdate((()=>{t.value=[]})),[t,e=>(n[e]||(n[e]=n=>{t.value[e]=n}),n[e])]}(),{children:g,linkChildren:b}=T(ot),y=e.reactive({inited:!1,position:"",lineStyle:{},currentIndex:-1}),x=e.computed((()=>g.length>t.swipeThreshold||!t.ellipsis||t.shrink)),C=e.computed((()=>({borderColor:t.color,background:t.background}))),N=(e,t)=>{var n;return null!=(n=e.name)?n:t},V=e.computed((()=>{const e=g[y.currentIndex];if(e)return N(e,y.currentIndex)})),S=e.computed((()=>F(t.offsetTop))),O=e.computed((()=>t.sticky?S.value+i:0)),I=e=>{const n=s.value,o=m.value;if(!(x.value&&n&&o&&o[y.currentIndex]))return;const l=o[y.currentIndex].$el;!function(e,t,n){let o=0;const l=e.scrollLeft,i=0===n?1:Math.round(1e3*n/16);!function n(){e.scrollLeft+=(t-l)/i,++o<i&&w(n)}()}(n,l.offsetLeft-(n.offsetWidth-l.offsetWidth)/2,e?0:+t.duration)},z=()=>{const o=y.inited;e.nextTick((()=>{const e=m.value;if(!e||!e[y.currentIndex]||"line"!==t.type||R(c.value))return;const l=e[y.currentIndex].$el,{lineWidth:i,lineHeight:a}=t,r=l.offsetLeft+l.offsetWidth/2,s={width:Y(i),backgroundColor:t.color,transform:`translateX(${r}px) translateX(-50%)`};if(o&&(s.transitionDuration=`${t.duration}s`),n(a)){const e=Y(a);s.height=e,s.borderRadius=e}y.lineStyle=s}))},M=(e,l)=>{const i=(e=>{const t=e<y.currentIndex?-1:1;for(;e>=0&&e<g.length;){if(!g[e].disabled)return e;e+=t}})(e);if(!n(i))return;const a=g[i],s=N(a,i),u=null!==y.currentIndex;var d;y.currentIndex=i,s!==t.active&&(o("update:active",s),u&&o("change",s,a.title)),l||I(),z(),r&&!t.scrollspy&&(d=Math.ceil(D(c.value)-S.value),H(window,d),H(document.body,d))},P=(e,t)=>{const n=g.find(((t,n)=>N(t,n)===e)),o=n?g.indexOf(n):0;M(o,t)},j=(e=!1)=>{if(t.scrollspy){const n=g[y.currentIndex].$el;if(n&&f.value){const o=D(n,f.value)-O.value;a=!0,function(e,t,n,o){let l=E(e);const i=l<t,a=0===n?1:Math.round(1e3*n/16),r=(t-l)/a;!function n(){l+=r,(i&&l>t||!i&&l<t)&&(l=t),H(e,l),i&&l<t||!i&&l>t?w(n):o&&w(o)}()}(f.value,o,e?0:+t.duration,(()=>{a=!1}))}}},X=(e,n,l)=>{const{title:i,disabled:a}=g[n],r=N(g[n],n);a||(le(t.beforeChange,{args:[r],done:()=>{M(n),j()}}),function({to:e,url:t,replace:n,$router:o}){e&&o?o[n?"replace":"push"](e):t&&(n?location.replace(t):location.href=t)}(e)),o("clickTab",{name:r,title:i,event:l,disabled:a})},W=e=>{r=e.isFixed,o("scroll",e)},Z=()=>{if("line"===t.type&&g.length)return e.createVNode("div",{class:tt("line"),style:y.lineStyle},null)},_=()=>{var n,o;const{type:i,border:a}=t;return e.createVNode("div",{ref:d,class:[tt("wrap"),{"van-hairline--top-bottom":"line"===i&&a}]},[e.createVNode("div",{ref:s,role:"tablist",class:tt("nav",[i,{shrink:t.shrink,complete:x.value}]),style:C.value,"aria-orientation":"horizontal"},[null==(n=l["nav-left"])?void 0:n.call(l),g.map(((n,o)=>e.createVNode(Fe,e.mergeProps({key:n.id,id:`${p}-${o}`,ref:h(o),type:t.type,color:t.color,style:n.titleStyle,class:n.titleClass,shrink:t.shrink,isActive:o===y.currentIndex,controls:n.id,scrollable:x.value,activeColor:t.titleActiveColor,inactiveColor:t.titleInactiveColor,onClick:e=>X(n,o,e)},u(n,["dot","badge","title","disabled","showZeroBadge"])),{title:n.$slots.title}))),Z(),null==(o=l["nav-right"])?void 0:o.call(l)])])};e.watch([()=>t.color,L],z),e.watch((()=>t.active),(e=>{e!==V.value&&P(e)})),e.watch((()=>g.length),(()=>{y.inited&&(P(t.active),z(),e.nextTick((()=>{I(!0)})))}));return pe({resize:()=>{z(),e.nextTick((()=>{var e,t;return null==(t=null==(e=v.value)?void 0:e.swipeRef.value)?void 0:t.resize()}))},scrollTo:t=>{e.nextTick((()=>{P(t),j(!0)}))}}),e.onActivated(z),Ae(z),$((()=>{P(t.active,!0),e.nextTick((()=>{y.inited=!0,d.value&&(i=k(d.value).height),I(!0)}))})),B("scroll",(()=>{if(t.scrollspy&&!a){const e=(()=>{for(let e=0;e<g.length;e++){const{top:t}=k(g[e].$el);if(t>O.value)return 0===e?0:e-1}return g.length-1})();M(e)}}),{target:f,passive:!0}),b({id:p,props:t,setLine:z,onRendered:(e,t)=>o("rendered",e,t),currentName:V,scrollIntoView:I}),()=>{var n;return e.createVNode("div",{ref:c,class:tt([t.type])},[t.sticky?e.createVNode(Pe,{container:c.value,offsetTop:S.value,onScroll:W},{default:()=>{var e;return[_(),null==(e=l["nav-bottom"])?void 0:e.call(l)]}}):[_(),null==(n=l["nav-bottom"])?void 0:n.call(l)],e.createVNode(Qe,{ref:v,count:g.length,inited:y.inited,animated:t.animated,duration:t.duration,swipeable:t.swipeable,lazyRender:t.lazyRender,currentIndex:y.currentIndex,onChange:M},{default:()=>{var e;return[null==(e=l.default)?void 0:e.call(l)]}})])}}});const it=Symbol(),[at,rt]=oe("swipe-item");const ct=ie(e.defineComponent({name:at,setup(t,{slots:n}){let o;const l=e.reactive({offset:0,inited:!1,mounted:!1}),{parent:i,index:a}=V(qe);if(!i)return void process.env.NODE_ENV;const r=e.computed((()=>{const e={},{vertical:t}=i.props;return i.size.value&&(e[t?"height":"width"]=`${i.size.value}px`),l.offset&&(e.transform=`translate${t?"Y":"X"}(${l.offset}px)`),e})),c=e.computed((()=>{const{loop:e,lazyRender:t}=i.props;if(!t||o)return!0;if(!l.mounted)return!1;const n=i.activeIndicator.value,r=i.count.value-1,c=0===n&&e?r:n-1,s=n===r&&e?0:n+1;return o=a.value===n||a.value===c||a.value===s,o}));return e.onMounted((()=>{e.nextTick((()=>{l.mounted=!0}))})),pe({setOffset:e=>{l.offset=e}}),()=>{var t;return e.createVNode("div",{class:rt(),style:r.value},[c.value?null==(t=n.default)?void 0:t.call(n):null])}}})),[st,ut]=oe("tab"),dt=r({},ze,{dot:Boolean,name:v,badge:v,title:String,disabled:Boolean,titleClass:null,titleStyle:[String,Object],showZeroBadge:p});const vt=ie(e.defineComponent({name:st,props:dt,setup(t,{slots:n}){const o=Ie(),l=e.ref(!1),{parent:i,index:a}=V(ot);if(!i)return void process.env.NODE_ENV;const r=()=>{var e;return null!=(e=t.name)?e:a.value},c=e.computed((()=>{const n=r()===i.currentName.value;return n&&!l.value&&(l.value=!0,i.props.lazyRender&&e.nextTick((()=>{i.onRendered(r(),t.title)}))),n})),s=e.ref(!c.value);return e.watch(c,(e=>{e?s.value=!1:y((()=>{s.value=!0}))})),e.watch((()=>t.title),(()=>{i.setLine(),i.scrollIntoView()})),e.provide(it,c),()=>{var t;const r=`${i.id}-${a.value}`,{animated:u,swipeable:d,scrollspy:v,lazyRender:p}=i.props;if(!n.default&&!u)return;const f=v||c.value;if(u||d)return e.createVNode(ct,{id:o,role:"tabpanel",class:ut("panel-wrapper",{inactive:s.value}),tabindex:c.value?0:-1,"aria-hidden":!c.value,"aria-labelledby":r},{default:()=>{var t;return[e.createVNode("div",{class:ut("panel")},[null==(t=n.default)?void 0:t.call(n)])]}});const m=l.value||v||!p?null==(t=n.default)?void 0:t.call(n):null;return pe({id:o}),e.withDirectives(e.createVNode("div",{id:o,role:"tabpanel",class:ut("panel"),tabindex:f?0:-1,"aria-labelledby":r},[m]),[[e.vShow,f]])}}})),pt=ie(lt),[ft,mt,ht]=oe("picker"),[gt]=oe("picker-toolbar"),bt={title:String,cancelButtonText:String,confirmButtonText:String};var wt=e.defineComponent({name:gt,props:bt,emits:["confirm","cancel"],setup(t,{emit:n,slots:o}){const l=()=>n("cancel"),i=()=>n("confirm"),a=()=>{const n=t.cancelButtonText||ht("cancel");return e.createVNode("button",{type:"button",class:[mt("cancel"),"van-haptics-feedback"],onClick:l},[o.cancel?o.cancel():n])},r=()=>{const n=t.confirmButtonText||ht("confirm");return e.createVNode("button",{type:"button",class:[mt("confirm"),"van-haptics-feedback"],onClick:i},[o.confirm?o.confirm():n])};return()=>e.createVNode("div",{class:mt("toolbar")},[o.toolbar?o.toolbar():[a(),o.title?o.title():t.title?e.createVNode("div",{class:[mt("title"),"van-ellipsis"]},[t.title]):void 0,r()]])}});const[yt,xt]=oe("picker-group"),Ct=Symbol(yt),Nt=r({tabs:m()},bt);e.defineComponent({name:yt,props:Nt,emits:["confirm","cancel"],setup(t,{emit:n,slots:o}){const{children:l,linkChildren:i}=T(Ct);i();const a=()=>{n("confirm",l.map((e=>e.confirm())))},r=()=>n("cancel");return()=>{var n;const l=null==(n=o.default)?void 0:n.call(o);return e.createVNode("div",{class:xt()},[e.createVNode(wt,e.mergeProps(t,{onConfirm:a,onCancel:r}),null),e.createVNode(pt,{shrink:!0,class:xt("tabs"),animated:!0},{default:()=>[t.tabs.map(((t,n)=>e.createVNode(vt,{title:t,titleClass:xt("tab-title")},{default:()=>[null==l?void 0:l[n]]})))]})])}}});const kt=r({loading:Boolean,readonly:Boolean,allowHtml:Boolean,optionHeight:h(44),showToolbar:p,swipeDuration:h(1e3),visibleOptionNum:h(6)},Se),Vt=r({},kt,{columns:m(),modelValue:m(),toolbarPosition:g("top"),columnsFieldNames:Object}),St=ie(e.defineComponent({name:"BetterVantPicker",props:Vt,emits:["confirm","cancel","clickOption","clickIcon","update:modelValue"],setup(t,{emit:o,slots:l}){const i=e.ref(),a=e.ref(t.modelValue.slice(0)),{parent:c}=V(Ct),{children:s,linkChildren:v}=T(Ne);v();const p=e.computed((()=>function(e){return r({text:"text",value:"value",children:"children"},e)}(t.columnsFieldNames))),f=e.computed((()=>F(t.optionHeight))),m=e.computed((()=>function(e,t){const n=e[0];if(n){if(Array.isArray(n))return"multiple";if(t.children in n)return"cascade"}return"default"}(t.columns,p.value))),h=e.computed((()=>{const{columns:e}=t;switch(m.value){case"multiple":return e;case"cascade":return function(e,t,o){const l=[];let i={[t.children]:e},a=0;for(;i&&i[t.children];){const e=i[t.children],r=o.value[a];i=n(r)?ve(e,r,t):void 0,!i&&e.length&&(i=ve(e,ue(e)[t.value],t)),a++,l.push(e)}return l}(e,p.value,a);default:return[e]}})),g=e.computed((()=>h.value.some((e=>e.length)))),b=e.computed((()=>h.value.map(((e,t)=>ve(e,a.value[t],p.value))))),w=(e,t)=>{if(a.value.includes(t)){if(a.value.findIndex((e=>e===t))>=0){const e=a.value.slice(0);a.value=e.filter((e=>e!==t))}}else{const e=a.value.slice(0);e.push(t),a.value=e}},y=()=>({selectedValues:a.value.slice(0),selectedOptions:b.value}),x=()=>{s.forEach((e=>e.stopMomentum()));const e=y();return o("confirm",e),e},C=()=>o("cancel",y()),N=()=>h.value.map(((n,i)=>e.createVNode(ke,{value:a.value,fields:p.value,options:n,readonly:t.readonly,allowHtml:t.allowHtml,optionHeight:f.value,swipeDuration:t.swipeDuration,visibleOptionNum:t.visibleOptionNum,onClickOption:e=>((e,t)=>o("clickOption",r({columnIndex:t,currentOption:e},y())))(e,i),onClickIcon:(e,t)=>((e,t,n)=>{w(0,e),o("clickIcon",r({columnIndex:n,currentOption:t},y()))})(e,t,i)},{option:l.option}))),k=t=>{if(g.value){const n={height:`${f.value}px`},o={backgroundSize:`100% ${(t-f.value)/2}px`};return[e.createVNode("div",{class:ce("mask"),style:o},null),e.createVNode("div",{class:["van-hairline-unset--top-bottom",ce("frame")],style:n},null)]}},S=()=>{const n=f.value*+t.visibleOptionNum,o={height:`${n}px`};return e.createVNode("div",{ref:i,class:ce("columns"),style:o},[N(),k(n)])},$=()=>{if(t.showToolbar&&!c)return e.createVNode(Be,e.mergeProps(u(t,$e),{onConfirm:x,onCancel:C}),u(l,Te))};let O;e.watch(h,(e=>{e.forEach(((e,t)=>{e.length&&!((e,t,n)=>void 0!==t&&!!e.find((e=>e[n.value]===t)))(e,a.value[t],p.value)&&w(0,ue(e)[p.value.value])}))}),{immediate:!0}),e.watch((()=>t.modelValue),(e=>{d(e,a.value)||d(e,O)||(a.value=e.slice(0))}),{deep:!0}),e.watch(a,(e=>{d(e,t.modelValue)||(O=e.slice(0),o("update:modelValue",O))}),{immediate:!0}),B("touchmove",P,{target:i});return pe({confirm:x,getSelectedOptions:()=>b.value}),()=>{var n,o;return e.createVNode("div",{class:ce()},["top"===t.toolbarPosition?$():null,t.loading?e.createVNode(we,{class:ce("loading")},null):null,null==(n=l["columns-top"])?void 0:n.call(l),S(),null==(o=l["columns-bottom"])?void 0:o.call(l),"bottom"===t.toolbarPosition?$():null])}}})),Tt={install(e){e.component(St.name,St)}};exports.BetterPicker=St,exports.default=Tt;
+import { inject, getCurrentInstance, onUnmounted, computed, ref, reactive, onDeactivated, isRef, watch, provide, onMounted, nextTick, onActivated, unref, isVNode, createVNode, defineComponent, watchEffect, resolveComponent, onBeforeUpdate, onBeforeUnmount, mergeProps, withDirectives, vShow } from "vue";
+import { Icon } from "vant";
+const isDef = (val) => val !== void 0 && val !== null;
+const isFunction = (val) => typeof val === "function";
+const isObject = (val) => val !== null && typeof val === "object";
+const isPromise = (val) => isObject(val) && isFunction(val.then) && isFunction(val.catch);
+const isNumeric = (val) => typeof val === "number" || /^\d+(\.\d+)?$/.test(val);
+const isIOS = () => inBrowser$1 ? /ios|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) : false;
+function noop() {
+}
+const extend = Object.assign;
+const inBrowser$1 = typeof window !== "undefined";
+function get(object, path) {
+  const keys = path.split(".");
+  let result = object;
+  keys.forEach((key) => {
+    var _a;
+    result = isObject(result) ? (_a = result[key]) != null ? _a : "" : "";
+  });
+  return result;
+}
+function pick(obj, keys, ignoreUndefined) {
+  return keys.reduce((ret, key) => {
+    if (!ignoreUndefined || obj[key] !== void 0) {
+      ret[key] = obj[key];
+    }
+    return ret;
+  }, {});
+}
+const isSameValue = (newValue, oldValue) => JSON.stringify(newValue) === JSON.stringify(oldValue);
+const unknownProp = null;
+const numericProp = [Number, String];
+const truthProp = {
+  type: Boolean,
+  default: true
+};
+const makeRequiredProp = (type) => ({
+  type,
+  required: true
+});
+const makeArrayProp = () => ({
+  type: Array,
+  default: () => []
+});
+const makeNumericProp = (defaultVal) => ({
+  type: numericProp,
+  default: defaultVal
+});
+const makeStringProp = (defaultVal) => ({
+  type: String,
+  default: defaultVal
+});
+var inBrowser = typeof window !== "undefined";
+function raf(fn) {
+  return inBrowser ? requestAnimationFrame(fn) : -1;
+}
+function doubleRaf(fn) {
+  raf(() => raf(fn));
+}
+var isWindow = (val) => val === window;
+var makeDOMRect = (width2, height2) => ({
+  top: 0,
+  left: 0,
+  right: width2,
+  bottom: height2,
+  width: width2,
+  height: height2
+});
+var useRect = (elementOrRef) => {
+  const element = unref(elementOrRef);
+  if (isWindow(element)) {
+    const width2 = element.innerWidth;
+    const height2 = element.innerHeight;
+    return makeDOMRect(width2, height2);
+  }
+  if (element == null ? void 0 : element.getBoundingClientRect) {
+    return element.getBoundingClientRect();
+  }
+  return makeDOMRect(0, 0);
+};
+function useParent(key) {
+  const parent = inject(key, null);
+  if (parent) {
+    const instance = getCurrentInstance();
+    const { link, unlink, internalChildren } = parent;
+    link(instance);
+    onUnmounted(() => unlink(instance));
+    const index2 = computed(() => internalChildren.indexOf(instance));
+    return {
+      parent,
+      index: index2
+    };
+  }
+  return {
+    parent: null,
+    index: ref(-1)
+  };
+}
+function flattenVNodes(children) {
+  const result = [];
+  const traverse = (children2) => {
+    if (Array.isArray(children2)) {
+      children2.forEach((child) => {
+        var _a;
+        if (isVNode(child)) {
+          result.push(child);
+          if ((_a = child.component) == null ? void 0 : _a.subTree) {
+            result.push(child.component.subTree);
+            traverse(child.component.subTree.children);
+          }
+          if (child.children) {
+            traverse(child.children);
+          }
+        }
+      });
+    }
+  };
+  traverse(children);
+  return result;
+}
+function sortChildren(parent, publicChildren, internalChildren) {
+  const vnodes = flattenVNodes(parent.subTree.children);
+  internalChildren.sort(
+    (a, b) => vnodes.indexOf(a.vnode) - vnodes.indexOf(b.vnode)
+  );
+  const orderedPublicChildren = internalChildren.map((item) => item.proxy);
+  publicChildren.sort((a, b) => {
+    const indexA = orderedPublicChildren.indexOf(a);
+    const indexB = orderedPublicChildren.indexOf(b);
+    return indexA - indexB;
+  });
+}
+function useChildren(key) {
+  const publicChildren = reactive([]);
+  const internalChildren = reactive([]);
+  const parent = getCurrentInstance();
+  const linkChildren = (value) => {
+    const link = (child) => {
+      if (child.proxy) {
+        internalChildren.push(child);
+        publicChildren.push(child.proxy);
+        sortChildren(parent, publicChildren, internalChildren);
+      }
+    };
+    const unlink = (child) => {
+      const index2 = internalChildren.indexOf(child);
+      publicChildren.splice(index2, 1);
+      internalChildren.splice(index2, 1);
+    };
+    provide(
+      key,
+      Object.assign(
+        {
+          link,
+          unlink,
+          children: publicChildren,
+          internalChildren
+        },
+        value
+      )
+    );
+  };
+  return {
+    children: publicChildren,
+    linkChildren
+  };
+}
+function onMountedOrActivated(hook) {
+  let mounted;
+  onMounted(() => {
+    hook();
+    nextTick(() => {
+      mounted = true;
+    });
+  });
+  onActivated(() => {
+    if (mounted) {
+      hook();
+    }
+  });
+}
+function useEventListener(type, listener, options = {}) {
+  if (!inBrowser) {
+    return;
+  }
+  const { target = window, passive = false, capture = false } = options;
+  let attached;
+  const add = (target2) => {
+    const element = unref(target2);
+    if (element && !attached) {
+      element.addEventListener(type, listener, {
+        capture,
+        passive
+      });
+      attached = true;
+    }
+  };
+  const remove = (target2) => {
+    const element = unref(target2);
+    if (element && attached) {
+      element.removeEventListener(type, listener, capture);
+      attached = false;
+    }
+  };
+  onUnmounted(() => remove(target));
+  onDeactivated(() => remove(target));
+  onMountedOrActivated(() => add(target));
+  if (isRef(target)) {
+    watch(target, (val, oldVal) => {
+      remove(oldVal);
+      add(val);
+    });
+  }
+}
+var width;
+var height;
+function useWindowSize() {
+  if (!width) {
+    width = ref(0);
+    height = ref(0);
+    if (inBrowser) {
+      const update = () => {
+        width.value = window.innerWidth;
+        height.value = window.innerHeight;
+      };
+      update();
+      window.addEventListener("resize", update, { passive: true });
+      window.addEventListener("orientationchange", update, { passive: true });
+    }
+  }
+  return { width, height };
+}
+var overflowScrollReg = /scroll|auto|overlay/i;
+var defaultRoot = inBrowser ? window : void 0;
+function isElement(node) {
+  const ELEMENT_NODE_TYPE = 1;
+  return node.tagName !== "HTML" && node.tagName !== "BODY" && node.nodeType === ELEMENT_NODE_TYPE;
+}
+function getScrollParent(el, root = defaultRoot) {
+  let node = el;
+  while (node && node !== root && isElement(node)) {
+    const { overflowY } = window.getComputedStyle(node);
+    if (overflowScrollReg.test(overflowY)) {
+      return node;
+    }
+    node = node.parentNode;
+  }
+  return root;
+}
+function useScrollParent(el, root = defaultRoot) {
+  const scrollParent = ref();
+  onMounted(() => {
+    if (el.value) {
+      scrollParent.value = getScrollParent(el.value, root);
+    }
+  });
+  return scrollParent;
+}
+var visibility;
+function usePageVisibility() {
+  if (!visibility) {
+    visibility = ref("visible");
+    if (inBrowser) {
+      const update = () => {
+        visibility.value = document.hidden ? "hidden" : "visible";
+      };
+      update();
+      window.addEventListener("visibilitychange", update);
+    }
+  }
+  return visibility;
+}
+function getScrollTop(el) {
+  const top = "scrollTop" in el ? el.scrollTop : el.pageYOffset;
+  return Math.max(top, 0);
+}
+function setScrollTop(el, value) {
+  if ("scrollTop" in el) {
+    el.scrollTop = value;
+  } else {
+    el.scrollTo(el.scrollX, value);
+  }
+}
+function getRootScrollTop() {
+  return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+}
+function setRootScrollTop(value) {
+  setScrollTop(window, value);
+  setScrollTop(document.body, value);
+}
+function getElementTop(el, scroller) {
+  if (el === window) {
+    return 0;
+  }
+  const scrollTop = scroller ? getScrollTop(scroller) : getRootScrollTop();
+  return useRect(el).top + scrollTop;
+}
+isIOS();
+const stopPropagation = (event) => event.stopPropagation();
+function preventDefault(event, isStopPropagation) {
+  if (typeof event.cancelable !== "boolean" || event.cancelable) {
+    event.preventDefault();
+  }
+  if (isStopPropagation) {
+    stopPropagation(event);
+  }
+}
+function isHidden(elementRef) {
+  const el = unref(elementRef);
+  if (!el) {
+    return false;
+  }
+  const style = window.getComputedStyle(el);
+  const hidden = style.display === "none";
+  const parentHidden = el.offsetParent === null && style.position !== "fixed";
+  return hidden || parentHidden;
+}
+const { width: windowWidth, height: windowHeight } = useWindowSize();
+function addUnit(value) {
+  if (isDef(value)) {
+    return isNumeric(value) ? `${value}px` : String(value);
+  }
+  return void 0;
+}
+function getSizeStyle(originSize) {
+  if (isDef(originSize)) {
+    if (Array.isArray(originSize)) {
+      return {
+        width: addUnit(originSize[0]),
+        height: addUnit(originSize[1])
+      };
+    }
+    const size = addUnit(originSize);
+    return {
+      width: size,
+      height: size
+    };
+  }
+}
+function getZIndexStyle(zIndex) {
+  const style = {};
+  if (zIndex !== void 0) {
+    style.zIndex = +zIndex;
+  }
+  return style;
+}
+let rootFontSize;
+function getRootFontSize() {
+  if (!rootFontSize) {
+    const doc = document.documentElement;
+    const fontSize = doc.style.fontSize || window.getComputedStyle(doc).fontSize;
+    rootFontSize = parseFloat(fontSize);
+  }
+  return rootFontSize;
+}
+function convertRem(value) {
+  value = value.replace(/rem/g, "");
+  return +value * getRootFontSize();
+}
+function convertVw(value) {
+  value = value.replace(/vw/g, "");
+  return +value * windowWidth.value / 100;
+}
+function convertVh(value) {
+  value = value.replace(/vh/g, "");
+  return +value * windowHeight.value / 100;
+}
+function unitToPx(value) {
+  if (typeof value === "number") {
+    return value;
+  }
+  if (inBrowser$1) {
+    if (value.includes("rem")) {
+      return convertRem(value);
+    }
+    if (value.includes("vw")) {
+      return convertVw(value);
+    }
+    if (value.includes("vh")) {
+      return convertVh(value);
+    }
+  }
+  return parseFloat(value);
+}
+const camelizeRE = /-(\w)/g;
+const camelize = (str) => str.replace(camelizeRE, (_, c) => c.toUpperCase());
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+const { hasOwnProperty } = Object.prototype;
+function assignKey(to, from, key) {
+  const val = from[key];
+  if (!isDef(val)) {
+    return;
+  }
+  if (!hasOwnProperty.call(to, key) || !isObject(val)) {
+    to[key] = val;
+  } else {
+    to[key] = deepAssign(Object(to[key]), val);
+  }
+}
+function deepAssign(to, from) {
+  Object.keys(from).forEach((key) => {
+    assignKey(to, from, key);
+  });
+  return to;
+}
+var stdin_default$b = {
+  name: "\u59D3\u540D",
+  tel: "\u7535\u8BDD",
+  save: "\u4FDD\u5B58",
+  confirm: "\u786E\u8BA4",
+  cancel: "\u53D6\u6D88",
+  delete: "\u5220\u9664",
+  loading: "\u52A0\u8F7D\u4E2D...",
+  noCoupon: "\u6682\u65E0\u4F18\u60E0\u5238",
+  nameEmpty: "\u8BF7\u586B\u5199\u59D3\u540D",
+  addContact: "\u6DFB\u52A0\u8054\u7CFB\u4EBA",
+  telInvalid: "\u8BF7\u586B\u5199\u6B63\u786E\u7684\u7535\u8BDD",
+  vanCalendar: {
+    end: "\u7ED3\u675F",
+    start: "\u5F00\u59CB",
+    title: "\u65E5\u671F\u9009\u62E9",
+    weekdays: ["\u65E5", "\u4E00", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D"],
+    monthTitle: (year, month) => `${year}\u5E74${month}\u6708`,
+    rangePrompt: (maxRange) => `\u6700\u591A\u9009\u62E9 ${maxRange} \u5929`
+  },
+  vanCascader: {
+    select: "\u8BF7\u9009\u62E9"
+  },
+  vanPagination: {
+    prev: "\u4E0A\u4E00\u9875",
+    next: "\u4E0B\u4E00\u9875"
+  },
+  vanPullRefresh: {
+    pulling: "\u4E0B\u62C9\u5373\u53EF\u5237\u65B0...",
+    loosing: "\u91CA\u653E\u5373\u53EF\u5237\u65B0..."
+  },
+  vanSubmitBar: {
+    label: "\u5408\u8BA1:"
+  },
+  vanCoupon: {
+    unlimited: "\u65E0\u95E8\u69DB",
+    discount: (discount) => `${discount}\u6298`,
+    condition: (condition) => `\u6EE1${condition}\u5143\u53EF\u7528`
+  },
+  vanCouponCell: {
+    title: "\u4F18\u60E0\u5238",
+    count: (count) => `${count}\u5F20\u53EF\u7528`
+  },
+  vanCouponList: {
+    exchange: "\u5151\u6362",
+    close: "\u4E0D\u4F7F\u7528",
+    enable: "\u53EF\u7528",
+    disabled: "\u4E0D\u53EF\u7528",
+    placeholder: "\u8F93\u5165\u4F18\u60E0\u7801"
+  },
+  vanAddressEdit: {
+    area: "\u5730\u533A",
+    areaEmpty: "\u8BF7\u9009\u62E9\u5730\u533A",
+    addressEmpty: "\u8BF7\u586B\u5199\u8BE6\u7EC6\u5730\u5740",
+    addressDetail: "\u8BE6\u7EC6\u5730\u5740",
+    defaultAddress: "\u8BBE\u4E3A\u9ED8\u8BA4\u6536\u8D27\u5730\u5740"
+  },
+  vanAddressList: {
+    add: "\u65B0\u589E\u5730\u5740"
+  }
+};
+const lang = ref("zh-CN");
+const messages = reactive({
+  "zh-CN": stdin_default$b
+});
+const Locale = {
+  messages() {
+    return messages[lang.value];
+  },
+  use(newLang, newMessages) {
+    lang.value = newLang;
+    this.add({ [newLang]: newMessages });
+  },
+  add(newMessages = {}) {
+    deepAssign(messages, newMessages);
+  }
+};
+var stdin_default$a = Locale;
+function createTranslate(name2) {
+  const prefix = camelize(name2) + ".";
+  return (path, ...args) => {
+    const messages2 = stdin_default$a.messages();
+    const message = get(messages2, prefix + path) || get(messages2, path);
+    return isFunction(message) ? message(...args) : message;
+  };
+}
+function genBem(name2, mods) {
+  if (!mods) {
+    return "";
+  }
+  if (typeof mods === "string") {
+    return ` ${name2}--${mods}`;
+  }
+  if (Array.isArray(mods)) {
+    return mods.reduce(
+      (ret, item) => ret + genBem(name2, item),
+      ""
+    );
+  }
+  return Object.keys(mods).reduce(
+    (ret, key) => ret + (mods[key] ? genBem(name2, key) : ""),
+    ""
+  );
+}
+function createBEM(name2) {
+  return (el, mods) => {
+    if (el && typeof el !== "string") {
+      mods = el;
+      el = "";
+    }
+    el = el ? `${name2}__${el}` : name2;
+    return `${el}${genBem(el, mods)}`;
+  };
+}
+function createNamespace$1(name2) {
+  const prefixedName = `van-${name2}`;
+  return [
+    prefixedName,
+    createBEM(prefixedName),
+    createTranslate(prefixedName)
+  ];
+}
+const BORDER = "van-hairline";
+const BORDER_TOP_BOTTOM = `${BORDER}--top-bottom`;
+const BORDER_UNSET_TOP_BOTTOM = `${BORDER}-unset--top-bottom`;
+const HAPTICS_FEEDBACK = "van-haptics-feedback";
+function callInterceptor(interceptor, {
+  args = [],
+  done,
+  canceled
+}) {
+  if (interceptor) {
+    const returnVal = interceptor.apply(null, args);
+    if (isPromise(returnVal)) {
+      returnVal.then((value) => {
+        if (value) {
+          done();
+        } else if (canceled) {
+          canceled();
+        }
+      }).catch(noop);
+    } else if (returnVal) {
+      done();
+    } else if (canceled) {
+      canceled();
+    }
+  } else {
+    done();
+  }
+}
+function withInstall(options) {
+  options.install = (app) => {
+    const { name: name2 } = options;
+    if (name2) {
+      app.component(name2, options);
+      app.component(camelize(`-${name2}`), options);
+    }
+  };
+  return options;
+}
+function createNamespace(name2) {
+  const prefixedName = `van-${name2}`;
+  console.log("%c \u{1F354} prefixedName", "color:#e41a6a", prefixedName);
+  return [
+    prefixedName,
+    createBEM(prefixedName),
+    createTranslate(prefixedName)
+  ];
+}
+const [name$e, bem$c, t$1] = createNamespace("picker");
+const getFirstEnabledOption = (options) => options.find((option) => !option.disabled) || options[0];
+function getColumnsType(columns, fields) {
+  const firstColumn = columns[0];
+  if (firstColumn) {
+    if (Array.isArray(firstColumn)) {
+      return "multiple";
+    }
+    if (fields.children in firstColumn) {
+      return "cascade";
+    }
+  }
+  return "default";
+}
+function findIndexOfEnabledOption(options, index2) {
+  index2 = clamp(index2, 0, options.length);
+  for (let i = index2; i < options.length; i++) {
+    if (!options[i].disabled)
+      return i;
+  }
+  for (let i = index2 - 1; i >= 0; i--) {
+    if (!options[i].disabled)
+      return i;
+  }
+  return 0;
+}
+const isOptionExist = (options, value, fields) => value !== void 0 && !!options.find((option) => option[fields.value] === value);
+function findOptionByValue(options, value, fields) {
+  const index2 = options.findIndex((option) => option[fields.value] === value);
+  const enabledIndex = findIndexOfEnabledOption(options, index2);
+  return options[enabledIndex];
+}
+function formatCascadeColumns(columns, fields, selectedValues) {
+  const formatted = [];
+  let cursor = {
+    [fields.children]: columns
+  };
+  let columnIndex = 0;
+  while (cursor && cursor[fields.children]) {
+    const options = cursor[fields.children];
+    const value = selectedValues.value[columnIndex];
+    cursor = isDef(value) ? findOptionByValue(options, value, fields) : void 0;
+    if (!cursor && options.length) {
+      const firstValue = getFirstEnabledOption(options)[fields.value];
+      cursor = findOptionByValue(options, firstValue, fields);
+    }
+    columnIndex++;
+    formatted.push(options);
+  }
+  return formatted;
+}
+function getElementTranslateY(element) {
+  const { transform } = window.getComputedStyle(element);
+  const translateY = transform.slice(7, transform.length - 1).split(", ")[5];
+  return Number(translateY);
+}
+function assignDefaultFields(fields) {
+  return extend(
+    {
+      text: "text",
+      value: "value",
+      children: "children"
+    },
+    fields
+  );
+}
+function useExpose(apis) {
+  const instance = getCurrentInstance();
+  if (instance) {
+    extend(instance.proxy, apis);
+  }
+}
+const [name$d, bem$b] = createNamespace$1("loading");
+const SpinIcon = Array(12).fill(null).map((_, index2) => createVNode("i", {
+  "class": bem$b("line", String(index2 + 1))
+}, null));
+const CircularIcon = createVNode("svg", {
+  "class": bem$b("circular"),
+  "viewBox": "25 25 50 50"
+}, [createVNode("circle", {
+  "cx": "50",
+  "cy": "50",
+  "r": "20",
+  "fill": "none"
+}, null)]);
+const loadingProps = {
+  size: numericProp,
+  type: makeStringProp("circular"),
+  color: String,
+  vertical: Boolean,
+  textSize: numericProp,
+  textColor: String
+};
+var stdin_default$9 = defineComponent({
+  name: name$d,
+  props: loadingProps,
+  setup(props, {
+    slots
+  }) {
+    const spinnerStyle = computed(() => extend({
+      color: props.color
+    }, getSizeStyle(props.size)));
+    const renderText = () => {
+      var _a;
+      if (slots.default) {
+        return createVNode("span", {
+          "class": bem$b("text"),
+          "style": {
+            fontSize: addUnit(props.textSize),
+            color: (_a = props.textColor) != null ? _a : props.color
+          }
+        }, [slots.default()]);
+      }
+    };
+    return () => {
+      const {
+        type,
+        vertical
+      } = props;
+      return createVNode("div", {
+        "class": bem$b([type, {
+          vertical
+        }]),
+        "aria-live": "polite",
+        "aria-busy": true
+      }, [createVNode("span", {
+        "class": bem$b("spinner", type),
+        "style": spinnerStyle.value
+      }, [type === "spinner" ? SpinIcon : CircularIcon]), renderText()]);
+    };
+  }
+});
+const Loading = withInstall(stdin_default$9);
+function getDirection(x, y) {
+  if (x > y) {
+    return "horizontal";
+  }
+  if (y > x) {
+    return "vertical";
+  }
+  return "";
+}
+function useTouch() {
+  const startX = ref(0);
+  const startY = ref(0);
+  const deltaX = ref(0);
+  const deltaY = ref(0);
+  const offsetX = ref(0);
+  const offsetY = ref(0);
+  const direction = ref("");
+  const isVertical = () => direction.value === "vertical";
+  const isHorizontal = () => direction.value === "horizontal";
+  const reset = () => {
+    deltaX.value = 0;
+    deltaY.value = 0;
+    offsetX.value = 0;
+    offsetY.value = 0;
+    direction.value = "";
+  };
+  const start = (event) => {
+    reset();
+    startX.value = event.touches[0].clientX;
+    startY.value = event.touches[0].clientY;
+  };
+  const move = (event) => {
+    const touch = event.touches[0];
+    deltaX.value = (touch.clientX < 0 ? 0 : touch.clientX) - startX.value;
+    deltaY.value = touch.clientY - startY.value;
+    offsetX.value = Math.abs(deltaX.value);
+    offsetY.value = Math.abs(deltaY.value);
+    const LOCK_DIRECTION_DISTANCE = 10;
+    if (!direction.value || offsetX.value < LOCK_DIRECTION_DISTANCE && offsetY.value < LOCK_DIRECTION_DISTANCE) {
+      direction.value = getDirection(offsetX.value, offsetY.value);
+    }
+  };
+  return {
+    move,
+    start,
+    reset,
+    startX,
+    startY,
+    deltaX,
+    deltaY,
+    offsetX,
+    offsetY,
+    direction,
+    isVertical,
+    isHorizontal
+  };
+}
+const DEFAULT_DURATION = 200;
+const MOMENTUM_TIME = 300;
+const MOMENTUM_DISTANCE = 15;
+const [name$c, bem$a] = createNamespace("picker-column");
+const PICKER_KEY = Symbol(name$c);
+const Column = defineComponent({
+  name: name$c,
+  props: {
+    value: makeArrayProp(),
+    fields: makeRequiredProp(Object),
+    options: makeArrayProp(),
+    readonly: Boolean,
+    allowHtml: Boolean,
+    optionHeight: makeRequiredProp(Number),
+    swipeDuration: makeRequiredProp(numericProp),
+    visibleOptionNum: makeRequiredProp(numericProp)
+  },
+  components: {
+    [Icon.name]: Icon
+  },
+  emits: ["change", "clickOption", "clickIcon"],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    let moving;
+    let startOffset;
+    let touchStartTime;
+    let momentumOffset;
+    let transitionEndTrigger;
+    const root = ref();
+    const wrapper = ref();
+    const currentOffset = ref(0);
+    const currentDuration = ref(0);
+    const touch = useTouch();
+    const count = () => props.options.length;
+    const baseOffset = () => props.optionHeight * (+props.visibleOptionNum - 1) / 2;
+    const updateValueByIndex = (index2) => {
+      const enabledIndex = findIndexOfEnabledOption(props.options, index2);
+      const offset = -enabledIndex * props.optionHeight;
+      const trigger = () => {
+        props.options[enabledIndex][props.fields.value];
+      };
+      if (moving && offset !== currentOffset.value) {
+        transitionEndTrigger = trigger;
+      } else {
+        trigger();
+      }
+      currentOffset.value = offset;
+    };
+    const onClickOption = (index2) => {
+      if (moving || props.readonly) {
+        return;
+      }
+      transitionEndTrigger = null;
+      currentDuration.value = DEFAULT_DURATION;
+      emit("clickOption", props.options[index2]);
+    };
+    const onClickIcon = (index2) => {
+      console.log("%c \u{1F364} index", "color:#b03734", index2);
+      if (moving || props.readonly) {
+        return;
+      }
+      transitionEndTrigger = null;
+      currentDuration.value = DEFAULT_DURATION;
+      updateValueByIndex(index2);
+      emit("clickIcon", props.options[index2][props.fields.value], props.options[index2]);
+    };
+    const getIndexByOffset = (offset) => clamp(Math.round(-offset / props.optionHeight), 0, count() - 1);
+    const momentum = (distance, duration) => {
+      const speed = Math.abs(distance / duration);
+      distance = currentOffset.value + speed / 3e-3 * (distance < 0 ? -1 : 1);
+      const index2 = getIndexByOffset(distance);
+      currentDuration.value = +props.swipeDuration;
+      updateValueByIndex(index2);
+    };
+    const stopMomentum = () => {
+      moving = false;
+      currentDuration.value = 0;
+      if (transitionEndTrigger) {
+        transitionEndTrigger();
+        transitionEndTrigger = null;
+      }
+    };
+    const onTouchStart = (event) => {
+      if (props.readonly) {
+        return;
+      }
+      touch.start(event);
+      if (moving) {
+        const translateY = getElementTranslateY(wrapper.value);
+        currentOffset.value = Math.min(0, translateY - baseOffset());
+      }
+      currentDuration.value = 0;
+      startOffset = currentOffset.value;
+      touchStartTime = Date.now();
+      momentumOffset = startOffset;
+      transitionEndTrigger = null;
+    };
+    const onTouchMove = (event) => {
+      if (props.readonly) {
+        return;
+      }
+      touch.move(event);
+      if (touch.isVertical()) {
+        moving = true;
+        preventDefault(event, true);
+      }
+      currentOffset.value = clamp(startOffset + touch.deltaY.value, -(count() * props.optionHeight), props.optionHeight);
+      const now = Date.now();
+      if (now - touchStartTime > MOMENTUM_TIME) {
+        touchStartTime = now;
+        momentumOffset = currentOffset.value;
+      }
+    };
+    const onTouchEnd = () => {
+      if (props.readonly) {
+        return;
+      }
+      const distance = currentOffset.value - momentumOffset;
+      const duration = Date.now() - touchStartTime;
+      const startMomentum = duration < MOMENTUM_TIME && Math.abs(distance) > MOMENTUM_DISTANCE;
+      if (startMomentum) {
+        momentum(distance, duration);
+        return;
+      }
+      const index2 = getIndexByOffset(currentOffset.value);
+      currentDuration.value = DEFAULT_DURATION;
+      updateValueByIndex(index2);
+      setTimeout(() => {
+        moving = false;
+      }, 0);
+    };
+    const renderOptions = () => {
+      const optionStyle = {
+        height: `${props.optionHeight}px`
+      };
+      return props.options.map((option, index2) => {
+        const text = option[props.fields.text];
+        const {
+          disabled
+        } = option;
+        const value = option[props.fields.value];
+        const data = {
+          role: "button",
+          style: optionStyle,
+          tabindex: disabled ? -1 : 0,
+          class: [bem$a("item", {
+            disabled,
+            selected: props.value.includes(value)
+          }), option.className],
+          onClick: () => onClickOption(index2)
+        };
+        const childData = {
+          class: "van-ellipsis",
+          [props.allowHtml ? "innerHTML" : "textContent"]: text
+        };
+        const iconData = {
+          name: option.iconName || "success",
+          class: [bem$a("icon", {
+            disabled,
+            selected: props.value.includes(value)
+          }), option.iconClassName],
+          onClick: () => onClickIcon(index2)
+        };
+        return createVNode("li", data, [slots.option ? slots.option(option) : createVNode("div", childData, null), createVNode(resolveComponent("van-icon"), iconData, null)]);
+      });
+    };
+    useParent(PICKER_KEY);
+    useExpose({
+      stopMomentum
+    });
+    watchEffect(() => {
+      const index2 = props.options.findIndex((option) => option[props.fields.value] === props.value[props.value.length - 1]);
+      const enabledIndex = findIndexOfEnabledOption(props.options, index2);
+      const offset = -enabledIndex * props.optionHeight;
+      console.log("%c \u{1F943} offset", "color:#b03734", offset);
+      currentOffset.value = offset;
+    });
+    useEventListener("touchmove", onTouchMove, {
+      target: root
+    });
+    return () => createVNode("div", {
+      "ref": root,
+      "class": bem$a(),
+      "onTouchstartPassive": onTouchStart,
+      "onTouchend": onTouchEnd,
+      "onTouchcancel": onTouchEnd
+    }, [createVNode("ul", {
+      "ref": wrapper,
+      "style": {
+        transform: `translate3d(0, ${currentOffset.value + baseOffset()}px, 0)`,
+        transitionDuration: `${currentDuration.value}ms`,
+        transitionProperty: currentDuration.value ? "all" : "none"
+      },
+      "class": bem$a("wrapper"),
+      "onTransitionend": stopMomentum
+    }, [renderOptions()])]);
+  }
+});
+const [name$b] = createNamespace("picker-toolbar");
+const pickerToolbarProps$1 = {
+  title: String,
+  cancelButtonText: String,
+  confirmButtonText: String
+};
+const pickerToolbarSlots = ["cancel", "confirm", "title", "toolbar"];
+const pickerToolbarPropKeys = Object.keys(pickerToolbarProps$1);
+const Toolbar = defineComponent({
+  name: name$b,
+  props: pickerToolbarProps$1,
+  emits: ["confirm", "cancel"],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const renderTitle = () => {
+      if (slots.title) {
+        return slots.title();
+      }
+      if (props.title) {
+        return createVNode("div", {
+          "class": [bem$c("title"), "van-ellipsis"]
+        }, [props.title]);
+      }
+    };
+    const onCancel = () => emit("cancel");
+    const onConfirm = () => emit("confirm");
+    const renderCancel = () => {
+      const text = props.cancelButtonText || t$1("cancel");
+      return createVNode("button", {
+        "type": "button",
+        "class": [bem$c("cancel"), HAPTICS_FEEDBACK],
+        "onClick": onCancel
+      }, [slots.cancel ? slots.cancel() : text]);
+    };
+    const renderConfirm = () => {
+      const text = props.confirmButtonText || t$1("confirm");
+      return createVNode("button", {
+        "type": "button",
+        "class": [bem$c("confirm"), HAPTICS_FEEDBACK],
+        "onClick": onConfirm
+      }, [slots.confirm ? slots.confirm() : text]);
+    };
+    return () => createVNode("div", {
+      "class": bem$c("toolbar")
+    }, [slots.toolbar ? slots.toolbar() : [renderCancel(), renderTitle(), renderConfirm()]]);
+  }
+});
+function scrollLeftTo(scroller, to, duration) {
+  let count = 0;
+  const from = scroller.scrollLeft;
+  const frames = duration === 0 ? 1 : Math.round(duration * 1e3 / 16);
+  function animate() {
+    scroller.scrollLeft += (to - from) / frames;
+    if (++count < frames) {
+      raf(animate);
+    }
+  }
+  animate();
+}
+function scrollTopTo(scroller, to, duration, callback) {
+  let current2 = getScrollTop(scroller);
+  const isDown = current2 < to;
+  const frames = duration === 0 ? 1 : Math.round(duration * 1e3 / 16);
+  const step = (to - current2) / frames;
+  function animate() {
+    current2 += step;
+    if (isDown && current2 > to || !isDown && current2 < to) {
+      current2 = to;
+    }
+    setScrollTop(scroller, current2);
+    if (isDown && current2 < to || !isDown && current2 > to) {
+      raf(animate);
+    } else if (callback) {
+      raf(callback);
+    }
+  }
+  animate();
+}
+let current = 0;
+function useId() {
+  const vm = getCurrentInstance();
+  const { name: name2 = "unknown" } = (vm == null ? void 0 : vm.type) || {};
+  if (process.env.NODE_ENV === "test") {
+    return name2;
+  }
+  return `${name2}-${++current}`;
+}
+const routeProps = {
+  to: [String, Object],
+  url: String,
+  replace: Boolean
+};
+function route({
+  to,
+  url,
+  replace,
+  $router: router
+}) {
+  if (to && router) {
+    router[replace ? "replace" : "push"](to);
+  } else if (url) {
+    replace ? location.replace(url) : location.href = url;
+  }
+}
+function useRefs() {
+  const refs = ref([]);
+  const cache = [];
+  onBeforeUpdate(() => {
+    refs.value = [];
+  });
+  const setRefs = (index2) => {
+    if (!cache[index2]) {
+      cache[index2] = (el) => {
+        refs.value[index2] = el;
+      };
+    }
+    return cache[index2];
+  };
+  return [refs, setRefs];
+}
+const POPUP_TOGGLE_KEY = Symbol();
+function onPopupReopen(callback) {
+  const popupToggleStatus = inject(POPUP_TOGGLE_KEY, null);
+  if (popupToggleStatus) {
+    watch(popupToggleStatus, (show) => {
+      if (show) {
+        callback();
+      }
+    });
+  }
+}
+function useVisibilityChange(target, onChange) {
+  if (!inBrowser$1 || !window.IntersectionObserver) {
+    return;
+  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      onChange(entries[0].intersectionRatio > 0);
+    },
+    { root: document.body }
+  );
+  const observe = () => {
+    if (target.value) {
+      observer.observe(target.value);
+    }
+  };
+  const unobserve = () => {
+    if (target.value) {
+      observer.unobserve(target.value);
+    }
+  };
+  onDeactivated(unobserve);
+  onBeforeUnmount(unobserve);
+  onMountedOrActivated(observe);
+}
+const [name$a, bem$9] = createNamespace$1("sticky");
+const stickyProps = {
+  zIndex: numericProp,
+  position: makeStringProp("top"),
+  container: Object,
+  offsetTop: makeNumericProp(0),
+  offsetBottom: makeNumericProp(0)
+};
+var stdin_default$8 = defineComponent({
+  name: name$a,
+  props: stickyProps,
+  emits: ["scroll", "change"],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const root = ref();
+    const scrollParent = useScrollParent(root);
+    const state = reactive({
+      fixed: false,
+      width: 0,
+      height: 0,
+      transform: 0
+    });
+    const offset = computed(() => unitToPx(props.position === "top" ? props.offsetTop : props.offsetBottom));
+    const rootStyle = computed(() => {
+      const {
+        fixed,
+        height: height2,
+        width: width2
+      } = state;
+      if (fixed) {
+        return {
+          width: `${width2}px`,
+          height: `${height2}px`
+        };
+      }
+    });
+    const stickyStyle = computed(() => {
+      if (!state.fixed) {
+        return;
+      }
+      const style = extend(getZIndexStyle(props.zIndex), {
+        width: `${state.width}px`,
+        height: `${state.height}px`,
+        [props.position]: `${offset.value}px`
+      });
+      if (state.transform) {
+        style.transform = `translate3d(0, ${state.transform}px, 0)`;
+      }
+      return style;
+    });
+    const emitScroll = (scrollTop) => emit("scroll", {
+      scrollTop,
+      isFixed: state.fixed
+    });
+    const onScroll = () => {
+      if (!root.value || isHidden(root)) {
+        return;
+      }
+      const {
+        container,
+        position
+      } = props;
+      const rootRect = useRect(root);
+      const scrollTop = getScrollTop(window);
+      state.width = rootRect.width;
+      state.height = rootRect.height;
+      if (position === "top") {
+        if (container) {
+          const containerRect = useRect(container);
+          const difference = containerRect.bottom - offset.value - state.height;
+          state.fixed = offset.value > rootRect.top && containerRect.bottom > 0;
+          state.transform = difference < 0 ? difference : 0;
+        } else {
+          state.fixed = offset.value > rootRect.top;
+        }
+      } else {
+        const {
+          clientHeight
+        } = document.documentElement;
+        if (container) {
+          const containerRect = useRect(container);
+          const difference = clientHeight - containerRect.top - offset.value - state.height;
+          state.fixed = clientHeight - offset.value < rootRect.bottom && clientHeight > containerRect.top;
+          state.transform = difference < 0 ? -difference : 0;
+        } else {
+          state.fixed = clientHeight - offset.value < rootRect.bottom;
+        }
+      }
+      emitScroll(scrollTop);
+    };
+    watch(() => state.fixed, (value) => emit("change", value));
+    useEventListener("scroll", onScroll, {
+      target: scrollParent,
+      passive: true
+    });
+    useVisibilityChange(root, onScroll);
+    return () => {
+      var _a;
+      return createVNode("div", {
+        "ref": root,
+        "style": rootStyle.value
+      }, [createVNode("div", {
+        "class": bem$9({
+          fixed: state.fixed
+        }),
+        "style": stickyStyle.value
+      }, [(_a = slots.default) == null ? void 0 : _a.call(slots)])]);
+    };
+  }
+});
+const Sticky = withInstall(stdin_default$8);
+const [name$9, bem$8] = createNamespace$1("badge");
+const badgeProps = {
+  dot: Boolean,
+  max: numericProp,
+  tag: makeStringProp("div"),
+  color: String,
+  offset: Array,
+  content: numericProp,
+  showZero: truthProp,
+  position: makeStringProp("top-right")
+};
+var stdin_default$7 = defineComponent({
+  name: name$9,
+  props: badgeProps,
+  setup(props, {
+    slots
+  }) {
+    const hasContent = () => {
+      if (slots.content) {
+        return true;
+      }
+      const {
+        content,
+        showZero
+      } = props;
+      return isDef(content) && content !== "" && (showZero || content !== 0 && content !== "0");
+    };
+    const renderContent = () => {
+      const {
+        dot,
+        max,
+        content
+      } = props;
+      if (!dot && hasContent()) {
+        if (slots.content) {
+          return slots.content();
+        }
+        if (isDef(max) && isNumeric(content) && +content > max) {
+          return `${max}+`;
+        }
+        return content;
+      }
+    };
+    const style = computed(() => {
+      const style2 = {
+        background: props.color
+      };
+      if (props.offset) {
+        const [x, y] = props.offset;
+        if (slots.default) {
+          style2.top = addUnit(y);
+          if (typeof x === "number") {
+            style2.right = addUnit(-x);
+          } else {
+            style2.right = x.startsWith("-") ? x.replace("-", "") : `-${x}`;
+          }
+        } else {
+          style2.marginTop = addUnit(y);
+          style2.marginLeft = addUnit(x);
+        }
+      }
+      return style2;
+    });
+    const renderBadge = () => {
+      if (hasContent() || props.dot) {
+        return createVNode("div", {
+          "class": bem$8([props.position, {
+            dot: props.dot,
+            fixed: !!slots.default
+          }]),
+          "style": style.value
+        }, [renderContent()]);
+      }
+    };
+    return () => {
+      if (slots.default) {
+        const {
+          tag
+        } = props;
+        return createVNode(tag, {
+          "class": bem$8("wrapper")
+        }, {
+          default: () => [slots.default(), renderBadge()]
+        });
+      }
+      return renderBadge();
+    };
+  }
+});
+const Badge = withInstall(stdin_default$7);
+const [name$8, bem$7] = createNamespace$1("tab");
+var stdin_default$6 = defineComponent({
+  name: name$8,
+  props: {
+    id: String,
+    dot: Boolean,
+    type: String,
+    color: String,
+    title: String,
+    badge: numericProp,
+    shrink: Boolean,
+    isActive: Boolean,
+    disabled: Boolean,
+    controls: String,
+    scrollable: Boolean,
+    activeColor: String,
+    inactiveColor: String,
+    showZeroBadge: truthProp
+  },
+  setup(props, {
+    slots
+  }) {
+    const style = computed(() => {
+      const style2 = {};
+      const {
+        type,
+        color,
+        disabled,
+        isActive,
+        activeColor,
+        inactiveColor
+      } = props;
+      const isCard = type === "card";
+      if (color && isCard) {
+        style2.borderColor = color;
+        if (!disabled) {
+          if (isActive) {
+            style2.backgroundColor = color;
+          } else {
+            style2.color = color;
+          }
+        }
+      }
+      const titleColor = isActive ? activeColor : inactiveColor;
+      if (titleColor) {
+        style2.color = titleColor;
+      }
+      return style2;
+    });
+    const renderText = () => {
+      const Text = createVNode("span", {
+        "class": bem$7("text", {
+          ellipsis: !props.scrollable
+        })
+      }, [slots.title ? slots.title() : props.title]);
+      if (props.dot || isDef(props.badge) && props.badge !== "") {
+        return createVNode(Badge, {
+          "dot": props.dot,
+          "content": props.badge,
+          "showZero": props.showZeroBadge
+        }, {
+          default: () => [Text]
+        });
+      }
+      return Text;
+    };
+    return () => createVNode("div", {
+      "id": props.id,
+      "role": "tab",
+      "class": [bem$7([props.type, {
+        grow: props.scrollable && !props.shrink,
+        shrink: props.shrink,
+        active: props.isActive,
+        disabled: props.disabled
+      }])],
+      "style": style.value,
+      "tabindex": props.disabled ? void 0 : props.isActive ? 0 : -1,
+      "aria-selected": props.isActive,
+      "aria-disabled": props.disabled || void 0,
+      "aria-controls": props.controls
+    }, [renderText()]);
+  }
+});
+const [name$7, bem$6] = createNamespace$1("swipe");
+const swipeProps = {
+  loop: truthProp,
+  width: numericProp,
+  height: numericProp,
+  vertical: Boolean,
+  autoplay: makeNumericProp(0),
+  duration: makeNumericProp(500),
+  touchable: truthProp,
+  lazyRender: Boolean,
+  initialSwipe: makeNumericProp(0),
+  indicatorColor: String,
+  showIndicators: truthProp,
+  stopPropagation: truthProp
+};
+const SWIPE_KEY = Symbol(name$7);
+var stdin_default$5 = defineComponent({
+  name: name$7,
+  props: swipeProps,
+  emits: ["change"],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const root = ref();
+    const track = ref();
+    const state = reactive({
+      rect: null,
+      width: 0,
+      height: 0,
+      offset: 0,
+      active: 0,
+      swiping: false
+    });
+    const touch = useTouch();
+    const {
+      children,
+      linkChildren
+    } = useChildren(SWIPE_KEY);
+    const count = computed(() => children.length);
+    const size = computed(() => state[props.vertical ? "height" : "width"]);
+    const delta = computed(() => props.vertical ? touch.deltaY.value : touch.deltaX.value);
+    const minOffset = computed(() => {
+      if (state.rect) {
+        const base = props.vertical ? state.rect.height : state.rect.width;
+        return base - size.value * count.value;
+      }
+      return 0;
+    });
+    const maxCount = computed(() => Math.ceil(Math.abs(minOffset.value) / size.value));
+    const trackSize = computed(() => count.value * size.value);
+    const activeIndicator = computed(() => (state.active + count.value) % count.value);
+    const isCorrectDirection = computed(() => {
+      const expect = props.vertical ? "vertical" : "horizontal";
+      return touch.direction.value === expect;
+    });
+    const trackStyle = computed(() => {
+      const style = {
+        transitionDuration: `${state.swiping ? 0 : props.duration}ms`,
+        transform: `translate${props.vertical ? "Y" : "X"}(${state.offset}px)`
+      };
+      if (size.value) {
+        const mainAxis = props.vertical ? "height" : "width";
+        const crossAxis = props.vertical ? "width" : "height";
+        style[mainAxis] = `${trackSize.value}px`;
+        style[crossAxis] = props[crossAxis] ? `${props[crossAxis]}px` : "";
+      }
+      return style;
+    });
+    const getTargetActive = (pace) => {
+      const {
+        active
+      } = state;
+      if (pace) {
+        if (props.loop) {
+          return clamp(active + pace, -1, count.value);
+        }
+        return clamp(active + pace, 0, maxCount.value);
+      }
+      return active;
+    };
+    const getTargetOffset = (targetActive, offset = 0) => {
+      let currentPosition = targetActive * size.value;
+      if (!props.loop) {
+        currentPosition = Math.min(currentPosition, -minOffset.value);
+      }
+      let targetOffset = offset - currentPosition;
+      if (!props.loop) {
+        targetOffset = clamp(targetOffset, minOffset.value, 0);
+      }
+      return targetOffset;
+    };
+    const move = ({
+      pace = 0,
+      offset = 0,
+      emitChange
+    }) => {
+      if (count.value <= 1) {
+        return;
+      }
+      const {
+        active
+      } = state;
+      const targetActive = getTargetActive(pace);
+      const targetOffset = getTargetOffset(targetActive, offset);
+      if (props.loop) {
+        if (children[0] && targetOffset !== minOffset.value) {
+          const outRightBound = targetOffset < minOffset.value;
+          children[0].setOffset(outRightBound ? trackSize.value : 0);
+        }
+        if (children[count.value - 1] && targetOffset !== 0) {
+          const outLeftBound = targetOffset > 0;
+          children[count.value - 1].setOffset(outLeftBound ? -trackSize.value : 0);
+        }
+      }
+      state.active = targetActive;
+      state.offset = targetOffset;
+      if (emitChange && targetActive !== active) {
+        emit("change", activeIndicator.value);
+      }
+    };
+    const correctPosition = () => {
+      state.swiping = true;
+      if (state.active <= -1) {
+        move({
+          pace: count.value
+        });
+      } else if (state.active >= count.value) {
+        move({
+          pace: -count.value
+        });
+      }
+    };
+    const prev = () => {
+      correctPosition();
+      touch.reset();
+      doubleRaf(() => {
+        state.swiping = false;
+        move({
+          pace: -1,
+          emitChange: true
+        });
+      });
+    };
+    const next = () => {
+      correctPosition();
+      touch.reset();
+      doubleRaf(() => {
+        state.swiping = false;
+        move({
+          pace: 1,
+          emitChange: true
+        });
+      });
+    };
+    let autoplayTimer;
+    const stopAutoplay = () => clearTimeout(autoplayTimer);
+    const autoplay = () => {
+      stopAutoplay();
+      if (props.autoplay > 0 && count.value > 1) {
+        autoplayTimer = setTimeout(() => {
+          next();
+          autoplay();
+        }, +props.autoplay);
+      }
+    };
+    const initialize = (active = +props.initialSwipe) => {
+      if (!root.value) {
+        return;
+      }
+      const cb = () => {
+        var _a, _b;
+        if (!isHidden(root)) {
+          const rect = {
+            width: root.value.offsetWidth,
+            height: root.value.offsetHeight
+          };
+          state.rect = rect;
+          state.width = +((_a = props.width) != null ? _a : rect.width);
+          state.height = +((_b = props.height) != null ? _b : rect.height);
+        }
+        if (count.value) {
+          active = Math.min(count.value - 1, active);
+        }
+        state.active = active;
+        state.swiping = true;
+        state.offset = getTargetOffset(active);
+        children.forEach((swipe) => {
+          swipe.setOffset(0);
+        });
+        autoplay();
+      };
+      if (isHidden(root)) {
+        nextTick().then(cb);
+      } else {
+        cb();
+      }
+    };
+    const resize = () => initialize(state.active);
+    let touchStartTime;
+    const onTouchStart = (event) => {
+      if (!props.touchable)
+        return;
+      touch.start(event);
+      touchStartTime = Date.now();
+      stopAutoplay();
+      correctPosition();
+    };
+    const onTouchMove = (event) => {
+      if (props.touchable && state.swiping) {
+        touch.move(event);
+        if (isCorrectDirection.value) {
+          const isEdgeTouch = !props.loop && (state.active === 0 && delta.value > 0 || state.active === count.value - 1 && delta.value < 0);
+          if (!isEdgeTouch) {
+            preventDefault(event, props.stopPropagation);
+            move({
+              offset: delta.value
+            });
+          }
+        }
+      }
+    };
+    const onTouchEnd = () => {
+      if (!props.touchable || !state.swiping) {
+        return;
+      }
+      const duration = Date.now() - touchStartTime;
+      const speed = delta.value / duration;
+      const shouldSwipe = Math.abs(speed) > 0.25 || Math.abs(delta.value) > size.value / 2;
+      if (shouldSwipe && isCorrectDirection.value) {
+        const offset = props.vertical ? touch.offsetY.value : touch.offsetX.value;
+        let pace = 0;
+        if (props.loop) {
+          pace = offset > 0 ? delta.value > 0 ? -1 : 1 : 0;
+        } else {
+          pace = -Math[delta.value > 0 ? "ceil" : "floor"](delta.value / size.value);
+        }
+        move({
+          pace,
+          emitChange: true
+        });
+      } else if (delta.value) {
+        move({
+          pace: 0
+        });
+      }
+      state.swiping = false;
+      autoplay();
+    };
+    const swipeTo = (index2, options = {}) => {
+      correctPosition();
+      touch.reset();
+      doubleRaf(() => {
+        let targetIndex;
+        if (props.loop && index2 === count.value) {
+          targetIndex = state.active === 0 ? 0 : index2;
+        } else {
+          targetIndex = index2 % count.value;
+        }
+        if (options.immediate) {
+          doubleRaf(() => {
+            state.swiping = false;
+          });
+        } else {
+          state.swiping = false;
+        }
+        move({
+          pace: targetIndex - state.active,
+          emitChange: true
+        });
+      });
+    };
+    const renderDot = (_, index2) => {
+      const active = index2 === activeIndicator.value;
+      const style = active ? {
+        backgroundColor: props.indicatorColor
+      } : void 0;
+      return createVNode("i", {
+        "style": style,
+        "class": bem$6("indicator", {
+          active
+        })
+      }, null);
+    };
+    const renderIndicator = () => {
+      if (slots.indicator) {
+        return slots.indicator({
+          active: activeIndicator.value,
+          total: count.value
+        });
+      }
+      if (props.showIndicators && count.value > 1) {
+        return createVNode("div", {
+          "class": bem$6("indicators", {
+            vertical: props.vertical
+          })
+        }, [Array(count.value).fill("").map(renderDot)]);
+      }
+    };
+    useExpose({
+      prev,
+      next,
+      state,
+      resize,
+      swipeTo
+    });
+    linkChildren({
+      size,
+      props,
+      count,
+      activeIndicator
+    });
+    watch(() => props.initialSwipe, (value) => initialize(+value));
+    watch(count, () => initialize(state.active));
+    watch(() => props.autoplay, autoplay);
+    watch([windowWidth, windowHeight], resize);
+    watch(usePageVisibility(), (visible) => {
+      if (visible === "visible") {
+        autoplay();
+      } else {
+        stopAutoplay();
+      }
+    });
+    onMounted(initialize);
+    onActivated(() => initialize(state.active));
+    onPopupReopen(() => initialize(state.active));
+    onDeactivated(stopAutoplay);
+    onBeforeUnmount(stopAutoplay);
+    useEventListener("touchmove", onTouchMove, {
+      target: track
+    });
+    return () => {
+      var _a;
+      return createVNode("div", {
+        "ref": root,
+        "class": bem$6()
+      }, [createVNode("div", {
+        "ref": track,
+        "style": trackStyle.value,
+        "class": bem$6("track", {
+          vertical: props.vertical
+        }),
+        "onTouchstartPassive": onTouchStart,
+        "onTouchend": onTouchEnd,
+        "onTouchcancel": onTouchEnd
+      }, [(_a = slots.default) == null ? void 0 : _a.call(slots)]), renderIndicator()]);
+    };
+  }
+});
+const Swipe = withInstall(stdin_default$5);
+const [name$6, bem$5] = createNamespace$1("tabs");
+var stdin_default$4 = defineComponent({
+  name: name$6,
+  props: {
+    count: makeRequiredProp(Number),
+    inited: Boolean,
+    animated: Boolean,
+    duration: makeRequiredProp(numericProp),
+    swipeable: Boolean,
+    lazyRender: Boolean,
+    currentIndex: makeRequiredProp(Number)
+  },
+  emits: ["change"],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const swipeRef = ref();
+    const onChange = (index2) => emit("change", index2);
+    const renderChildren = () => {
+      var _a;
+      const Content = (_a = slots.default) == null ? void 0 : _a.call(slots);
+      if (props.animated || props.swipeable) {
+        return createVNode(Swipe, {
+          "ref": swipeRef,
+          "loop": false,
+          "class": bem$5("track"),
+          "duration": +props.duration * 1e3,
+          "touchable": props.swipeable,
+          "lazyRender": props.lazyRender,
+          "showIndicators": false,
+          "onChange": onChange
+        }, {
+          default: () => [Content]
+        });
+      }
+      return Content;
+    };
+    const swipeToCurrentTab = (index2) => {
+      const swipe = swipeRef.value;
+      if (swipe && swipe.state.active !== index2) {
+        swipe.swipeTo(index2, {
+          immediate: !props.inited
+        });
+      }
+    };
+    watch(() => props.currentIndex, swipeToCurrentTab);
+    onMounted(() => {
+      swipeToCurrentTab(props.currentIndex);
+    });
+    useExpose({
+      swipeRef
+    });
+    return () => createVNode("div", {
+      "class": bem$5("content", {
+        animated: props.animated || props.swipeable
+      })
+    }, [renderChildren()]);
+  }
+});
+const [name$5, bem$4] = createNamespace$1("tabs");
+const tabsProps = {
+  type: makeStringProp("line"),
+  color: String,
+  border: Boolean,
+  sticky: Boolean,
+  shrink: Boolean,
+  active: makeNumericProp(0),
+  duration: makeNumericProp(0.3),
+  animated: Boolean,
+  ellipsis: truthProp,
+  swipeable: Boolean,
+  scrollspy: Boolean,
+  offsetTop: makeNumericProp(0),
+  background: String,
+  lazyRender: truthProp,
+  lineWidth: numericProp,
+  lineHeight: numericProp,
+  beforeChange: Function,
+  swipeThreshold: makeNumericProp(5),
+  titleActiveColor: String,
+  titleInactiveColor: String
+};
+const TABS_KEY = Symbol(name$5);
+var stdin_default$3 = defineComponent({
+  name: name$5,
+  props: tabsProps,
+  emits: ["change", "scroll", "rendered", "clickTab", "update:active"],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    let tabHeight;
+    let lockScroll;
+    let stickyFixed;
+    const root = ref();
+    const navRef = ref();
+    const wrapRef = ref();
+    const contentRef = ref();
+    const id = useId();
+    const scroller = useScrollParent(root);
+    const [titleRefs, setTitleRefs] = useRefs();
+    const {
+      children,
+      linkChildren
+    } = useChildren(TABS_KEY);
+    const state = reactive({
+      inited: false,
+      position: "",
+      lineStyle: {},
+      currentIndex: -1
+    });
+    const scrollable = computed(() => children.length > props.swipeThreshold || !props.ellipsis || props.shrink);
+    const navStyle = computed(() => ({
+      borderColor: props.color,
+      background: props.background
+    }));
+    const getTabName = (tab, index2) => {
+      var _a;
+      return (_a = tab.name) != null ? _a : index2;
+    };
+    const currentName = computed(() => {
+      const activeTab = children[state.currentIndex];
+      if (activeTab) {
+        return getTabName(activeTab, state.currentIndex);
+      }
+    });
+    const offsetTopPx = computed(() => unitToPx(props.offsetTop));
+    const scrollOffset = computed(() => {
+      if (props.sticky) {
+        return offsetTopPx.value + tabHeight;
+      }
+      return 0;
+    });
+    const scrollIntoView = (immediate) => {
+      const nav = navRef.value;
+      const titles = titleRefs.value;
+      if (!scrollable.value || !nav || !titles || !titles[state.currentIndex]) {
+        return;
+      }
+      const title = titles[state.currentIndex].$el;
+      const to = title.offsetLeft - (nav.offsetWidth - title.offsetWidth) / 2;
+      scrollLeftTo(nav, to, immediate ? 0 : +props.duration);
+    };
+    const setLine = () => {
+      const shouldAnimate = state.inited;
+      nextTick(() => {
+        const titles = titleRefs.value;
+        if (!titles || !titles[state.currentIndex] || props.type !== "line" || isHidden(root.value)) {
+          return;
+        }
+        const title = titles[state.currentIndex].$el;
+        const {
+          lineWidth,
+          lineHeight
+        } = props;
+        const left = title.offsetLeft + title.offsetWidth / 2;
+        const lineStyle = {
+          width: addUnit(lineWidth),
+          backgroundColor: props.color,
+          transform: `translateX(${left}px) translateX(-50%)`
+        };
+        if (shouldAnimate) {
+          lineStyle.transitionDuration = `${props.duration}s`;
+        }
+        if (isDef(lineHeight)) {
+          const height2 = addUnit(lineHeight);
+          lineStyle.height = height2;
+          lineStyle.borderRadius = height2;
+        }
+        state.lineStyle = lineStyle;
+      });
+    };
+    const findAvailableTab = (index2) => {
+      const diff = index2 < state.currentIndex ? -1 : 1;
+      while (index2 >= 0 && index2 < children.length) {
+        if (!children[index2].disabled) {
+          return index2;
+        }
+        index2 += diff;
+      }
+    };
+    const setCurrentIndex = (currentIndex, skipScrollIntoView) => {
+      const newIndex = findAvailableTab(currentIndex);
+      if (!isDef(newIndex)) {
+        return;
+      }
+      const newTab = children[newIndex];
+      const newName = getTabName(newTab, newIndex);
+      const shouldEmitChange = state.currentIndex !== null;
+      state.currentIndex = newIndex;
+      if (newName !== props.active) {
+        emit("update:active", newName);
+        if (shouldEmitChange) {
+          emit("change", newName, newTab.title);
+        }
+      }
+      if (!skipScrollIntoView) {
+        scrollIntoView();
+      }
+      setLine();
+      if (stickyFixed && !props.scrollspy) {
+        setRootScrollTop(Math.ceil(getElementTop(root.value) - offsetTopPx.value));
+      }
+    };
+    const setCurrentIndexByName = (name2, skipScrollIntoView) => {
+      const matched = children.find((tab, index22) => getTabName(tab, index22) === name2);
+      const index2 = matched ? children.indexOf(matched) : 0;
+      setCurrentIndex(index2, skipScrollIntoView);
+    };
+    const scrollToCurrentContent = (immediate = false) => {
+      if (props.scrollspy) {
+        const target = children[state.currentIndex].$el;
+        if (target && scroller.value) {
+          const to = getElementTop(target, scroller.value) - scrollOffset.value;
+          lockScroll = true;
+          scrollTopTo(scroller.value, to, immediate ? 0 : +props.duration, () => {
+            lockScroll = false;
+          });
+        }
+      }
+    };
+    const onClickTab = (item, index2, event) => {
+      const {
+        title,
+        disabled
+      } = children[index2];
+      const name2 = getTabName(children[index2], index2);
+      if (!disabled) {
+        callInterceptor(props.beforeChange, {
+          args: [name2],
+          done: () => {
+            setCurrentIndex(index2);
+            scrollToCurrentContent();
+          }
+        });
+        route(item);
+      }
+      emit("clickTab", {
+        name: name2,
+        title,
+        event,
+        disabled
+      });
+    };
+    const onStickyScroll = (params) => {
+      stickyFixed = params.isFixed;
+      emit("scroll", params);
+    };
+    const scrollTo = (name2) => {
+      nextTick(() => {
+        setCurrentIndexByName(name2);
+        scrollToCurrentContent(true);
+      });
+    };
+    const getCurrentIndexOnScroll = () => {
+      for (let index2 = 0; index2 < children.length; index2++) {
+        const {
+          top
+        } = useRect(children[index2].$el);
+        if (top > scrollOffset.value) {
+          return index2 === 0 ? 0 : index2 - 1;
+        }
+      }
+      return children.length - 1;
+    };
+    const onScroll = () => {
+      if (props.scrollspy && !lockScroll) {
+        const index2 = getCurrentIndexOnScroll();
+        setCurrentIndex(index2);
+      }
+    };
+    const renderNav = () => children.map((item, index2) => createVNode(stdin_default$6, mergeProps({
+      "key": item.id,
+      "id": `${id}-${index2}`,
+      "ref": setTitleRefs(index2),
+      "type": props.type,
+      "color": props.color,
+      "style": item.titleStyle,
+      "class": item.titleClass,
+      "shrink": props.shrink,
+      "isActive": index2 === state.currentIndex,
+      "controls": item.id,
+      "scrollable": scrollable.value,
+      "activeColor": props.titleActiveColor,
+      "inactiveColor": props.titleInactiveColor,
+      "onClick": (event) => onClickTab(item, index2, event)
+    }, pick(item, ["dot", "badge", "title", "disabled", "showZeroBadge"])), {
+      title: item.$slots.title
+    }));
+    const renderLine = () => {
+      if (props.type === "line" && children.length) {
+        return createVNode("div", {
+          "class": bem$4("line"),
+          "style": state.lineStyle
+        }, null);
+      }
+    };
+    const renderHeader = () => {
+      var _a, _b;
+      const {
+        type,
+        border
+      } = props;
+      return createVNode("div", {
+        "ref": wrapRef,
+        "class": [bem$4("wrap"), {
+          [BORDER_TOP_BOTTOM]: type === "line" && border
+        }]
+      }, [createVNode("div", {
+        "ref": navRef,
+        "role": "tablist",
+        "class": bem$4("nav", [type, {
+          shrink: props.shrink,
+          complete: scrollable.value
+        }]),
+        "style": navStyle.value,
+        "aria-orientation": "horizontal"
+      }, [(_a = slots["nav-left"]) == null ? void 0 : _a.call(slots), renderNav(), renderLine(), (_b = slots["nav-right"]) == null ? void 0 : _b.call(slots)])]);
+    };
+    watch([() => props.color, windowWidth], setLine);
+    watch(() => props.active, (value) => {
+      if (value !== currentName.value) {
+        setCurrentIndexByName(value);
+      }
+    });
+    watch(() => children.length, () => {
+      if (state.inited) {
+        setCurrentIndexByName(props.active);
+        setLine();
+        nextTick(() => {
+          scrollIntoView(true);
+        });
+      }
+    });
+    const init = () => {
+      setCurrentIndexByName(props.active, true);
+      nextTick(() => {
+        state.inited = true;
+        if (wrapRef.value) {
+          tabHeight = useRect(wrapRef.value).height;
+        }
+        scrollIntoView(true);
+      });
+    };
+    const onRendered = (name2, title) => emit("rendered", name2, title);
+    const resize = () => {
+      setLine();
+      nextTick(() => {
+        var _a, _b;
+        return (_b = (_a = contentRef.value) == null ? void 0 : _a.swipeRef.value) == null ? void 0 : _b.resize();
+      });
+    };
+    useExpose({
+      resize,
+      scrollTo
+    });
+    onActivated(setLine);
+    onPopupReopen(setLine);
+    onMountedOrActivated(init);
+    useEventListener("scroll", onScroll, {
+      target: scroller,
+      passive: true
+    });
+    linkChildren({
+      id,
+      props,
+      setLine,
+      onRendered,
+      currentName,
+      scrollIntoView
+    });
+    return () => {
+      var _a;
+      return createVNode("div", {
+        "ref": root,
+        "class": bem$4([props.type])
+      }, [props.sticky ? createVNode(Sticky, {
+        "container": root.value,
+        "offsetTop": offsetTopPx.value,
+        "onScroll": onStickyScroll
+      }, {
+        default: () => {
+          var _a2;
+          return [renderHeader(), (_a2 = slots["nav-bottom"]) == null ? void 0 : _a2.call(slots)];
+        }
+      }) : [renderHeader(), (_a = slots["nav-bottom"]) == null ? void 0 : _a.call(slots)], createVNode(stdin_default$4, {
+        "ref": contentRef,
+        "count": children.length,
+        "inited": state.inited,
+        "animated": props.animated,
+        "duration": props.duration,
+        "swipeable": props.swipeable,
+        "lazyRender": props.lazyRender,
+        "currentIndex": state.currentIndex,
+        "onChange": setCurrentIndex
+      }, {
+        default: () => {
+          var _a2;
+          return [(_a2 = slots.default) == null ? void 0 : _a2.call(slots)];
+        }
+      })]);
+    };
+  }
+});
+const TAB_STATUS_KEY = Symbol();
+const [name$4, bem$3] = createNamespace$1("swipe-item");
+var stdin_default$2 = defineComponent({
+  name: name$4,
+  setup(props, {
+    slots
+  }) {
+    let rendered;
+    const state = reactive({
+      offset: 0,
+      inited: false,
+      mounted: false
+    });
+    const {
+      parent,
+      index: index2
+    } = useParent(SWIPE_KEY);
+    if (!parent) {
+      if (process.env.NODE_ENV !== "production") {
+        console.error("[Vant] <SwipeItem> must be a child component of <Swipe>.");
+      }
+      return;
+    }
+    const style = computed(() => {
+      const style2 = {};
+      const {
+        vertical
+      } = parent.props;
+      if (parent.size.value) {
+        style2[vertical ? "height" : "width"] = `${parent.size.value}px`;
+      }
+      if (state.offset) {
+        style2.transform = `translate${vertical ? "Y" : "X"}(${state.offset}px)`;
+      }
+      return style2;
+    });
+    const shouldRender = computed(() => {
+      const {
+        loop,
+        lazyRender
+      } = parent.props;
+      if (!lazyRender || rendered) {
+        return true;
+      }
+      if (!state.mounted) {
+        return false;
+      }
+      const active = parent.activeIndicator.value;
+      const maxActive = parent.count.value - 1;
+      const prevActive = active === 0 && loop ? maxActive : active - 1;
+      const nextActive = active === maxActive && loop ? 0 : active + 1;
+      rendered = index2.value === active || index2.value === prevActive || index2.value === nextActive;
+      return rendered;
+    });
+    const setOffset = (offset) => {
+      state.offset = offset;
+    };
+    onMounted(() => {
+      nextTick(() => {
+        state.mounted = true;
+      });
+    });
+    useExpose({
+      setOffset
+    });
+    return () => {
+      var _a;
+      return createVNode("div", {
+        "class": bem$3(),
+        "style": style.value
+      }, [shouldRender.value ? (_a = slots.default) == null ? void 0 : _a.call(slots) : null]);
+    };
+  }
+});
+const SwipeItem = withInstall(stdin_default$2);
+const [name$3, bem$2] = createNamespace$1("tab");
+const tabProps = extend({}, routeProps, {
+  dot: Boolean,
+  name: numericProp,
+  badge: numericProp,
+  title: String,
+  disabled: Boolean,
+  titleClass: unknownProp,
+  titleStyle: [String, Object],
+  showZeroBadge: truthProp
+});
+var stdin_default$1 = defineComponent({
+  name: name$3,
+  props: tabProps,
+  setup(props, {
+    slots
+  }) {
+    const id = useId();
+    const inited = ref(false);
+    const {
+      parent,
+      index: index2
+    } = useParent(TABS_KEY);
+    if (!parent) {
+      if (process.env.NODE_ENV !== "production") {
+        console.error("[Vant] <Tab> must be a child component of <Tabs>.");
+      }
+      return;
+    }
+    const getName = () => {
+      var _a;
+      return (_a = props.name) != null ? _a : index2.value;
+    };
+    const init = () => {
+      inited.value = true;
+      if (parent.props.lazyRender) {
+        nextTick(() => {
+          parent.onRendered(getName(), props.title);
+        });
+      }
+    };
+    const active = computed(() => {
+      const isActive = getName() === parent.currentName.value;
+      if (isActive && !inited.value) {
+        init();
+      }
+      return isActive;
+    });
+    const hasInactiveClass = ref(!active.value);
+    watch(active, (val) => {
+      if (val) {
+        hasInactiveClass.value = false;
+      } else {
+        doubleRaf(() => {
+          hasInactiveClass.value = true;
+        });
+      }
+    });
+    watch(() => props.title, () => {
+      parent.setLine();
+      parent.scrollIntoView();
+    });
+    provide(TAB_STATUS_KEY, active);
+    return () => {
+      var _a;
+      const label = `${parent.id}-${index2.value}`;
+      const {
+        animated,
+        swipeable,
+        scrollspy,
+        lazyRender
+      } = parent.props;
+      if (!slots.default && !animated) {
+        return;
+      }
+      const show = scrollspy || active.value;
+      if (animated || swipeable) {
+        return createVNode(SwipeItem, {
+          "id": id,
+          "role": "tabpanel",
+          "class": bem$2("panel-wrapper", {
+            inactive: hasInactiveClass.value
+          }),
+          "tabindex": active.value ? 0 : -1,
+          "aria-hidden": !active.value,
+          "aria-labelledby": label
+        }, {
+          default: () => {
+            var _a2;
+            return [createVNode("div", {
+              "class": bem$2("panel")
+            }, [(_a2 = slots.default) == null ? void 0 : _a2.call(slots)])];
+          }
+        });
+      }
+      const shouldRender = inited.value || scrollspy || !lazyRender;
+      const Content = shouldRender ? (_a = slots.default) == null ? void 0 : _a.call(slots) : null;
+      useExpose({
+        id
+      });
+      return withDirectives(createVNode("div", {
+        "id": id,
+        "role": "tabpanel",
+        "class": bem$2("panel"),
+        "tabindex": show ? 0 : -1,
+        "aria-labelledby": label
+      }, [Content]), [[vShow, show]]);
+    };
+  }
+});
+const Tab = withInstall(stdin_default$1);
+const Tabs = withInstall(stdin_default$3);
+const [name$2, bem$1, t] = createNamespace$1("picker");
+const [name$1] = createNamespace$1("picker-toolbar");
+const pickerToolbarProps = {
+  title: String,
+  cancelButtonText: String,
+  confirmButtonText: String
+};
+var stdin_default = defineComponent({
+  name: name$1,
+  props: pickerToolbarProps,
+  emits: ["confirm", "cancel"],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const renderTitle = () => {
+      if (slots.title) {
+        return slots.title();
+      }
+      if (props.title) {
+        return createVNode("div", {
+          "class": [bem$1("title"), "van-ellipsis"]
+        }, [props.title]);
+      }
+    };
+    const onCancel = () => emit("cancel");
+    const onConfirm = () => emit("confirm");
+    const renderCancel = () => {
+      const text = props.cancelButtonText || t("cancel");
+      return createVNode("button", {
+        "type": "button",
+        "class": [bem$1("cancel"), HAPTICS_FEEDBACK],
+        "onClick": onCancel
+      }, [slots.cancel ? slots.cancel() : text]);
+    };
+    const renderConfirm = () => {
+      const text = props.confirmButtonText || t("confirm");
+      return createVNode("button", {
+        "type": "button",
+        "class": [bem$1("confirm"), HAPTICS_FEEDBACK],
+        "onClick": onConfirm
+      }, [slots.confirm ? slots.confirm() : text]);
+    };
+    return () => createVNode("div", {
+      "class": bem$1("toolbar")
+    }, [slots.toolbar ? slots.toolbar() : [renderCancel(), renderTitle(), renderConfirm()]]);
+  }
+});
+const [name, bem] = createNamespace$1("picker-group");
+const PICKER_GROUP_KEY = Symbol(name);
+const pickerGroupProps = extend({
+  tabs: makeArrayProp()
+}, pickerToolbarProps);
+defineComponent({
+  name,
+  props: pickerGroupProps,
+  emits: ["confirm", "cancel"],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const {
+      children,
+      linkChildren
+    } = useChildren(PICKER_GROUP_KEY);
+    linkChildren();
+    const onConfirm = () => {
+      emit("confirm", children.map((item) => item.confirm()));
+    };
+    const onCancel = () => emit("cancel");
+    return () => {
+      var _a;
+      const childNodes = (_a = slots.default) == null ? void 0 : _a.call(slots);
+      return createVNode("div", {
+        "class": bem()
+      }, [createVNode(stdin_default, mergeProps(props, {
+        "onConfirm": onConfirm,
+        "onCancel": onCancel
+      }), null), createVNode(Tabs, {
+        "shrink": true,
+        "class": bem("tabs"),
+        "animated": true
+      }, {
+        default: () => [props.tabs.map((title, index2) => createVNode(Tab, {
+          "title": title,
+          "titleClass": bem("tab-title")
+        }, {
+          default: () => [childNodes == null ? void 0 : childNodes[index2]]
+        }))]
+      })]);
+    };
+  }
+});
+const pickerSharedProps = extend({
+  loading: Boolean,
+  readonly: Boolean,
+  allowHtml: Boolean,
+  optionHeight: makeNumericProp(44),
+  showToolbar: truthProp,
+  swipeDuration: makeNumericProp(1e3),
+  visibleOptionNum: makeNumericProp(6)
+}, pickerToolbarProps$1);
+const pickerProps = extend({}, pickerSharedProps, {
+  columns: makeArrayProp(),
+  modelValue: makeArrayProp(),
+  toolbarPosition: makeStringProp("top"),
+  columnsFieldNames: Object
+});
+console.log("%c \u{1F356} name", "color:#42b983", name$e);
+const _Picker = defineComponent({
+  name: "BetterVantPicker",
+  props: pickerProps,
+  emits: [
+    "confirm",
+    "cancel",
+    "clickOption",
+    "clickIcon",
+    "update:modelValue"
+  ],
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const columnsRef = ref();
+    const selectedValues = ref(props.modelValue.slice(0));
+    const {
+      parent
+    } = useParent(PICKER_GROUP_KEY);
+    const {
+      children,
+      linkChildren
+    } = useChildren(PICKER_KEY);
+    linkChildren();
+    const fields = computed(() => assignDefaultFields(props.columnsFieldNames));
+    const optionHeight = computed(() => unitToPx(props.optionHeight));
+    const columnsType = computed(() => getColumnsType(props.columns, fields.value));
+    const currentColumns = computed(() => {
+      const {
+        columns
+      } = props;
+      switch (columnsType.value) {
+        case "multiple":
+          console.log("%c \u{1F36B} columns", "color:#42b983", columns);
+          return columns;
+        case "cascade":
+          return formatCascadeColumns(columns, fields.value, selectedValues);
+        default:
+          return [columns];
+      }
+    });
+    const hasOptions = computed(() => currentColumns.value.some((options) => options.length));
+    const selectedOptions = computed(() => currentColumns.value.map((options, index2) => findOptionByValue(options, selectedValues.value[index2], fields.value)));
+    const setValue = (index2, value) => {
+      if (selectedValues.value.includes(value)) {
+        const oldIndex = selectedValues.value.findIndex((v) => v === value);
+        if (oldIndex >= 0) {
+          const newValues = selectedValues.value.slice(0);
+          selectedValues.value = newValues.filter((x) => x !== value);
+        }
+      } else {
+        const newValues = selectedValues.value.slice(0);
+        newValues.push(value);
+        selectedValues.value = newValues;
+      }
+    };
+    const getEventParams = () => ({
+      selectedValues: selectedValues.value.slice(0),
+      selectedOptions: selectedOptions.value
+    });
+    const onClickOption = (currentOption, columnIndex) => emit("clickOption", extend({
+      columnIndex,
+      currentOption
+    }, getEventParams()));
+    const onClickIcon = (value, currentOption, columnIndex) => {
+      console.log("%c \u{1F34F} value", "color:#42b983", value);
+      console.log("%c \u{1F32E} currentOption", "color:#465975", currentOption);
+      console.log("%c \u{1F955} extend({ columnIndex, currentOption }, getEventParams())", "color:#b03734", extend({
+        columnIndex,
+        currentOption
+      }, getEventParams()));
+      setValue(columnIndex, value);
+      emit("clickIcon", extend({
+        columnIndex,
+        currentOption
+      }, getEventParams()));
+    };
+    const confirm = () => {
+      children.forEach((child) => child.stopMomentum());
+      const params = getEventParams();
+      emit("confirm", params);
+      return params;
+    };
+    const cancel = () => emit("cancel", getEventParams());
+    const renderColumnItems = () => currentColumns.value.map((options, columnIndex) => createVNode(Column, {
+      "value": selectedValues.value,
+      "fields": fields.value,
+      "options": options,
+      "readonly": props.readonly,
+      "allowHtml": props.allowHtml,
+      "optionHeight": optionHeight.value,
+      "swipeDuration": props.swipeDuration,
+      "visibleOptionNum": props.visibleOptionNum,
+      "onClickOption": (option) => onClickOption(option, columnIndex),
+      "onClickIcon": (value, option) => onClickIcon(value, option, columnIndex)
+    }, {
+      option: slots.option
+    }));
+    const renderMask = (wrapHeight) => {
+      if (hasOptions.value) {
+        const frameStyle = {
+          height: `${optionHeight.value}px`
+        };
+        const maskStyle = {
+          backgroundSize: `100% ${(wrapHeight - optionHeight.value) / 2}px`
+        };
+        return [createVNode("div", {
+          "class": bem$c("mask"),
+          "style": maskStyle
+        }, null), createVNode("div", {
+          "class": [BORDER_UNSET_TOP_BOTTOM, bem$c("frame")],
+          "style": frameStyle
+        }, null)];
+      }
+    };
+    const renderColumns = () => {
+      const wrapHeight = optionHeight.value * +props.visibleOptionNum;
+      const columnsStyle = {
+        height: `${wrapHeight}px`
+      };
+      return createVNode("div", {
+        "ref": columnsRef,
+        "class": bem$c("columns"),
+        "style": columnsStyle
+      }, [renderColumnItems(), renderMask(wrapHeight)]);
+    };
+    const renderToolbar = () => {
+      if (props.showToolbar && !parent) {
+        return createVNode(Toolbar, mergeProps(pick(props, pickerToolbarPropKeys), {
+          "onConfirm": confirm,
+          "onCancel": cancel
+        }), pick(slots, pickerToolbarSlots));
+      }
+    };
+    watch(currentColumns, (columns) => {
+      columns.forEach((options, index2) => {
+        if (options.length && !isOptionExist(options, selectedValues.value[index2], fields.value)) {
+          setValue(index2, getFirstEnabledOption(options)[fields.value.value]);
+        }
+      });
+    }, {
+      immediate: true
+    });
+    let lastEmittedModelValue;
+    watch(() => props.modelValue, (newValues) => {
+      if (!isSameValue(newValues, selectedValues.value) && !isSameValue(newValues, lastEmittedModelValue)) {
+        selectedValues.value = newValues.slice(0);
+      }
+    }, {
+      deep: true
+    });
+    watch(selectedValues, (newValues) => {
+      if (!isSameValue(newValues, props.modelValue)) {
+        lastEmittedModelValue = newValues.slice(0);
+        emit("update:modelValue", lastEmittedModelValue);
+      }
+    }, {
+      immediate: true
+    });
+    useEventListener("touchmove", preventDefault, {
+      target: columnsRef
+    });
+    const getSelectedOptions = () => selectedOptions.value;
+    useExpose({
+      confirm,
+      getSelectedOptions
+    });
+    return () => {
+      var _a, _b;
+      return createVNode("div", {
+        "class": bem$c()
+      }, [props.toolbarPosition === "top" ? renderToolbar() : null, props.loading ? createVNode(Loading, {
+        "class": bem$c("loading")
+      }, null) : null, (_a = slots["columns-top"]) == null ? void 0 : _a.call(slots), renderColumns(), (_b = slots["columns-bottom"]) == null ? void 0 : _b.call(slots), props.toolbarPosition === "bottom" ? renderToolbar() : null]);
+    };
+  }
+});
+const Picker = withInstall(_Picker);
+const index = "";
+const entry = {
+  install(app) {
+    app.component(Picker.name, Picker);
+  }
+};
+export {
+  Picker as BetterPicker,
+  entry as default
+};
