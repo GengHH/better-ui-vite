@@ -1,44 +1,44 @@
 {
-	"name": "@better-vant/better-vant-ui",
-	"version": "0.0.2",
-	"description": "GengHH",
-	"main": "index.js",
-	"keywords": [],
-	"author": "",
-	"scripts": {
-		"dev": "vant-cli dev",
-		"test": "vant-cli test",
-		"lint": "vant-cli lint",
-		"build": "vant-cli build",
-		"prepare": "husky install",
-		"release": "vant-cli release",
-		"build-site": "vant-cli build-site"
-	},
-	"nano-staged": {
-		"*.md": "prettier --write",
-		"*.{ts,tsx,js,vue,less,scss}": "prettier --write",
-		"*.{ts,tsx,js,vue}": "eslint --fix"
-	},
-	"eslintConfig": {
-		"root": true,
-		"extends": [
-			"@vant"
-		]
-	},
-	"prettier": {
-		"singleQuote": true
-	},
-	"license": "ISC",
-	"devDependencies": {
-		"@vant/cli": "^5.0.2",
-		"@vitejs/plugin-vue": "^3.1.2",
-		"@vitejs/plugin-vue-jsx": "^2.0.1",
-		"terser": "^5.15.0",
-		"unocss": "^0.45.26",
-		"vite": "3.0.9"
-	},
-	"dependencies": {
-		"vant": "^3.6.3",
-		"vue": "^3.2.40"
-	}
+  "name": "@better-vant/better-vant-ui",
+  "version": "0.0.2",
+  "description": "GengHH",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "scripts": {
+    "dev": "vite dev",
+    "test": "vant-cli test",
+    "lint": "vant-cli lint",
+    "build": "vant-cli build",
+    "prepare": "husky install",
+    "release": "vant-cli release",
+    "build-site": "vant-cli build-site"
+  },
+  "nano-staged": {
+    "*.md": "prettier --write",
+    "*.{ts,tsx,js,vue,less,scss}": "prettier --write",
+    "*.{ts,tsx,js,vue}": "eslint --fix"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@vant"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@vant/cli": "^5.0.2",
+    "@vitejs/plugin-vue": "^3.1.2",
+    "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "terser": "^5.15.0",
+    "unocss": "^0.45.26",
+    "vite": "3.0.9"
+  },
+  "dependencies": {
+    "vant": "^3.6.3",
+    "vue": "^3.2.40"
+  }
 }

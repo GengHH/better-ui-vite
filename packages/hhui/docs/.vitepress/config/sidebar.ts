@@ -14,8 +14,8 @@
 	    "text": "通用",
 	    "items": [
 	      {
-	        "text": "Genghh 测试组件",
-	        "link": "/components/genghh/"
+	        "text": "Button 测试组件",
+	        "link": "/components/buttton/"
 	      },
 	      {
 	        "text": "Tag 标签",
@@ -37,7 +37,12 @@
 	  },
 	  {
 	    "text": "数据展示",
-	    "items": []
+	    "items": [
+	      {
+	        "text": "Picker 选择器",
+	        "link": "/components/picker/"
+	      }
+	    ]
 	  },
 	  {
 	    "text": "布局",

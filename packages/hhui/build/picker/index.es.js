@@ -1,41 +1,4 @@
-import { defineComponent, createVNode, inject, getCurrentInstance, onUnmounted, computed, ref, reactive, onDeactivated, isRef, watch, provide, onMounted, nextTick, onActivated, unref, isVNode, watchEffect, onBeforeUpdate, onBeforeUnmount, mergeProps, withDirectives, vShow } from "vue";
-const btnProps = {
-  text: {
-    type: String,
-    default: "hhui\u6309\u94AE"
-  },
-  style: {
-    type: Object,
-    default: () => {
-      return {
-        color: "red"
-      };
-    }
-  }
-};
-var button = "";
-var Button = defineComponent({
-  name: "Button",
-  props: btnProps,
-  setup(props) {
-    return () => {
-      return createVNode("button", {
-        "class": "hh-btn"
-      }, [props.text]);
-    };
-  }
-});
-Button.install = function(app) {
-  app.component(Button.name, Button);
-};
-var ButttonInstall = {
-  title: "Button \u6D4B\u8BD5\u7EC4\u4EF6",
-  category: "\u901A\u7528",
-  status: "100%",
-  install(app) {
-    app.component(Button.name, Button);
-  }
-};
+import { inject, getCurrentInstance, onUnmounted, computed, ref, reactive, onDeactivated, isRef, watch, provide, onMounted, nextTick, onActivated, unref, isVNode, createVNode, defineComponent, watchEffect, onBeforeUpdate, onBeforeUnmount, mergeProps, withDirectives, vShow } from "vue";
 const isDef = (val) => val !== void 0 && val !== null;
 const isFunction = (val) => typeof val === "function";
 const isObject = (val) => val !== null && typeof val === "object";
@@ -121,10 +84,10 @@ function useParent(key) {
     const { link, unlink, internalChildren } = parent;
     link(instance);
     onUnmounted(() => unlink(instance));
-    const index = computed(() => internalChildren.indexOf(instance));
+    const index2 = computed(() => internalChildren.indexOf(instance));
     return {
       parent,
-      index
+      index: index2
     };
   }
   return {
@@ -179,9 +142,9 @@ function useChildren(key) {
       }
     };
     const unlink = (child) => {
-      const index = internalChildren.indexOf(child);
-      publicChildren.splice(index, 1);
-      internalChildren.splice(index, 1);
+      const index2 = internalChildren.indexOf(child);
+      publicChildren.splice(index2, 1);
+      internalChildren.splice(index2, 1);
     };
     provide(
       key,
@@ -613,13 +576,13 @@ function getColumnsType(columns, fields) {
   }
   return "default";
 }
-function findIndexOfEnabledOption(options, index) {
-  index = clamp(index, 0, options.length);
-  for (let i = index; i < options.length; i++) {
+function findIndexOfEnabledOption(options, index2) {
+  index2 = clamp(index2, 0, options.length);
+  for (let i = index2; i < options.length; i++) {
     if (!options[i].disabled)
       return i;
   }
-  for (let i = index - 1; i >= 0; i--) {
+  for (let i = index2 - 1; i >= 0; i--) {
     if (!options[i].disabled)
       return i;
   }
@@ -627,8 +590,8 @@ function findIndexOfEnabledOption(options, index) {
 }
 const isOptionExist = (options, value, fields) => value !== void 0 && !!options.find((option) => option[fields.value] === value);
 function findOptionByValue(options, value, fields) {
-  const index = options.findIndex((option) => option[fields.value] === value);
-  const enabledIndex = findIndexOfEnabledOption(options, index);
+  const index2 = options.findIndex((option) => option[fields.value] === value);
+  const enabledIndex = findIndexOfEnabledOption(options, index2);
   return options[enabledIndex];
 }
 function formatCascadeColumns(columns, fields, selectedValues) {
@@ -672,8 +635,8 @@ function useExpose(apis) {
   }
 }
 const [name$c, bem$a] = createNamespace("loading");
-const SpinIcon = Array(12).fill(null).map((_, index) => createVNode("i", {
-  "class": bem$a("line", String(index + 1))
+const SpinIcon = Array(12).fill(null).map((_, index2) => createVNode("i", {
+  "class": bem$a("line", String(index2 + 1))
 }, null));
 const CircularIcon = createVNode("svg", {
   "class": bem$a("circular"),
@@ -827,8 +790,8 @@ var Column = defineComponent({
     const touch = useTouch();
     const count = () => props.options.length;
     const baseOffset = () => props.optionHeight * (+props.visibleOptionNum - 1) / 2;
-    const updateValueByIndex = (index) => {
-      const enabledIndex = findIndexOfEnabledOption(props.options, index);
+    const updateValueByIndex = (index2) => {
+      const enabledIndex = findIndexOfEnabledOption(props.options, index2);
       const offset = -enabledIndex * props.optionHeight;
       const trigger = () => {
         const value = props.options[enabledIndex][props.fields.value];
@@ -843,22 +806,22 @@ var Column = defineComponent({
       }
       currentOffset.value = offset;
     };
-    const onClickOption = (index) => {
+    const onClickOption = (index2) => {
       if (moving || props.readonly) {
         return;
       }
       transitionEndTrigger = null;
       currentDuration.value = DEFAULT_DURATION;
-      updateValueByIndex(index);
-      emit("clickOption", props.options[index]);
+      updateValueByIndex(index2);
+      emit("clickOption", props.options[index2]);
     };
     const getIndexByOffset = (offset) => clamp(Math.round(-offset / props.optionHeight), 0, count() - 1);
     const momentum = (distance, duration) => {
       const speed = Math.abs(distance / duration);
       distance = currentOffset.value + speed / 3e-3 * (distance < 0 ? -1 : 1);
-      const index = getIndexByOffset(distance);
+      const index2 = getIndexByOffset(distance);
       currentDuration.value = +props.swipeDuration;
-      updateValueByIndex(index);
+      updateValueByIndex(index2);
     };
     const stopMomentum = () => {
       moving = false;
@@ -910,9 +873,9 @@ var Column = defineComponent({
         momentum(distance, duration);
         return;
       }
-      const index = getIndexByOffset(currentOffset.value);
+      const index2 = getIndexByOffset(currentOffset.value);
       currentDuration.value = DEFAULT_DURATION;
-      updateValueByIndex(index);
+      updateValueByIndex(index2);
       setTimeout(() => {
         moving = false;
       }, 0);
@@ -921,7 +884,7 @@ var Column = defineComponent({
       const optionStyle = {
         height: `${props.optionHeight}px`
       };
-      return props.options.map((option, index) => {
+      return props.options.map((option, index2) => {
         const text = option[props.fields.text];
         const {
           disabled
@@ -935,7 +898,7 @@ var Column = defineComponent({
             disabled,
             selected: value === props.value
           }), option.className],
-          onClick: () => onClickOption(index)
+          onClick: () => onClickOption(index2)
         };
         const childData = {
           class: "van-ellipsis",
@@ -949,8 +912,8 @@ var Column = defineComponent({
       stopMomentum
     });
     watchEffect(() => {
-      const index = props.options.findIndex((option) => option[props.fields.value] === props.value);
-      const enabledIndex = findIndexOfEnabledOption(props.options, index);
+      const index2 = props.options.findIndex((option) => option[props.fields.value] === props.value);
+      const enabledIndex = findIndexOfEnabledOption(props.options, index2);
       const offset = -enabledIndex * props.optionHeight;
       currentOffset.value = offset;
     });
@@ -1084,13 +1047,13 @@ function useRefs() {
   onBeforeUpdate(() => {
     refs.value = [];
   });
-  const setRefs = (index) => {
-    if (!cache[index]) {
-      cache[index] = (el) => {
-        refs.value[index] = el;
+  const setRefs = (index2) => {
+    if (!cache[index2]) {
+      cache[index2] = (el) => {
+        refs.value[index2] = el;
       };
     }
-    return cache[index];
+    return cache[index2];
   };
   return [refs, setRefs];
 }
@@ -1319,9 +1282,9 @@ var stdin_default$7 = defineComponent({
     return () => {
       if (slots.default) {
         const {
-          tag: tag2
+          tag
         } = props;
-        return createVNode(tag2, {
+        return createVNode(tag, {
           "class": bem$7("wrapper")
         }, {
           default: () => [slots.default(), renderBadge()]
@@ -1664,15 +1627,15 @@ var stdin_default$5 = defineComponent({
       state.swiping = false;
       autoplay();
     };
-    const swipeTo = (index, options = {}) => {
+    const swipeTo = (index2, options = {}) => {
       correctPosition();
       touch.reset();
       doubleRaf(() => {
         let targetIndex;
-        if (props.loop && index === count.value) {
-          targetIndex = state.active === 0 ? 0 : index;
+        if (props.loop && index2 === count.value) {
+          targetIndex = state.active === 0 ? 0 : index2;
         } else {
-          targetIndex = index % count.value;
+          targetIndex = index2 % count.value;
         }
         if (options.immediate) {
           doubleRaf(() => {
@@ -1687,8 +1650,8 @@ var stdin_default$5 = defineComponent({
         });
       });
     };
-    const renderDot = (_, index) => {
-      const active = index === activeIndicator.value;
+    const renderDot = (_, index2) => {
+      const active = index2 === activeIndicator.value;
       const style = active ? {
         backgroundColor: props.indicatorColor
       } : void 0;
@@ -1783,7 +1746,7 @@ var stdin_default$4 = defineComponent({
     slots
   }) {
     const swipeRef = ref();
-    const onChange = (index) => emit("change", index);
+    const onChange = (index2) => emit("change", index2);
     const renderChildren = () => {
       var _a;
       const Content = (_a = slots.default) == null ? void 0 : _a.call(slots);
@@ -1803,10 +1766,10 @@ var stdin_default$4 = defineComponent({
       }
       return Content;
     };
-    const swipeToCurrentTab = (index) => {
+    const swipeToCurrentTab = (index2) => {
       const swipe = swipeRef.value;
-      if (swipe && swipe.state.active !== index) {
-        swipe.swipeTo(index, {
+      if (swipe && swipe.state.active !== index2) {
+        swipe.swipeTo(index2, {
           immediate: !props.inited
         });
       }
@@ -1882,9 +1845,9 @@ var stdin_default$3 = defineComponent({
       borderColor: props.color,
       background: props.background
     }));
-    const getTabName = (tab, index) => {
+    const getTabName = (tab, index2) => {
       var _a;
-      return (_a = tab.name) != null ? _a : index;
+      return (_a = tab.name) != null ? _a : index2;
     };
     const currentName = computed(() => {
       const activeTab = children[state.currentIndex];
@@ -1938,13 +1901,13 @@ var stdin_default$3 = defineComponent({
         state.lineStyle = lineStyle;
       });
     };
-    const findAvailableTab = (index) => {
-      const diff = index < state.currentIndex ? -1 : 1;
-      while (index >= 0 && index < children.length) {
-        if (!children[index].disabled) {
-          return index;
+    const findAvailableTab = (index2) => {
+      const diff = index2 < state.currentIndex ? -1 : 1;
+      while (index2 >= 0 && index2 < children.length) {
+        if (!children[index2].disabled) {
+          return index2;
         }
-        index += diff;
+        index2 += diff;
       }
     };
     const setCurrentIndex = (currentIndex, skipScrollIntoView) => {
@@ -1973,9 +1936,9 @@ var stdin_default$3 = defineComponent({
       }
     };
     const setCurrentIndexByName = (name2, skipScrollIntoView) => {
-      const matched = children.find((tab, index2) => getTabName(tab, index2) === name2);
-      const index = matched ? children.indexOf(matched) : 0;
-      setCurrentIndex(index, skipScrollIntoView);
+      const matched = children.find((tab, index22) => getTabName(tab, index22) === name2);
+      const index2 = matched ? children.indexOf(matched) : 0;
+      setCurrentIndex(index2, skipScrollIntoView);
     };
     const scrollToCurrentContent = (immediate = false) => {
       if (props.scrollspy) {
@@ -1989,17 +1952,17 @@ var stdin_default$3 = defineComponent({
         }
       }
     };
-    const onClickTab = (item, index, event) => {
+    const onClickTab = (item, index2, event) => {
       const {
         title,
         disabled
-      } = children[index];
-      const name2 = getTabName(children[index], index);
+      } = children[index2];
+      const name2 = getTabName(children[index2], index2);
       if (!disabled) {
         callInterceptor(props.beforeChange, {
           args: [name2],
           done: () => {
-            setCurrentIndex(index);
+            setCurrentIndex(index2);
             scrollToCurrentContent();
           }
         });
@@ -2023,37 +1986,37 @@ var stdin_default$3 = defineComponent({
       });
     };
     const getCurrentIndexOnScroll = () => {
-      for (let index = 0; index < children.length; index++) {
+      for (let index2 = 0; index2 < children.length; index2++) {
         const {
           top
-        } = useRect(children[index].$el);
+        } = useRect(children[index2].$el);
         if (top > scrollOffset.value) {
-          return index === 0 ? 0 : index - 1;
+          return index2 === 0 ? 0 : index2 - 1;
         }
       }
       return children.length - 1;
     };
     const onScroll = () => {
       if (props.scrollspy && !lockScroll) {
-        const index = getCurrentIndexOnScroll();
-        setCurrentIndex(index);
+        const index2 = getCurrentIndexOnScroll();
+        setCurrentIndex(index2);
       }
     };
-    const renderNav = () => children.map((item, index) => createVNode(stdin_default$6, mergeProps({
+    const renderNav = () => children.map((item, index2) => createVNode(stdin_default$6, mergeProps({
       "key": item.id,
-      "id": `${id}-${index}`,
-      "ref": setTitleRefs(index),
+      "id": `${id}-${index2}`,
+      "ref": setTitleRefs(index2),
       "type": props.type,
       "color": props.color,
       "style": item.titleStyle,
       "class": item.titleClass,
       "shrink": props.shrink,
-      "isActive": index === state.currentIndex,
+      "isActive": index2 === state.currentIndex,
       "controls": item.id,
       "scrollable": scrollable.value,
       "activeColor": props.titleActiveColor,
       "inactiveColor": props.titleInactiveColor,
-      "onClick": (event) => onClickTab(item, index, event)
+      "onClick": (event) => onClickTab(item, index2, event)
     }, pick(item, ["dot", "badge", "title", "disabled", "showZeroBadge"])), {
       title: item.$slots.title
     }));
@@ -2188,7 +2151,7 @@ var stdin_default$2 = defineComponent({
     });
     const {
       parent,
-      index
+      index: index2
     } = useParent(SWIPE_KEY);
     if (!parent) {
       return;
@@ -2221,7 +2184,7 @@ var stdin_default$2 = defineComponent({
       const maxActive = parent.count.value - 1;
       const prevActive = active === 0 && loop ? maxActive : active - 1;
       const nextActive = active === maxActive && loop ? 0 : active + 1;
-      rendered = index.value === active || index.value === prevActive || index.value === nextActive;
+      rendered = index2.value === active || index2.value === prevActive || index2.value === nextActive;
       return rendered;
     });
     const setOffset = (offset) => {
@@ -2266,14 +2229,14 @@ var stdin_default$1 = defineComponent({
     const inited = ref(false);
     const {
       parent,
-      index
+      index: index2
     } = useParent(TABS_KEY);
     if (!parent) {
       return;
     }
     const getName = () => {
       var _a;
-      return (_a = props.name) != null ? _a : index.value;
+      return (_a = props.name) != null ? _a : index2.value;
     };
     const init = () => {
       inited.value = true;
@@ -2307,7 +2270,7 @@ var stdin_default$1 = defineComponent({
     provide(TAB_STATUS_KEY, active);
     return () => {
       var _a;
-      const label = `${parent.id}-${index.value}`;
+      const label = `${parent.id}-${index2.value}`;
       const {
         animated,
         swipeable,
@@ -2436,11 +2399,11 @@ defineComponent({
         "class": bem("tabs"),
         "animated": true
       }, {
-        default: () => [props.tabs.map((title, index) => createVNode(Tab, {
+        default: () => [props.tabs.map((title, index2) => createVNode(Tab, {
           "title": title,
           "titleClass": bem("tab-title")
         }, {
-          default: () => [childNodes == null ? void 0 : childNodes[index]]
+          default: () => [childNodes == null ? void 0 : childNodes[index2]]
         }))]
       })]);
     };
@@ -2496,11 +2459,11 @@ var Picker = defineComponent({
       }
     });
     const hasOptions = computed(() => currentColumns.value.some((options) => options.length));
-    const selectedOptions = computed(() => currentColumns.value.map((options, index) => findOptionByValue(options, selectedValues.value[index], fields.value)));
-    const setValue = (index, value) => {
-      if (selectedValues.value[index] !== value) {
+    const selectedOptions = computed(() => currentColumns.value.map((options, index2) => findOptionByValue(options, selectedValues.value[index2], fields.value)));
+    const setValue = (index2, value) => {
+      if (selectedValues.value[index2] !== value) {
         const newValues = selectedValues.value.slice(0);
-        newValues[index] = value;
+        newValues[index2] = value;
         selectedValues.value = newValues;
       }
     };
@@ -2511,10 +2474,10 @@ var Picker = defineComponent({
     const onChange = (value, columnIndex) => {
       setValue(columnIndex, value);
       if (columnsType.value === "cascade") {
-        selectedValues.value.forEach((value2, index) => {
-          const options = currentColumns.value[index];
+        selectedValues.value.forEach((value2, index2) => {
+          const options = currentColumns.value[index2];
           if (!isOptionExist(options, value2, fields.value)) {
-            setValue(index, options.length ? options[0][fields.value.value] : void 0);
+            setValue(index2, options.length ? options[0][fields.value.value] : void 0);
           }
         });
       }
@@ -2584,9 +2547,9 @@ var Picker = defineComponent({
       }
     };
     watch(currentColumns, (columns) => {
-      columns.forEach((options, index) => {
-        if (options.length && !isOptionExist(options, selectedValues.value[index], fields.value)) {
-          setValue(index, getFirstEnabledOption(options)[fields.value.value]);
+      columns.forEach((options, index2) => {
+        if (options.length && !isOptionExist(options, selectedValues.value[index2], fields.value)) {
+          setValue(index2, getFirstEnabledOption(options)[fields.value.value]);
         }
       });
     }, {
@@ -2629,7 +2592,7 @@ var Picker = defineComponent({
 Picker.install = function(app) {
   app.component(Picker.name, Picker);
 };
-var PickerInstall = {
+var index = {
   title: "Picker \u9009\u62E9\u5668",
   category: "\u6570\u636E\u5C55\u793A",
   status: "100%",
@@ -2637,44 +2600,4 @@ var PickerInstall = {
     app.component(Picker.name, Picker);
   }
 };
-const tagProps = {
-  text: {
-    type: String,
-    default: "hhui tag"
-  },
-  test: {
-    type: Object
-  }
-};
-var tag = "";
-var Tag = defineComponent({
-  name: "Tag",
-  props: tagProps,
-  emits: [],
-  setup(props, ctx) {
-    return () => {
-      return createVNode("div", {
-        "class": "hhui-tag"
-      }, [props.text]);
-    };
-  }
-});
-Tag.install = function(app) {
-  app.component(Tag.name, Tag);
-};
-var TagInstall = {
-  title: "Tag \u6807\u7B7E",
-  category: "\u901A\u7528",
-  status: "90%",
-  install(app) {
-    app.component(Tag.name, Tag);
-  }
-};
-const installs = [ButttonInstall, PickerInstall, TagInstall];
-var vueHhui = {
-  version: "1.0.8",
-  install(app) {
-    installs.forEach((p) => app.use(p));
-  }
-};
-export { Button, Picker, Tag, vueHhui as default };
+export { Picker, index as default };

@@ -1,21 +1,16 @@
 import type { App } from 'vue';
 
-import GenghhInstall, { Genghh } from './genghh';
+import ButttonInstall, { Button } from './button';
+import PickerInstall, { Picker } from './picker';
 import TagInstall, { Tag } from './tag';
 
-const installs = [
-  GenghhInstall,
-	TagInstall
-];
+const installs = [ButttonInstall, PickerInstall, TagInstall];
 
-export {
-  Genghh,
-	Tag
-};
+export { Button, Picker, Tag };
 
 export default {
-  version: '1.0.8',
-  install(app: App): void {
-    installs.forEach((p) => app.use(p));
-  }
+	version: '1.0.8',
+	install(app: App): void {
+		installs.forEach((p) => app.use(p));
+	},
 };

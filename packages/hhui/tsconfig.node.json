@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"allowJs": true,
+		"noImplicitThis": true,
 		"composite": true,
 		"module": "ESNext",
 		"moduleResolution": "Node",

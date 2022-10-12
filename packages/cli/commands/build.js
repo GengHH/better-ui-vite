@@ -4,6 +4,7 @@ const fsExtra = require('fs-extra');
 const { defineConfig, build } = require('vite');
 const vue = require('@vitejs/plugin-vue');
 const vueJsx = require('@vitejs/plugin-vue-jsx');
+const { visualizer } = require('rollup-plugin-visualizer');
 const nuxtBuild = require('./build-nuxt-auto-import');
 const { isReadyToRelease } = require('../shared/utils');
 
@@ -13,7 +14,15 @@ const outputDir = path.resolve(__dirname, '../../hhui/build');
 const baseConfig = defineConfig({
 	configFile: false,
 	publicDir: false,
-	plugins: [vue(), vueJsx()],
+	plugins: [
+		vue(),
+		vueJsx(),
+		visualizer({
+			open: true, //注意这里要设置为true，否则无效
+			gzipSize: true,
+			brotliSize: true,
+		}),
+	],
 });
 
 const rollupOptions = {

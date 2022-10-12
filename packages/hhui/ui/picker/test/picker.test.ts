@@ -2,14 +2,14 @@ import { shallowMount } from '@vue/test-utils';
 import { expect, test, it } from 'vitest';
 import { useNamespace } from '../../shared/hooks/use-namespace';
 
-import { Genghh } from '../index';
+import { Picker } from '../index';
 
-test('genghh test', () => {
-  const wrapper = shallowMount(Genghh, {
+test('picker test', () => {
+  const wrapper = shallowMount(Picker, {
     props: {}
   });
 
-  it('genghh demo has created successfully', async () => {
+  it('picker demo has created successfully', async () => {
     expect(wrapper).toBeTruthy();
   });
 });

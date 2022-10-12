@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@better-vant/better-vant-ui": "workspace:*",
 		"@better-vant/utils": "workspace:*",
-		"lodash": "^4.17.21"
+		"lodash": "^4.17.21",
+		"vue3-ccui": "^1.1.1"
 	}
 }

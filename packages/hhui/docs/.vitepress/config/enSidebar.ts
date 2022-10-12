@@ -14,8 +14,8 @@
 	    "text": "General",
 	    "items": [
 	      {
-	        "text": "Genghh",
-	        "link": "/en-US/components/genghh/"
+	        "text": "Buttton",
+	        "link": "/en-US/components/buttton/"
 	      },
 	      {
 	        "text": "Tag",
@@ -37,7 +37,12 @@
 	  },
 	  {
 	    "text": "Data Display",
-	    "items": []
+	    "items": [
+	      {
+	        "text": "Picker",
+	        "link": "/en-US/components/picker/"
+	      }
+	    ]
 	  },
 	  {
 	    "text": "Layout",
