@@ -2,7 +2,7 @@
  * @Author: GengHH 18818060415@163.com
  * @Date: 2022-10-03 22:25:40
  * @LastEditors: GengHH
- * @LastEditTime: 2022-10-12 19:04:03
+ * @LastEditTime: 2022-10-13 10:35:12
  * @FilePath: \better-ui-vite\packages\better-vant-ui\demo\hhui\picker.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -27,12 +27,23 @@
     import 'uno.css';
     import hhui from '../../../hhui/build/vue-hhui.es.js';
 
-    createApp({
+    const app = createApp({
       template: `
-      <Picker/>
+      <Picker :columns="columns"/>
       <Button/>
         <Tag/>
         `,
+      data() {
+        return {
+          columns: [
+            { text: '杭州', value: 'Hangzhou' },
+            { text: '宁波', value: 'Ningbo' },
+            { text: '温州', value: 'Wenzhou' },
+            { text: '绍兴', value: 'Shaoxing' },
+            { text: '湖州', value: 'Huzhou' },
+          ],
+        };
+      },
     })
       // .component(Picker.name, Picker)
       .use(hhui)

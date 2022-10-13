@@ -7,9 +7,9 @@ const vueJsx = require('@vitejs/plugin-vue-jsx');
 const { visualizer } = require('rollup-plugin-visualizer');
 const nuxtBuild = require('./build-nuxt-auto-import');
 const { isReadyToRelease } = require('../shared/utils');
-
 const entryDir = path.resolve(__dirname, '../../hhui/ui');
 const outputDir = path.resolve(__dirname, '../../hhui/build');
+const dts = require('vite-plugin-dts');
 
 const baseConfig = defineConfig({
 	configFile: false,
@@ -18,10 +18,11 @@ const baseConfig = defineConfig({
 		vue(),
 		vueJsx(),
 		visualizer({
-			open: true, //注意这里要设置为true，否则无效
+			open: false, //注意这里要设置为true，否则无效
 			gzipSize: true,
 			brotliSize: true,
 		}),
+		dts(),
 	],
 });
 

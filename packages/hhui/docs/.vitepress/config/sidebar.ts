@@ -15,7 +15,8 @@
 	    "items": [
 	      {
 	        "text": "Button 测试组件",
-	        "link": "/components/buttton/"
+	        "link": "/components/button/",
+	        "status": "100%"
 	      },
 	      {
 	        "text": "Tag 标签",
@@ -40,7 +41,8 @@
 	    "items": [
 	      {
 	        "text": "Picker 选择器",
-	        "link": "/components/picker/"
+	        "link": "/components/picker/",
+	        "status": "100%"
 	      }
 	    ]
 	  },

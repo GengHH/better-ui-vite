@@ -14,8 +14,9 @@
 	    "text": "General",
 	    "items": [
 	      {
-	        "text": "Buttton",
-	        "link": "/en-US/components/buttton/"
+	        "text": "Button",
+	        "link": "/en-US/components/button/",
+	        "status": "100%"
 	      },
 	      {
 	        "text": "Tag",
@@ -40,7 +41,8 @@
 	    "items": [
 	      {
 	        "text": "Picker",
-	        "link": "/en-US/components/picker/"
+	        "link": "/en-US/components/picker/",
+	        "status": "100%"
 	      }
 	    ]
 	  },

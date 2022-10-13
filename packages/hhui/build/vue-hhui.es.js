@@ -28,7 +28,7 @@ var Button = defineComponent({
 Button.install = function(app) {
   app.component(Button.name, Button);
 };
-var ButttonInstall = {
+var ButtonInstall = {
   title: "Button \u6D4B\u8BD5\u7EC4\u4EF6",
   category: "\u901A\u7528",
   status: "100%",
@@ -2665,12 +2665,16 @@ Tag.install = function(app) {
 var TagInstall = {
   title: "Tag \u6807\u7B7E",
   category: "\u901A\u7528",
-  status: "90%",
+  status: void 0,
   install(app) {
     app.component(Tag.name, Tag);
   }
 };
-const installs = [ButttonInstall, PickerInstall, TagInstall];
+const installs = [
+  ButtonInstall,
+  PickerInstall,
+  TagInstall
+];
 var vueHhui = {
   version: "1.0.8",
   install(app) {
