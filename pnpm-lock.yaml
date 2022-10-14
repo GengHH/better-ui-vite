@@ -11,15 +11,17 @@ importers:
   packages/better-vant-ui:
     specifiers:
       '@vant/cli': ^5.0.2
+      '@vant/use': ^1.4.3
       '@vitejs/plugin-vue': ^3.1.2
       '@vitejs/plugin-vue-jsx': ^2.0.1
       terser: ^5.15.0
       unocss: ^0.45.26
-      vant: ^3.6.3
+      vant: 4.0.0-rc.4
       vite: 3.0.9
       vue: ^3.2.40
     dependencies:
-      vant: registry.npmmirror.com/vant/3.6.3_vue@3.2.40
+      '@vant/use': registry.npmmirror.com/@vant/use/1.4.3
+      vant: registry.npmmirror.com/vant/4.0.0-rc.4_vue@3.2.40
       vue: registry.npmmirror.com/vue/3.2.40
     devDependencies:
       '@vant/cli': registry.npmmirror.com/@vant/cli/5.0.2_terser@5.15.0+vue@3.2.40
@@ -1960,7 +1962,19 @@ packages:
     name: '@types/babel__generator'
     version: 7.6.4
     dependencies:
+<<<<<<< HEAD
+      '@ampproject/remapping': registry.npmmirror.com/@ampproject/remapping/2.2.0
+      '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils/4.2.1
+      '@unocss/config': registry.npmmirror.com/@unocss/config/0.45.26
+      '@unocss/core': registry.npmmirror.com/@unocss/core/0.45.26
+      '@unocss/inspector': registry.npmmirror.com/@unocss/inspector/0.45.26
+      '@unocss/scope': registry.npmmirror.com/@unocss/scope/0.45.26
+      '@unocss/transformer-directives': registry.npmmirror.com/@unocss/transformer-directives/0.45.26
+      magic-string: registry.npmmirror.com/magic-string/0.26.5
+      vite: registry.npmmirror.com/vite/3.0.9_terser@5.15.0
+=======
       '@babel/types': registry.npmmirror.com/@babel/types/7.19.3
+>>>>>>> ecabf3462e8c2d177f8135b51c5077835aad244a
     dev: true
 
   registry.npmmirror.com/@types/babel__template/7.4.1:
@@ -1972,6 +1986,13 @@ packages:
       '@babel/types': registry.npmmirror.com/@babel/types/7.19.3
     dev: true
 
+<<<<<<< HEAD
+  registry.npmmirror.com/@vant/popperjs/1.3.0:
+    resolution: {integrity: sha512-hB+czUG+aHtjhaEmCJDuXOep0YTZjdlRR+4MSmIFnkCQIxJaXLQdSsR90XWvAI2yvKUI7TCGqR8pQg2RtvkMHw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vant/popperjs/-/popperjs-1.3.0.tgz}
+    name: '@vant/popperjs'
+    version: 1.3.0
+    dev: false
+=======
   registry.npmmirror.com/@types/babel__traverse/7.18.2:
     resolution: {integrity: sha512-FcFaxOr2V5KZCviw1TnutEMVUVsGt4D2hP1TAfXZAMKuHYW3xQhe3jTxNPWutgCJ3/X1c5yX8ZoGVEItxKbwBg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/babel__traverse/-/babel__traverse-7.18.2.tgz}
     name: '@types/babel__traverse'
@@ -1987,6 +2008,7 @@ packages:
     dependencies:
       '@types/chai': registry.npmmirror.com/@types/chai/4.3.3
     dev: true
+>>>>>>> ecabf3462e8c2d177f8135b51c5077835aad244a
 
   registry.npmmirror.com/@types/chai/4.3.3:
     resolution: {integrity: sha512-hC7OMnszpxhZPduX+m+nrx+uFoLkWOMiR4oa/AZF3MuSETYTZmFfJAHqZEM8MVlvfG7BEUcgvtwoCTxBp6hm3g==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/chai/-/chai-4.3.3.tgz}
@@ -2167,6 +2189,14 @@ packages:
       typescript:
         optional: true
     dependencies:
+<<<<<<< HEAD
+      '@babel/core': registry.npmmirror.com/@babel/core/7.19.3
+      '@babel/plugin-syntax-import-meta': registry.npmmirror.com/@babel/plugin-syntax-import-meta/7.10.4_@babel+core@7.19.3
+      '@babel/plugin-transform-typescript': registry.npmmirror.com/@babel/plugin-transform-typescript/7.19.3_@babel+core@7.19.3
+      '@vue/babel-plugin-jsx': registry.npmmirror.com/@vue/babel-plugin-jsx/1.1.1_@babel+core@7.19.3
+      vite: registry.npmmirror.com/vite/3.0.9_terser@5.15.0
+      vue: registry.npmmirror.com/vue/3.2.40
+=======
       '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.39.0_z4bbprzjrhnsfa24uvmcbu7f5q
       '@typescript-eslint/scope-manager': registry.npmmirror.com/@typescript-eslint/scope-manager/5.39.0
       '@typescript-eslint/type-utils': registry.npmmirror.com/@typescript-eslint/type-utils/5.39.0_z4bbprzjrhnsfa24uvmcbu7f5q
@@ -2178,6 +2208,7 @@ packages:
       semver: registry.npmmirror.com/semver/7.3.7
       tsutils: registry.npmmirror.com/tsutils/3.21.0_typescript@4.8.4
       typescript: registry.npmmirror.com/typescript/4.8.4
+>>>>>>> ecabf3462e8c2d177f8135b51c5077835aad244a
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2211,8 +2242,13 @@ packages:
     version: 5.39.0
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
+<<<<<<< HEAD
+      vite: registry.npmmirror.com/vite/3.0.9_terser@5.15.0
+      vue: registry.npmmirror.com/vue/3.2.40
+=======
       '@typescript-eslint/types': registry.npmmirror.com/@typescript-eslint/types/5.39.0
       '@typescript-eslint/visitor-keys': registry.npmmirror.com/@typescript-eslint/visitor-keys/5.39.0
+>>>>>>> ecabf3462e8c2d177f8135b51c5077835aad244a
     dev: true
 
   registry.npmmirror.com/@typescript-eslint/type-utils/5.39.0_z4bbprzjrhnsfa24uvmcbu7f5q:
@@ -11274,6 +11310,11 @@ packages:
       picocolors: registry.npmmirror.com/picocolors/1.0.0
     dev: true
 
+<<<<<<< HEAD
+  registry.npmmirror.com/vant/4.0.0-rc.4_vue@3.2.40:
+    resolution: {integrity: sha512-xaRzzg4m01tGIiidhTh7pBX69lvIiXEsOisiSEoVJnUylzUN0Xqf62urKtq86jq0IGyy6HHo447SGbzLnbAXQw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vant/-/vant-4.0.0-rc.4.tgz}
+    id: registry.npmmirror.com/vant/4.0.0-rc.4
+=======
   registry.npmmirror.com/update-notifier/6.0.2:
     resolution: {integrity: sha512-EDxhTEVPZZRLWYcJ4ZXjGFN0oP7qYvbXWzEgRm/Yql4dHX5wDbvh89YHP6PK1lzZJYrMtXUuZZz8XGK+U6U1og==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/update-notifier/-/update-notifier-6.0.2.tgz}
     name: update-notifier
@@ -11363,12 +11404,12 @@ packages:
   registry.npmmirror.com/vant/3.6.3_vue@3.2.40:
     resolution: {integrity: sha512-OmqQXgtgJgNNoGV8FzvGkm/fvXOB70ZmruOUU4iJaEmEwdsdYl+31D6niisWZLVAbGW1Xx9rLrOu9hivdxQbbg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vant/-/vant-3.6.3.tgz}
     id: registry.npmmirror.com/vant/3.6.3
+>>>>>>> ecabf3462e8c2d177f8135b51c5077835aad244a
     name: vant
-    version: 3.6.3
+    version: 4.0.0-rc.4
     peerDependencies:
       vue: ^3.0.0
     dependencies:
-      '@vant/icons': registry.npmmirror.com/@vant/icons/1.8.0
       '@vant/popperjs': registry.npmmirror.com/@vant/popperjs/1.3.0
       '@vant/use': registry.npmmirror.com/@vant/use/1.4.3
       vue: registry.npmmirror.com/vue/3.2.40
@@ -11540,38 +11581,6 @@ packages:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: false
 
-  registry.npmmirror.com/vite/3.0.9_less@4.1.3+terser@5.15.0:
-    resolution: {integrity: sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-3.0.9.tgz}
-    id: registry.npmmirror.com/vite/3.0.9
-    name: vite
-    version: 3.0.9
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: registry.npmmirror.com/esbuild/0.14.54
-      less: registry.npmmirror.com/less/4.1.3
-      postcss: registry.npmmirror.com/postcss/8.4.17
-      resolve: registry.npmmirror.com/resolve/1.22.1
-      rollup: registry.npmmirror.com/rollup/2.77.3
-      terser: registry.npmmirror.com/terser/5.15.0
-    optionalDependencies:
-      fsevents: registry.npmmirror.com/fsevents/2.3.2
-    dev: true
-
   registry.npmmirror.com/vite/3.0.9_terser@5.15.0:
     resolution: {integrity: sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-3.0.9.tgz}
     id: registry.npmmirror.com/vite/3.0.9
@@ -11601,7 +11610,11 @@ packages:
       terser: registry.npmmirror.com/terser/5.15.0
     optionalDependencies:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
+<<<<<<< HEAD
+    dev: false
+=======
     dev: true
+>>>>>>> ecabf3462e8c2d177f8135b51c5077835aad244a
 
   registry.npmmirror.com/vite/3.1.4:
     resolution: {integrity: sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-3.1.4.tgz}
@@ -11628,6 +11641,37 @@ packages:
       postcss: registry.npmmirror.com/postcss/8.4.17
       resolve: registry.npmmirror.com/resolve/1.22.1
       rollup: registry.npmmirror.com/rollup/2.78.1
+    optionalDependencies:
+      fsevents: registry.npmmirror.com/fsevents/2.3.2
+    dev: true
+
+  registry.npmmirror.com/vite/3.1.4_sass@1.55.0:
+    resolution: {integrity: sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-3.1.4.tgz}
+    id: registry.npmmirror.com/vite/3.1.4
+    name: vite
+    version: 3.1.4
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: registry.npmmirror.com/esbuild/0.15.10
+      postcss: registry.npmmirror.com/postcss/8.4.17
+      resolve: registry.npmmirror.com/resolve/1.22.1
+      rollup: registry.npmmirror.com/rollup/2.78.1
+      sass: registry.npmmirror.com/sass/1.55.0
     optionalDependencies:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true

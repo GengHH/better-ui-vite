@@ -1,13 +1,14 @@
 {
-	"target": "es5",
 	"compilerOptions": {
+		"target": "es2015",
 		"declaration": true /* 生成相关的 '.d.ts' 文件。 */,
 		"declarationDir": "./dist/types" /* '.d.ts' 文件输出目录 */,
-		"jsx": "preserve"
+		"jsx": "preserve",
+		"lib": ["ESNext", "DOM"],
+		"moduleResolution": "Node",
+		"allowSyntheticDefaultImports": true
 	},
-	"include": ["./**/*.*", "./src/global-vue.d.ts"],
-	"exclude": ["node_modules"],
 	"esModuleInterop": true,
-	"allowSyntheticDefaultImports": "true",
-	"lib": ["ESNext", "DOM", "es2016"]
+	"include": ["./**/*.*", "./src/global-vue.d.ts"],
+	"exclude": ["node_modules/**", "../../node_modules/**"]
 }

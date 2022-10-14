@@ -1,0 +1,100 @@
+<!--
+ * @Author: GengHH 18818060415@163.com
+ * @Date: 2022-10-03 22:21:18
+ * @LastEditors: GengHH 18818060415@163.com
+ * @LastEditTime: 2022-10-07 17:40:17
+ * @FilePath: \better-vant-ui\demo\esm\picker.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/vant/3.6.3/index.css"
+		/>
+	</head>
+	<body>
+		<h1>test picker</h1>
+		<div id="app"></div>
+	</body>
+	<script type="module">
+		import { createApp } from 'vue/dist/vue.esm-bundler.js';
+		import { showToast } from 'vant';
+		import BetterPicker from '../../lib/better-vant-ui.mjs';
+		import 'uno.css';
+
+		let app = createApp({
+			data() {
+				return {
+					selectedValues: [],
+					columns: [
+						{
+							text: '杭州',
+							value: '1',
+						},
+						{
+							text: '宁波',
+							value: '2',
+						},
+						{
+							text: '温州',
+							value: '3',
+						},
+						{
+							text: '绍兴',
+							value: '4',
+						},
+						{
+							text: '湖州',
+							value: '5',
+						},
+						{
+							text: '嘉兴',
+							value: '6',
+						},
+					],
+				};
+			},
+			methods: {
+				onConfirm: (value, index) => {
+					console.log('%c 🍷 value', 'color:#fca650', value);
+					console.log(`当前值: ${value}, 当前索引: ${index}`);
+				},
+				onChange: (value, index) => {
+					console.log('%c 🥝 value', 'color:#4fff4B', value);
+					console.log(`当前值: ${value}, 当前索引: ${index}`);
+				},
+				onCancel: () => console.log('取消'),
+				clickOption: () => (currentOption, value, index, columnIndex) => {
+					console.log('%c 🍎 currentOption', 'color:#ea7e5c', currentOption);
+					console.log('%c 🍫 value', 'color:#3f7cff', value);
+					console.log('%c 🍉 index', 'color:#ed9ec7', index);
+					console.log('%c 🍪 columnIndex', 'color:#4fff4B', columnIndex);
+					console.log(`当前值: ${value}, 当前索引: ${index}`);
+				},
+			},
+			template: `
+				<better-vant-picker
+					title="my Picker"
+					:columns="columns"
+					v-model="selectedValues"
+					@confirm="onConfirm"
+					@cancel="onCancel"
+					@change="onChange"
+					@clickOption="clickOption"
+				/>
+		  `,
+		})
+			.use(BetterPicker)
+			.mount('#app');
+		// 将所有标签前缀为 `ion-` 的标签视为自定义元素
+		// app.config.compilerOptions.isCustomElement = (tag) => {
+		// 	return tag.startsWith('Better');
+		// };
+	</script>
+</html>
