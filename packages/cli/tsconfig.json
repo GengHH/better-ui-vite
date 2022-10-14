@@ -14,11 +14,11 @@
 		"skipLibCheck": true
 	},
 	"include": [
-		"ui/src/**/*.ts",
-		"ui/src/**/*.d.ts",
-		"ui/src/**/*.tsx",
-		"ui/src/**/*.vue",
-		"build/*.*",
-		"build/**/*.*"
+		"../hhui/ui/**/src/**/*.ts",
+		"../hhui/ui/**/src/**/*.d.ts",
+		"../hhui/ui/**/src/**/*.tsx",
+		"../hhui/ui/**/src/**/*.vue",
+		"../hhui/build/**/*.vue",
+		"../hhui/build/**/*.ts"
 	]
 }

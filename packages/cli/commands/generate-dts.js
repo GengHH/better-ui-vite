@@ -2,7 +2,7 @@
  * @Author: GengHH
  * @Date: 2022-10-11 16:45:45
  * @LastEditors: GengHH
- * @LastEditTime: 2022-10-12 16:15:35
+ * @LastEditTime: 2022-10-14 14:12:41
  * @Description: file content
  * @FilePath: \better-ui-vite\packages\cli\commands\generate-dts.js
  */
@@ -35,12 +35,12 @@ exports.generateDts = () => {
 	});
 	const srcDts = path.resolve(outputDir, 'index.d.ts');
 
-	for (const name of components) {
-		const destDts = path.resolve(outputDir, `${name}/index.d.ts`);
-		fs.copyFile(srcDts, destDts, (err) => {
-			if (err) {
-				logger.error(`拷贝组件${name}的ts类型文件失败！`);
-			}
-		});
-	}
+	// for (const name of components) {
+	// 	const destDts = path.resolve(outputDir, `${name}/index.d.ts`);
+	// 	fs.copyFile(srcDts, destDts, (err) => {
+	// 		if (err) {
+	// 			logger.error(`拷贝组件${name}的ts类型文件失败！`);
+	// 		}
+	// 	});
+	// }
 };

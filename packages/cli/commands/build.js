@@ -7,6 +7,7 @@ const vueJsx = require('@vitejs/plugin-vue-jsx');
 const { visualizer } = require('rollup-plugin-visualizer');
 const nuxtBuild = require('./build-nuxt-auto-import');
 const { isReadyToRelease } = require('../shared/utils');
+const dtsEntryDir = path.resolve(__dirname, '../../hhui');
 const entryDir = path.resolve(__dirname, '../../hhui/ui');
 const outputDir = path.resolve(__dirname, '../../hhui/build');
 const dts = require('vite-plugin-dts');
@@ -22,7 +23,39 @@ const baseConfig = defineConfig({
 			gzipSize: true,
 			brotliSize: true,
 		}),
-		dts(),
+		dts({
+			// compilerOptions: {
+			// 	target: 'ESNext',
+			// 	useDefineForClassFields: true,
+			// 	module: 'ESNext',
+			// 	moduleResolution: 'Node',
+			// 	strict: false,
+			// 	jsx: 'preserve',
+			// 	sourceMap: true,
+			// 	resolveJsonModule: true,
+			// 	isolatedModules: true,
+			// 	esModuleInterop: true,
+			// 	lib: ['ESNext', 'DOM'],
+			// 	skipLibCheck: true,
+			// },
+			root: dtsEntryDir,
+			outputDir: outputDir,
+			copyDtsFiles: true,
+			// tsConfigFilePath: `${dtsEntryDir}/tsconfig.json`,
+			include: [
+				`../../hhui/ui/**/src/**/*.ts`,
+				`../../hhui/ui/**/src/**/*.d.ts`,
+				`../../hhui/ui/**/src/**/*.tsx`,
+				`../../hhui/ui/**/src/**/*.vue`,
+				`../../hhui/ui/**/*.vue`,
+				`${entryDir}/**/src/**/*.d.ts`,
+				`${entryDir}/**/src/**/*.tsx`,
+				`${entryDir}/**/src/**/*.vue`,
+				`${outputDir}/**/*.vue`,
+				`../../hhui/build/**/*.ts`,
+				`../../hhui/build/**/*.mjs`,
+			],
+		}),
 	],
 });
 
@@ -43,8 +76,8 @@ const buildSingle = async (name) => {
 				rollupOptions,
 				lib: {
 					entry: path.resolve(entryDir, name),
-					name: 'index',
-					fileName: 'index',
+					name: name,
+					fileName: name,
 					formats: ['es', 'umd'],
 				},
 				outDir: path.resolve(outputDir, name),
@@ -101,9 +134,9 @@ exports.build = async () => {
 			continue;
 		}
 		await buildSingle(name);
-		createPackageJson(name);
-		nuxtBuild.createAutoImportedComponent(name);
+		// createPackageJson(name);
+		// nuxtBuild.createAutoImportedComponent(name);
 	}
 
-	nuxtBuild.createNuxtPlugin();
+	// nuxtBuild.createNuxtPlugin();
 };

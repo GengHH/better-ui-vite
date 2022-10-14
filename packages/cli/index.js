@@ -2,7 +2,7 @@
  * @Author: GengHH
  * @Date: 2022-10-11 16:45:45
  * @LastEditors: GengHH
- * @LastEditTime: 2022-10-11 17:57:57
+ * @LastEditTime: 2022-10-14 14:14:42
  * @Description: file content
  * @FilePath: \better-ui-vite\packages\cli\index.js
  */
@@ -35,7 +35,7 @@ program
 	.command('build')
 	.description('打包组件库')
 	.hook('postAction', generateTheme)
-	.hook('postAction', generateDts)
+	// .hook('postAction', generateDts)
 	.action(build);
 
 // program

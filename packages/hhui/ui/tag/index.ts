@@ -2,7 +2,7 @@
  * @Author: GengHH
  * @Date: 2022-10-12 15:07:35
  * @LastEditors: GengHH
- * @LastEditTime: 2022-10-13 19:10:29
+ * @LastEditTime: 2022-10-14 13:56:36
  * @Description: file content
  * @FilePath: \better-ui-vite\packages\hhui\ui\tag\index.ts
  */
@@ -18,7 +18,7 @@ export { Tag };
 export default {
 	title: 'Tag 标签',
 	category: '通用',
-	status: undefined,
+	status: '100%',
 	install(app: App): void {
 		app.component(Tag.name, Tag);
 	},
