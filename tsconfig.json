@@ -1,0 +1,45 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"strict": true,
+		"jsx": "preserve",
+		"sourceMap": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"lib": ["ESNext", "DOM"],
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+
+		/*
+      在ts中导入js模块会报错找不到类型声明
+      解决方法一：
+        仅设置 "allowJs": true 即可
+        注：allowJs设置true时，下方include不可以加入'src/**\/*.js'，否则报错'无法写入文件xx因为它会覆盖输入文件'
+      方法二：
+        仅在 env.d.ts 中加入 declare module '*.js'; 模块定义即可
+
+      总结：和 "include": ["src/**\/*.js"] 没有任何关系
+    */
+		"allowJs": true, // 允许编译器编译JS，JSX文件
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"]
+			// "@router/*": ["src/router/*"]
+		}
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.js",
+		"src/**/*.d.ts",
+		"src/**/*.tsx",
+		"src/**/*.vue",
+		"./components.d.ts",
+		"public/shareApi.js"
+	]
+	// references属性是 TypeScript 3.0 的新特性，允许将 TypeScript 程序拆分结构化(即拆成多个文件，分别配置不同的部分)。
+	// "references": [{ "path": "./tsconfig.node.json" }]
+}

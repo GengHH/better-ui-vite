@@ -9,6 +9,6 @@
     "allowSyntheticDefaultImports": true
   },
   "esModuleInterop": true,
-  "include": ["./src/better-picker/*.*", "./src/global-vue.d.ts"],
+  "include": ["./**/*.*", "./src/better-picker/*.*", "./src/global-vue.d.ts"],
   "exclude": ["node_modules/**", "../../node_modules/**"]
 }

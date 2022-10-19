@@ -2,7 +2,7 @@
  * @Author: GengHH 18818060415@163.com
  * @Date: 2022-10-03 21:45:27
  * @LastEditors: GengHH
- * @LastEditTime: 2022-10-14 14:48:51
+ * @LastEditTime: 2022-10-19 14:36:49
  * @FilePath: \better-ui-vite\packages\better-vant-ui\vite.config.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,6 +10,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
+import removeConsole from 'vite-plugin-remove-console';
 // import { presetUno, presetAttributify, presetIcons } from 'unocss';
 // const rollupOptions = {
 // 	external: ['vue', 'vue-router'],
@@ -22,15 +23,15 @@ import dts from 'vite-plugin-dts';
 // };
 
 // https://vitejs.dev/config/
-export default ({ command, mode }) =>
+export default ({ command }) =>
   defineConfig({
     plugins: [
       vue({
         customElement: ['BetterPicker', 'BetterVantPicker'],
       }),
       vueJsx(),
-      // dts({ include: './better-vant-ui/src/**/*.*' }),
-      dts({ copyDtsFiles: true }),
+      dts({ include: ['./src/better-picker/*.*'], copyDtsFiles: true }),
+      removeConsole(),
     ],
     build: {
       outDir: 'dist',
@@ -50,7 +51,7 @@ export default ({ command, mode }) =>
       terserOptions: {
         compress: {
           keep_infinity: true, // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题
-          drop_console: command === 'build', // 打包生产环境去除 console
+          drop_console: true, // 打包生产环境去除 console
           drop_debugger: true, // 去除 debugger
         },
       },

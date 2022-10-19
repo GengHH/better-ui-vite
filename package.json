@@ -4,6 +4,7 @@
 	"description": "Build monorepo workspace by pnpm",
 	"main": "index.js",
 	"scripts": {
+		"dev": "vite dev",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"preinstall": "node ./script/preinstall.js",
 		"docs:dev": "pnpm -w run --filter=@better-vant/better-vant-ui-docs dev"
@@ -19,6 +20,12 @@
 	"author": "GengHH",
 	"license": "MIT",
 	"dependencies": {
-		"vite": "3.0.9"
+		"vant": "^3.6.4",
+		"vue": "^3.2.41"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^3.1.2",
+		"vite": "3.0.9",
+		"vite-plugin-dts": "^1.6.5"
 	}
 }
