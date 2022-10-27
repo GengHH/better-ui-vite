@@ -2,7 +2,7 @@
  * @Author: GengHH
  * @Date: 2022-10-18 13:35:31
  * @LastEditors: GengHH
- * @LastEditTime: 2022-10-19 15:27:08
+ * @LastEditTime: 2022-10-27 13:27:31
  * @Description: file content
  * @FilePath: \better-ui-vite\src\App.vue
 -->
@@ -58,6 +58,11 @@ const columns = [
 ];
 type C = { selectedValues: string[]; selectedOptions: any };
 const onConfirm = ({ selectedValues, selectedOptions }: C) => {
+	console.log(
+		'%c Line:61 🥕 selectedOptions',
+		'color:#42b983',
+		selectedOptions
+	);
 	// console.log('%c Line:64 🍩 selectedValues', 'color:#3f7cff', selectedValues);
 	// console.log(
 	// 	'%c Line:64 🍔 selectedOptions',
