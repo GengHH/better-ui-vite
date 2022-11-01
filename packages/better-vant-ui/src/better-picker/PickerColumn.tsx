@@ -53,6 +53,7 @@ export default defineComponent({
     value: makeArrayProp<Numeric>(),
     fields: makeRequiredProp(Object as PropType<Required<PickerFieldNames>>),
     options: makeArrayProp<PickerOption>(),
+    iconName: String,
     readonly: Boolean,
     allowHtml: Boolean,
     optionHeight: makeRequiredProp(Number),
@@ -116,7 +117,6 @@ export default defineComponent({
     };
     // icon 点击事件 (代表选择或则取消选择此选项)
     const onClickIcon = (index: number) => {
-      console.log('%c 🍤 index', 'color:#b03734', index);
       if (moving || props.readonly) {
         return;
       }
@@ -247,7 +247,8 @@ export default defineComponent({
             }),
             option.className,
           ],
-          onClick: () => onClickOption(index),
+          // onClick: () => onClickOption(index),
+          onClick: () => onClickIcon(index),
         };
 
         const childData = {
@@ -256,7 +257,7 @@ export default defineComponent({
         };
         // 点击图标
         const iconData = {
-          name: option.iconName || 'passed',
+          name: props.iconName || 'passed',
           class: [
             bem('icon', {
               disabled,
@@ -264,7 +265,7 @@ export default defineComponent({
             }),
             option.iconClassName,
           ],
-          onClick: () => onClickIcon(index),
+          // onClick: () => onClickIcon(index),
         };
 
         return (

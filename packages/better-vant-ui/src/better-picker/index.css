@@ -1,10 +1,11 @@
-:root{
+:root {
   --van-picker-icon-color: var(--van-primary-color);
 }
 
-.van-picker-column__icon{
-  padding-left:10px;
+.van-picker-column__icon {
+  padding-left: 10px;
+  padding-top: 2px;
 }
-.van-picker-column__icon--selected{
-  color:var(--van-picker-icon-color)
+.van-picker-column__icon--selected {
+  color: var(--van-picker-icon-color);
 }

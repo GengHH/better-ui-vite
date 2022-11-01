@@ -51,7 +51,7 @@ import Toolbar, {
 // Types
 import type {
   PickerColumn,
-  PickerExpose,
+  NewPickerExpose,
   PickerOption,
   PickerFieldNames,
   PickerToolbarPosition,
@@ -62,6 +62,7 @@ import { isNumeric } from 'vant/lib/utils';
 
 export const pickerSharedProps = extend(
   {
+    iconName: String,
     loading: Boolean,
     readonly: Boolean,
     allowHtml: Boolean,
@@ -129,11 +130,29 @@ export default defineComponent({
       currentColumns.value.some((options) => options.length)
     );
 
+    //计算选中的选项
     const selectedOptions = computed(() =>
-      currentColumns.value.map((options, index) =>
-        findOptionByValue(options, selectedValues.value[index], fields.value)
-      )
+      // 单选-当前选中的值
+      // currentColumns.value.map((options, index) =>
+      //   findOptionByValue(options, selectedValues.value[index], fields.value)
+      // )
+      //多选-所有选中的值
+      selectedValues.value.map((value: Numeric) => {
+        const f = props.columns.filter(
+          (options: PickerOption) => options?.value === value
+        );
+        if (f && f.length > 0) {
+          return f[0];
+        }
+        return f;
+      })
     );
+
+    //计算选中的选项-text
+    const selectedTexts = computed(() => {
+      const arr = selectedOptions.value.map((i: PickerOption) => i.text);
+      return arr.join('-');
+    });
 
     // 更新选中的值
     const setValue = (index: number, value: Numeric) => {
@@ -161,6 +180,7 @@ export default defineComponent({
     const getEventParams = () => ({
       selectedValues: selectedValues.value.slice(0),
       selectedOptions: selectedOptions.value,
+      selectedTexts: selectedTexts.value,
     });
 
     // const onChange = (value: Numeric, columnIndex: number) => {
@@ -193,14 +213,13 @@ export default defineComponent({
       currentOption: PickerOption,
       columnIndex: number
     ) => {
-      console.log('%c 🍏 value', 'color:#42b983', value);
-      console.log('%c 🌮 currentOption', 'color:#465975', currentOption);
-      console.log(
-        '%c 🥕 extend({ columnIndex, currentOption }, getEventParams())',
-        'color:#b03734',
-        extend({ columnIndex, currentOption }, getEventParams())
-      );
       setValue(columnIndex, value);
+      console.log('%c 🍏 value', 'color:#42b983', value);
+      console.log(
+        '%c 🍏all',
+        'color:#b03734',
+        extend({ columnIndex, currentOption, selectedTexts }, getEventParams())
+      );
       emit(
         'clickIcon',
         extend({ columnIndex, currentOption }, getEventParams())
@@ -224,6 +243,7 @@ export default defineComponent({
           value={selectedValues.value}
           fields={fields.value}
           options={options}
+          iconName={props.iconName}
           readonly={props.readonly}
           allowHtml={props.allowHtml}
           optionHeight={optionHeight.value}
@@ -330,8 +350,13 @@ export default defineComponent({
     });
 
     const getSelectedOptions = () => selectedOptions.value;
+    const getSelectedOptionsText = () => selectedTexts.value;
 
-    useExpose<PickerExpose>({ confirm, getSelectedOptions });
+    useExpose<NewPickerExpose>({
+      confirm,
+      getSelectedOptions,
+      getSelectedOptionsText,
+    });
 
     return () => (
       <div class={bem()}>

@@ -1,8 +1,9 @@
 {
   "name": "@better-vant/better-vant-ui",
-  "version": "0.0.2",
+  "version": "0.3.0",
   "description": "GengHH",
-  "main": "index.js",
+  "main": "./dist/better-vant-ui.js",
+  "module": "./dist/better-vant-ui.mjs",
   "keywords": [],
   "author": "",
   "scripts": {
@@ -12,7 +13,6 @@
     "test": "vant-cli test",
     "lint": "vant-cli lint",
     "build": "vant-cli build",
-    "prepare": "husky install",
     "release": "vant-cli release",
     "build-site": "vant-cli build-site"
   },
@@ -30,6 +30,9 @@
   "prettier": {
     "singleQuote": true
   },
+  "files": [
+    "dist"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@vant/cli": "^5.0.2",
@@ -41,9 +44,7 @@
     "vite": "3.0.9",
     "vite-plugin-dts": "^1.6.5",
     "vite-plugin-remove-console": "^1.1.0",
-    "vue-tsc": "^1.0.2"
-  },
-  "dependencies": {
+    "vue-tsc": "^1.0.2",
     "@vant/use": "^1.4.3",
     "vant": "4.0.0-rc.4",
     "vue": "^3.2.40"

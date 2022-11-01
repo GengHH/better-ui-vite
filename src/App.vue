@@ -2,7 +2,7 @@
  * @Author: GengHH
  * @Date: 2022-10-18 13:35:31
  * @LastEditors: GengHH
- * @LastEditTime: 2022-10-27 13:27:31
+ * @LastEditTime: 2022-10-31 17:35:58
  * @Description: file content
  * @FilePath: \better-ui-vite\src\App.vue
 -->
@@ -13,6 +13,7 @@
 		title="my Picker"
 		:columns="columns"
 		v-model="selectedValues"
+		icon-name="success"
 		@confirm="onConfirm"
 		@cancel="onCancel"
 	/>
